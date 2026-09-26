@@ -36,8 +36,6 @@ Trace loaders and execution flow
         ↓
 Remove junk and dead code
         ↓
-Rename variables / functions
-        ↓
 Refactor the logic
         ↓
 Readable Luau
