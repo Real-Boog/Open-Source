@@ -1,4 +1,4 @@
--- Universal
+-- this is for BloxStrike
 
 local players = game:GetService("Players")
 local coreGui = game:GetService("CoreGui")
