@@ -15,6 +15,7 @@ local proximityPromptService = game:GetService("ProximityPromptService")
 local soundService = game:GetService("SoundService")
 local guiService = game:GetService("GuiService")
 local starterGui = game:GetService("StarterGui")
+
 local localPlayer = players.LocalPlayer
 local currentCamera = workspace.CurrentCamera
 SentinelActive = true
@@ -23,28 +24,19 @@ noclipConnection = nil
 local hookFunction = type(hookfunction) == "function"
 local hookMetamethod = type(hookmetamethod) == "function"
 local newCClosure = type(newcclosure) == "function"
-local getRawMetatable = type(getrawmetatable) == "function"
-local setReadonly = type(setreadonly) == "function"
-local cloneFunction = type(clonefunction) == "function"
 
 Capabilities = {
   HookFunction = hookFunction,
   HookMetamethod = hookMetamethod,
   NewCClosure = newCClosure,
-  GetRawMetatable = getRawMetatable,
-  SetReadonly = setReadonly,
-  CloneFunction = cloneFunction,
+  GetRawMetatable = type(getrawmetatable) == "function",
+  SetReadonly = type(setreadonly) == "function",
+  CloneFunction = type(clonefunction) == "function",
   Drawing = type(Drawing) == "table" and type(Drawing.new) == "function",
   FireProximityPrompt = type(fireproximityprompt) == "function",
   FireClickDetector = type(fireclickdetector) == "function",
   GetCustomAsset = type(getcustomasset) == "function",
-  IsFile = type(isfile) == "function",
-  WriteFile = type(writefile) == "function",
-  ReadFile = type(readfile) == "function",
   Request = type(request) == "function" or type(http_request) == "function",
-  LoadString = type(loadstring) == "function",
-  SetClipboard = type(setclipboard) == "function",
-  IdentifyExecutor = type(identifyexecutor) == "function",
 }
 
 local capabilities = Capabilities
@@ -59,13 +51,13 @@ SentinelHookSupported = Capabilities.Hooks
 SentinelMissingFeatures = {}
 SentinelLimitedExecutor = #SentinelMissingFeatures > 0
 SentinelExecutorName = "Unknown"
-local v1 = identifyexecutor
+local v18 = identifyexecutor
 
-if type(v1) == "function" then
-  local v2 = v1()
+if type(v18) == "function" then
+  local v19 = v18()
 
-  if type(v2) == "string" and #v2 > 0 then
-    SentinelExecutorName = v2
+  if type(v19) == "string" and #v19 > 0 then
+    SentinelExecutorName = v19
   end
 elseif syn then
   SentinelExecutorName = "Synapse X"
@@ -104,11 +96,11 @@ end
 SentinelDeviceType = "PC"
 
 if syn and syn.getplatform then
-  local v3 = syn.getplatform()
+  local v20 = syn.getplatform()
 
-  if v3 == "UWP" then
+  if v20 == "UWP" then
     SentinelDeviceType = "UWP"
-  elseif v3 == "Android" then
+  elseif v20 == "Android" then
     SentinelDeviceType = "Mobile"
   end
 elseif KRNL_LOADED and type(KRNL_LOADED) == "table" and KRNL_LOADED.Platform then
@@ -128,67 +120,67 @@ end
 SentinelUserName = localPlayer and localPlayer.Name or "Unknown"
 SentinelLoadStart = os.clock()
 
-local function f1()
-  local function f2(p1)
-    local v4, v5 = pcall(p1)
-    return v4 and v5 ~= nil
+local function f3()
+  local function f4(p3)
+    local v21, v22 = pcall(p3)
+    return v21 and v22 == true
   end
 
-  local function f3(p2, p3)
-    print((f2(p3) and "✅ " or "❌ ") .. "| " .. p2)
+  local function f5(p4, p5)
+    print((f4(p5) and "✅ " or "❌ ") .. "| " .. p4)
   end
 
   print("\n============ Sentinel UNC Test ============")
 
-  f3("hookmetamethod", function() return hookmetamethod ~= nil end)
-  f3("hookfunction", function() return hookfunction ~= nil end)
-  f3("getnamecallmethod", function() return getnamecallmethod ~= nil end)
-  f3("newcclosure", function() return newcclosure ~= nil end)
-  f3("getfenv", function() return getfenv ~= nil end)
-  f3("setfenv", function() return setfenv ~= nil end)
-  f3("Drawing.new", function() return Drawing and Drawing.new ~= nil end)
-  f3("getrawmetatable", function() return getrawmetatable ~= nil end)
-  f3("setreadonly", function() return setreadonly ~= nil end)
-  f3("getrenv", function() return getrenv ~= nil end)
-  f3("identifyexecutor", function() return identifyexecutor ~= nil end)
-  f3("setfpscap", function() return setfpscap ~= nil end)
-  f3("fireclickdetector", function() return fireclickdetector ~= nil end)
-  f3("fireproximityprompt", function() return fireproximityprompt ~= nil end)
-  f3("request/http", function() return request ~= nil or http_request ~= nil end)
-  f3("cloneref", function() return cloneref ~= nil end)
-  f3("clonefunction", function() return clonefunction ~= nil end)
-  f3("loadstring", function() return loadstring ~= nil end)
-  f3("getcustomasset", function() return getcustomasset ~= nil end)
-  f3("isfile", function() return isfile ~= nil end)
+  f5("hookmetamethod", function() return hookmetamethod ~= nil end)
+  f5("hookfunction", function() return hookfunction ~= nil end)
+  f5("getnamecallmethod", function() return getnamecallmethod ~= nil end)
+  f5("newcclosure", function() return newcclosure ~= nil end)
+  f5("getfenv", function() return getfenv ~= nil end)
+  f5("setfenv", function() return setfenv ~= nil end)
+  f5("Drawing.new", function() return Drawing and Drawing.new ~= nil end)
+  f5("getrawmetatable", function() return getrawmetatable ~= nil end)
+  f5("setreadonly", function() return setreadonly ~= nil end)
+  f5("getrenv", function() return getrenv ~= nil end)
+  f5("identifyexecutor", function() return identifyexecutor ~= nil end)
+  f5("setfpscap", function() return setfpscap ~= nil end)
+  f5("fireclickdetector", function() return fireclickdetector ~= nil end)
+  f5("fireproximityprompt", function() return fireproximityprompt ~= nil end)
+  f5("request/http", function() return request ~= nil or http_request ~= nil end)
+  f5("cloneref", function() return cloneref ~= nil end)
+  f5("clonefunction", function() return clonefunction ~= nil end)
+  f5("loadstring", function() return loadstring ~= nil end)
+  f5("getcustomasset", function() return getcustomasset ~= nil end)
+  f5("isfile", function() return isfile ~= nil end)
 
   print([[
 ===========================================
 ]])
 end
 
-function isPlayerCharacter(p4)
-  if not p4 or not p4:IsA("Model") then
+function isPlayerCharacter(p6)
+  if not p6 or not p6:IsA("Model") then
     return false
   end
 
-  return players:GetPlayerFromCharacter(p4) ~= nil
+  return players:GetPlayerFromCharacter(p6) ~= nil
 end
 
-function isHumanoidModel(p5)
-  if not p5 or not p5:IsA("Model") then
+function isHumanoidModel(p7)
+  if not p7 or not p7:IsA("Model") then
     return false
   end
 
-  return p5:FindFirstChildWhichIsA("Humanoid") ~= nil
+  return p7:FindFirstChildWhichIsA("Humanoid") ~= nil
 end
 
-function isMobModel(p6)
-  if not p6 then
+function isMobModel(p8)
+  if not p8 then
     return false
   else
     local characters = workspaceService:FindFirstChild("Characters")
 
-    if characters and p6:IsDescendantOf(characters) then
+    if characters and p8:IsDescendantOf(characters) then
       return true
     end
 
@@ -239,31 +231,21 @@ Config = {
   JumpBypassActive = false,
   FlyEnabled = false,
   FlySpeed = 25,
+  FlyType = "Seat [UNDETECTED]",
   NoclipEnabled = false,
   AutoWipeBlood = false,
   AntiCamShake = false,
   ImmuneLookHazard = false,
   HighlightPlayer = false,
-  HighlightFriends = false,
   HighlightMobs = false,
   HighlightBosses = false,
-  HealthPlayer = false,
-  HealthFriends = false,
-  HealthMobs = false,
-  HealthBosses = false,
-  TracerPlayer = false,
-  TracerFriends = false,
-  TracerMobs = false,
-  TracerBosses = false,
   ColorPlayer = Color3.fromRGB(0, 255, 0),
-  ColorFriends = Color3.fromRGB(173, 216, 230),
   ColorMobs = Color3.fromRGB(255, 165, 0),
   ColorBosses = Color3.fromRGB(255, 0, 0),
   MaxDistance = 1000,
   HLFillTrans = 0.7,
   HLOutlineTrans = 1,
   FullBright = false,
-  Xray = false,
   XrayDistance = 30,
   NoFog = false,
   UnlockThirdPerson = false,
@@ -276,7 +258,6 @@ Config = {
   TagColor = Color3.fromRGB(80, 109, 84),
   Team = "Menlo",
   StaggerEnabled = true,
-  InfectionActive = false,
   AnimatorEnabled = false,
   AnimatorIdleAnimName = nil,
   AnimatorWalkAnimName = nil,
@@ -286,7 +267,7 @@ Config = {
   ChatLoggerEnabled = false,
   CustomFOVEnabled = false,
   FOVValue = 70,
-  Theme = "Amber",
+  UITheme = "Amber",
   MinimizeKeybind = "K",
   XrayMaterial = "ForceField",
   XrayTransparency = 0.3,
@@ -302,6 +283,8 @@ Config = {
   FastReload = false,
   FastReloadBoosts = { "+100%", "+200%", "+150%" },
   InstantShotgunReload = false,
+  WindowTransparency = 0,
+  WindowBackground = "",
   NotificationSound = "",
   NetworkBypassEnabled = false,
   ActiveBypasses = {},
@@ -309,19 +292,15 @@ Config = {
   BoxAutoThickness = true,
   BoxSize = 4,
   BoxPlayers = false,
-  BoxFriends = false,
   BoxMobs = false,
   BoxBosses = false,
   ShowNamePlayers = false,
-  ShowNameFriends = false,
   ShowNameMobs = false,
   ShowNameBosses = false,
   ShowHealthPlayers = false,
-  ShowHealthFriends = false,
   ShowHealthMobs = false,
   ShowHealthBosses = false,
   ShowDistancePlayers = false,
-  ShowDistanceFriends = false,
   ShowDistanceMobs = false,
   ShowDistanceBosses = false,
   SilentAimEnabled = false,
@@ -351,7 +330,7 @@ Config = {
   CustomWeaponsMaterial = "ForceField",
 }
 
-local v6 = {
+local v23 = {
   Plastic = Enum.Material.Plastic,
   Neon = Enum.Material.Neon,
   ForceField = Enum.Material.ForceField,
@@ -377,39 +356,16 @@ local v6 = {
   Rubber = Enum.Material.Rubber,
 }
 
-local function f4(p7)
-  return v6[p7] or Enum.Material.ForceField
-end
-
 local values = {
   "Plastic", "Neon", "ForceField", "Glass", "SmoothPlastic", "Metal", "Ice", "Marble",
   "Granite", "Concrete", "Brick", "Fabric", "Wood", "DiamondPlate", "Foil", "CorrodedMetal",
   "Grass", "Sand", "Slate", "Carpet", "Leather", "Plaster", "Rubber",
 }
 
-local v7 = {}
-local v8 = {}
+local v24 = {}
+local f6
 
-local function f5(p8)
-  if not p8 or not p8:IsA("Tool") then
-    return
-  end
-
-  for index, value in ipairs(p8:GetDescendants()) do
-    local v9 = value
-
-    if v9:IsA("BasePart") then
-      if not v8[v9] then
-        v8[v9] = { Color = v9.Color, Material = v9.Material, Transparency = v9.Transparency }
-      end
-
-      pcall(function() v9.Color = Config.ViewModelColor end)
-      pcall(function() v9.Material = f4(Config.ViewModelMaterial) end)
-    end
-  end
-end
-
-local function f6(p9)
+local function f7(p9)
   if not p9 then
     return
   end
@@ -423,519 +379,283 @@ local function f6(p9)
       return
     end
 
-    if not v8[p9] then
-      v8[p9] = { Color = p9.Color, Material = p9.Material, Transparency = p9.Transparency }
+    if not v24[p9] then
+      v24[p9] = { Color = p9.Color, Material = p9.Material, Transparency = p9.Transparency }
     end
 
     pcall(function() p9.Color = Config.ViewModelColor end)
-    pcall(function() p9.Material = f4(Config.ViewModelMaterial) end)
+    pcall(function() p9.Material = f6(Config.ViewModelMaterial) end)
     pcall(function() p9.Transparency = 0 end)
 
     return
   end
 end
 
-local function f7(p10)
-  if not p10 or not p10:IsA("Tool") then
+function f6(p10)
+  return v23[p10] or Enum.Material.ForceField
+end
+
+local v25 = {}
+
+local function f8(p11)
+  if not p11 or not p11:IsA("Tool") then
     return
   end
 
-  for index2, value2 in ipairs(p10:GetDescendants()) do
-    local v10 = value2
+  for index, value in ipairs(p11:GetDescendants()) do
+    local v26 = value
 
-    if v10:IsA("BasePart") then
-      if not v7[v10] then
-        v7[v10] = {
-          Color = v10.Color,
-          Material = v10.Material,
-          Transparency = v10.Transparency,
+    if v26:IsA("BasePart") then
+      if not v24[v26] then
+        v24[v26] = {
+          Color = v26.Color,
+          Material = v26.Material,
+          Transparency = v26.Transparency,
+        }
+      end
+
+      pcall(function() v26.Color = Config.ViewModelColor end)
+      pcall(function() v26.Material = f6(Config.ViewModelMaterial) end)
+    end
+  end
+end
+
+local function f9(p12)
+  if not p12 or not p12:IsA("Tool") then
+    return
+  end
+
+  for index2, value2 in ipairs(p12:GetDescendants()) do
+    local v27 = value2
+
+    if v27:IsA("BasePart") then
+      if not v25[v27] then
+        v25[v27] = {
+          Color = v27.Color,
+          Material = v27.Material,
+          Transparency = v27.Transparency,
           RemovedChildren = {},
         }
 
-        for index3, value3 in ipairs(v10:GetChildren()) do
+        for index3, value3 in ipairs(v27:GetChildren()) do
           if value3:IsA("SurfaceAppearance") or value3:IsA("Decal") or value3:IsA("Texture") then
-            table.insert(v7[v10].RemovedChildren, value3)
+            table.insert(v25[v27].RemovedChildren, value3)
             value3.Parent = nil
           end
         end
       end
 
-      pcall(function() v10.Color = Config.CustomWeaponsColor end)
-      pcall(function() v10.Material = f4(Config.CustomWeaponsMaterial) end)
+      pcall(function() v27.Color = Config.CustomWeaponsColor end)
+      pcall(function() v27.Material = f6(Config.CustomWeaponsMaterial) end)
     end
   end
 end
 
-local v11 = { "Radaways1", "Radaways2" }
-local vector = Vector3.new(1, 0, 0)
-local vector2 = Vector3.new(-1, 0, 0)
-local vector3 = Vector3.new(0, 0, 1)
-local vector4 = Vector3.new(0, 0, -1)
-local vector5 = Vector3.new(0, 1, 0)
-local vector6 = Vector3.new(1, 0, 1)
-
-local function f8(p11)
-  local character3 = localPlayer.Character
-
-  if not character3 then
-    return false
-  elseif character3:FindFirstChild(p11) then
-    return true
-  else
-    local backpack = localPlayer:FindFirstChild("Backpack")
-
-    if backpack and backpack:FindFirstChild(p11) then
-      return true
-    end
-
-    return false
-  end
-end
-
-local v12 = {
-  vector, vector2, vector3, vector4, vector5, vector6, Vector3.new(-1, 0, -1),
-  Vector3.new(1, 0, -1), Vector3.new(-1, 0, 1),
-}
-
-local function f9(...)
-  print("[Radaway-DEBUG]", ...)
-end
-
-local function f10(p12)
-  if not p12 then
-    return nil
-  end
-
-  return p12:FindFirstChild("HumanoidRootPart") or p12:FindFirstChild("Torso")
-    or p12:FindFirstChild("UpperTorso") or p12:FindFirstChild("LowerTorso") or p12.PrimaryPart
-end
-
-local function f11(p13)
-  if not p13 then
-    return false
-  elseif p13.Y < -500 then
-    return false
-  elseif math.abs(p13.X) > 10000 then
-    return false
-  else
-    if math.abs(p13.Z) > 10000 then
-      return false
-    end
-
-    return true
-  end
-end
-
-local function f12(p14)
-  if not p14 then
-    f9("isValid: nil radaway")
-    return false
-  elseif not p14.Parent then
-    f9("isValid: radaway.Parent is nil")
-    return false
-  else
-    local humanoid = p14:FindFirstChildOfClass("Humanoid")
-
-    if not humanoid then
-      f9("isValid: no Humanoid on " .. tostring(p14.Name))
-      return false
-    elseif humanoid.Health <= 0 then
-      f9("isValid: dead Humanoid on " .. tostring(p14.Name) .. " (hp=" .. humanoid.Health .. ")")
-      return false
-    else
-      local v13 = f10(p14)
-
-      if not v13 then
-        f9("isValid: no root on " .. tostring(p14.Name))
-        return false
-      end
-
-      if not f11(v13.Position) then
-        f9("isValid: invalid position on " .. tostring(p14.Name) .. " pos="
-          .. tostring(v13.Position))
-
-        return false
-      end
-
-      return true
-    end
-  end
-end
-
-local function f13()
-  local characters2 = workspace:FindFirstChild("Characters")
-
-  if not characters2 then
-    f9("find: no Characters folder")
-    return nil
-  end
-
-  for index4, value4 in ipairs(v11) do
-    local findFirstChild = characters2:FindFirstChild(value4)
-
-    if findFirstChild then
-      if f12(findFirstChild) then
-        return findFirstChild
-      end
-    end
-  end
-
-  return nil
-end
-
-local f14
-
-local function f15(p15, p16, p17)
-  for index5, value5 in ipairs(v12) do
-    local v14 = p15 + value5.Unit * 5
-
-    if f14(v14, p16, { p17 }) then
-      return v14
-    end
-  end
-
-  return p15 + Vector3.new(0, 3, 0)
-end
-
-function f14(p18, p19, p20)
-  if not p19 then
-    return false
-  else
-    local raycastParams = RaycastParams.new()
-    raycastParams.FilterType = Enum.RaycastFilterType.Exclude
-
-    local v15 = { p19, currentCamera }
-
-    if p20 then
-      for index6, value6 in ipairs(p20) do
-        table.insert(v15, value6)
-      end
-    end
-
-    raycastParams.FilterDescendantsInstances = v15
-    raycastParams.IgnoreWater = true
-
-    if not workspace:Raycast(p18, Vector3.new(0, -6, 0), raycastParams) then
-      return false
-    else
-      local raycast = workspace:Raycast(p18, Vector3.new(0, 6, 0), raycastParams)
-
-      if raycast and raycast.Distance < 5 then
-        return false
-      end
-
-      return true
-    end
-  end
-end
+local v28 = { "Radaways1", "Radaways2" }
+RadawayCooldown = { lastUsed = 0 }
 
 RadawayState = {
   active = false,
+  connection = nil,
+  target = nil,
   originalCFrame = nil,
-  radaway = nil,
-  startHp = nil,
-  successNotified = false,
 }
 
-local function f16(p21, p22, p23)
-  if not p21 or not p22 then
-    return false
+local function f10()
+  local characters2 = workspace:FindFirstChild("Characters")
+
+  if not characters2 then
+    return nil
   else
-    local humanoidRootPart = p21:FindFirstChild("HumanoidRootPart")
+    local character3 = localPlayer.Character
 
-    if not humanoidRootPart then
-      return false
+    if not character3 then
+      return nil
     else
-      local position = humanoidRootPart.Position
-      pcall(function() p21:PivotTo(p22) end)
-      task.wait(0.05)
-      local humanoidRootPart2 = p21:FindFirstChild("HumanoidRootPart")
+      local humanoidRootPart = character3:FindFirstChild("HumanoidRootPart")
 
-      if not humanoidRootPart2 then
-        return false
+      if not humanoidRootPart then
+        return nil
       else
-        local position2 = humanoidRootPart2.Position
+        local v29 = nil
+        local huge = math.huge
 
-        f9("pivot[" .. tostring(p23) .. "]: before=" .. tostring(position) .. " target="
-          .. tostring(p22.Position) .. " after=" .. tostring(position2))
+        for index4, value4 in ipairs(v28) do
+          local findFirstChild = characters2:FindFirstChild(value4)
 
-        if not f11(position2) then
-          f9("pivot[" .. tostring(p23) .. "]: VOID DETECTED -> reverting")
+          if findFirstChild then
+            local humanoid = findFirstChild:FindFirstChildWhichIsA("Humanoid")
+            local primaryPart = findFirstChild.PrimaryPart
 
-          if RadawayState.originalCFrame then
-            pcall(function() p21:PivotTo(RadawayState.originalCFrame) end)
+            local findFirstChildWhichIsA = primaryPart
+
+            findFirstChildWhichIsA = primaryPart
+              or findFirstChild:FindFirstChildWhichIsA("BasePart", true)
+
+            if humanoid and humanoid.Health > 0 and findFirstChildWhichIsA then
+              local magnitude = (humanoidRootPart.Position - findFirstChildWhichIsA.Position).Magnitude
+
+              if magnitude < huge then
+                huge = magnitude
+                v29 = { part = findFirstChildWhichIsA, hum = humanoid, model = findFirstChild }
+              end
+            end
           end
-
-          return false
-        else
-          local magnitude = (position2 - p22.Position).Magnitude
-
-          if magnitude > 50 then
-            f9("pivot[" .. tostring(p23) .. "]: REJECTED BY GAME (drift "
-              .. string.format("%.1f", magnitude) .. " studs)")
-
-            return false
-          end
-
-          return true
         end
+
+        return v29
       end
     end
   end
 end
 
-local f17
+local function f11()
+  local v30 = 60 - (tick() - RadawayCooldown.lastUsed)
 
-local function f18()
-  RadawayState.active = false
-  RadawayState.radaway = nil
-  RadawayState.originalCFrame = nil
-  RadawayState.startHp = nil
-  RadawayState.successNotified = false
+  if v30 < 0 then
+    v30 = 0
+  end
 
-  f9("=== START ===")
+  return math.ceil(v30)
+end
+
+local function f12()
+  return tick() - RadawayCooldown.lastUsed >= 60
+end
+
+local function f13(p13, p14, p15, p16)
+end
+
+local function f14(p17)
   local character4 = localPlayer.Character
+  local originalCFrame, f15
 
   if not character4 then
-    f9("start: no character")
     return
   else
-    local humanoid2 = character4:FindFirstChildOfClass("Humanoid")
+    local humanoidRootPart2 = character4:FindFirstChild("HumanoidRootPart")
 
-    if not humanoid2 then
-      f9("start: no humanoid")
+    if not humanoidRootPart2 then
       return
-    else
-      local humanoidRootPart3 = character4:FindFirstChild("HumanoidRootPart")
+    end
 
-      if not humanoidRootPart3 then
-        f9("start: no hrp")
+    RadawayState.active = true
+    RadawayState.target = p17
+    RadawayState.originalCFrame = humanoidRootPart2.CFrame
+
+    originalCFrame = RadawayState.originalCFrame
+
+    function f15(p18, p19)
+      if RadawayState.connection then
+        pcall(function() RadawayState.connection:Disconnect() end)
+        RadawayState.connection = nil
+      end
+
+      RadawayState.active = false
+      local character5 = localPlayer.Character
+
+      if character5 and character5:FindFirstChild("HumanoidRootPart") then
+        pcall(function() character5:PivotTo(originalCFrame) end)
+      end
+    end
+
+    RadawayState.connection = runService.Heartbeat:Connect(function()
+      local humanoidRootPart3, cframe
+
+      if not SentinelActive then
+        f15(nil)
         return
       else
-        f9("start: HP=" .. humanoid2.Health .. " pos=" .. tostring(humanoidRootPart3.Position))
+        local character6 = localPlayer.Character
 
-        pcall(function()
-          if WindUI then
-            WindUI:Notify({
-              Title = "Get Infected",
-              Content = "Waiting for the server",
-              Icon = "cloud-backup",
-              Duration = 17,
-            })
-          end
-        end)
+        if not character6 then
+          f15(nil)
+          return
+        else
+          humanoidRootPart3 = character6:FindFirstChild("HumanoidRootPart")
+          local humanoid2 = character6:FindFirstChildOfClass("Humanoid")
 
-        local v16 = tick()
-        local v17 = nil
-        local count = 0
-
-        while tick() - v16 < 15 do
-          if not SentinelActive then
-            f9("start: SentinelActive false, aborting")
+          if not humanoidRootPart3 or not humanoid2 then
+            f15(nil)
+            return
+          elseif humanoid2.Health <= 10 then
+            f15("success!", "bug-play")
             return
           else
-            count = count + 1
-            local v18 = f13()
-
-            if v18 then
-              v17 = v18
-              f9("start: found valid radaway on attempt " .. count)
-              break
+            if not p17.hum or not p17.hum.Parent or p17.hum.Health <= 0 or not p17.part
+              or not p17.part.Parent then
+              f15("Radaway died, returning to original position.", "cloud-alert")
+              return
             end
 
-            if count % 4 == 1 then
-              f9("start: search attempt " .. count .. " - no valid radaway yet")
-            end
-
-            task.wait(0.5)
+            cframe = p17.part.CFrame * CFrame.new(0, 0, -1)
+            pcall(function() humanoidRootPart3.CFrame = cframe end)
+            return
           end
         end
+      end
+    end)
 
-        if not v17 then
-          f9("start: timed out, no radaway found")
+    return
+  end
+end
 
-          pcall(function()
-            if WindUI then
-              WindUI:Notify({
-                Title = "Get Infected",
-                Content = 'The "Get Infected" function is not available on this server; wait a few minutes or switch servers.',
-                Icon = "cloud-alert",
-                Duration = 8,
-              })
-            end
-          end)
+function radawayStartInfectionProcess()
+  if not f12() then
+    f13(
+      "Get Infected", "Cooldown active. Wait " .. f11() .. "s before using again.", "clock", 4
+    )
 
+    return
+  else
+    local character7 = localPlayer.Character
+
+    if not character7 then
+      return
+    else
+      local humanoid3 = character7:FindFirstChildOfClass("Humanoid")
+
+      if not humanoid3 then
+        return
+      elseif humanoid3.Health < 100 then
+        return
+      else
+        local v31 = f10()
+
+        if not v31 then
           return
         end
 
-        pcall(function()
-          if WindUI then
-            WindUI:Notify({
-              Title = "Get Infected",
-              Content = [[
-The infectious phase is beginning.
-sit tight, Sentinel is working on your infection...]],
-              Icon = "cloud-check",
-              Duration = 6,
-            })
-          end
-        end)
+        RadawayCooldown.lastUsed = tick()
 
-        RadawayState.active = true
-        RadawayState.originalCFrame = humanoidRootPart3.CFrame
-        RadawayState.radaway = v17
-        RadawayState.startHp = humanoid2.Health
-        RadawayState.successNotified = false
+        f13(
+          "Get Infected",
+          "Following " .. v31.model.Name .. " | HP: " .. math.floor(humanoid3.Health),
+          "cloud-check", 5
+        )
 
-        f9("start: launching follow loop, origin="
-          .. tostring(RadawayState.originalCFrame.Position))
-
-        task.spawn(f17)
+        f14(v31)
         return
       end
     end
   end
 end
 
-function f17()
-  local count2 = 0
-  local vector7
+localPlayer.CharacterAdded:Connect(function() RadawayCooldown.lastUsed = 0 end)
+local v32 = { "Gilbert", "Chimera", "Mikhail", "Sin", "SIN", "Dave" }
+local f16
 
-  while true do
-    local v19 = "active"
-    local v20 = RadawayState[v19]
-    local v21 = v20
-
-    if v20 then
-      v19 = false
-      v21 = SentinelActive ~= v19
-    end
-
-    if v21 then
-      count2 = count2 + 1
-      local v22 = f13()
-
-      if not v22 then
-        if count2 % 10 == 1 then
-          f9("follow[" .. count2 .. "]: no valid radaway, waiting...")
-        end
-
-        task.wait(0.2)
-      else
-        RadawayState.radaway = v22
-        local v23 = f10(v22)
-
-        if not v23 then
-          task.wait(0.2)
-        else
-          local character5 = localPlayer.Character
-
-          if not character5 then
-            f9("follow: character is nil, breaking")
-            break
-          else
-            local humanoidRootPart4 = character5:FindFirstChild("HumanoidRootPart")
-            local humanoid3 = character5:FindFirstChildOfClass("Humanoid")
-
-            if not humanoidRootPart4 or not humanoid3 then
-              f9("follow: no myHrp or myHum, breaking")
-              break
-            end
-
-            if not f11(humanoidRootPart4.Position) then
-              f9("follow: MY character is in the void! reverting")
-
-              if RadawayState.originalCFrame then
-                pcall(function() character5:PivotTo(RadawayState.originalCFrame) end)
-              end
-
-              task.wait(0.5)
-            end
-
-            if humanoid3.Health <= 10 then
-              if not RadawayState.successNotified and RadawayState.startHp
-                and RadawayState.startHp > 10 then
-                RadawayState.successNotified = true
-                f9("follow: HP threshold reached -> SUCCESS")
-
-                pcall(function()
-                  if WindUI then
-                    WindUI:Notify({
-                      Title = "Get Infected",
-                      Content = "success!",
-                      Icon = "bug-play",
-                      Duration = 5,
-                    })
-                  end
-                end)
-              end
-
-              local character6 = localPlayer.Character
-
-              if character6 and character6:FindFirstChild("HumanoidRootPart")
-                and RadawayState.originalCFrame then
-                character6:PivotTo(RadawayState.originalCFrame)
-              end
-
-              RadawayState.active = false
-              break
-            else
-              local position3 = humanoidRootPart4.Position
-              local position4 = v23.Position
-
-              local magnitude2 = (Vector3.new(position3.X, 0, position3.Z)
-                - Vector3.new(position4.X, 0, position4.Z)).Magnitude
-
-              if (position3 - position4).Magnitude < 0.1 then
-                Vector3.new(0, 0, 1)
-              end
-
-              if magnitude2 > 6 or magnitude2 < 4 then
-                vector7 = f15(position4, character5, v22)
-              else
-                vector7 = Vector3.new(position3.X, position4.Y, position3.Z)
-
-                if not f14(vector7, character5, { v22 }) then
-                  vector7 = f15(position4, character5, v22)
-                end
-              end
-
-              if vector7 and f11(vector7) then
-                f16(
-                  character5,
-                  CFrame.new(vector7, Vector3.new(position4.X, vector7.Y, position4.Z)), count2
-                )
-              else
-                f9("follow[" .. count2 .. "]: safePos invalid, skipping")
-              end
-
-              task.wait(0.1)
-            end
-          end
-        end
-      end
-    else
-      break
-    end
-  end
-
-  f9("follow loop ended")
-end
-
-local v24 = { "Gilbert", "Chimera", "Mikhail", "Sin", "SIN", "Dave" }
-local f19
-
-local function f20(p24)
-  if not p24 or not p24:IsA("Model") then
+local function f17(p20)
+  if not p20 or not p20:IsA("Model") then
     return false
-  elseif isPlayerCharacter(p24) then
+  elseif isPlayerCharacter(p20) then
     return false
-  elseif p24 == localPlayer.Character then
+  elseif p20 == localPlayer.Character then
     return false
-  elseif f19(p24) then
+  elseif f16(p20) then
     return true
   else
-    if isMobModel(p24) then
+    if isMobModel(p20) then
       return true
     end
 
@@ -943,13 +663,13 @@ local function f20(p24)
   end
 end
 
-function f19(p25)
-  if not p25 or not p25:IsA("Model") then
+function f16(p21)
+  if not p21 or not p21:IsA("Model") then
     return false
   end
 
-  for index7, value7 in ipairs(v24) do
-    if p25.Name:find(value7) then
+  for index5, value5 in ipairs(v32) do
+    if p21.Name:find(value5) then
       return true
     end
   end
@@ -964,7 +684,9 @@ flyBG = nil
 flySeat = nil
 flyWeld = nil
 flyActive = false
+CurrentFlyType = "Seat [UNDETECTED]"
 FlySpeed = 25
+savedHipHeight = 2
 CooldownCounter = 0
 CooldownData = { Bash = nil, Kick = nil }
 ActiveTweens = {}
@@ -976,33 +698,7 @@ OrigFogEnd = lighting.FogEnd
 OrigFogStart = lighting.FogStart
 OrigFOV = currentCamera.FieldOfView
 
-local function f21()
-  if ShadowRemovalConnection then
-    ShadowRemovalConnection:Disconnect()
-    ShadowRemovalConnection = nil
-  end
-
-  for key in pairs(ShadowModifiedParts) do
-    local v25 = key
-
-    if v25 and v25.Parent then
-      pcall(function() v25.CastShadow = true end)
-    end
-  end
-end
-
-local function f22()
-  for index8, value8 in ipairs(workspace:GetDescendants()) do
-    if value8:IsA("BasePart") and value8.CastShadow then
-      ShadowModifiedParts[value8] = true
-      value8.CastShadow = false
-    end
-  end
-end
-
-OrigGlobalShadows = lighting.GlobalShadows
-
-local function f23()
+local function f18()
   if ShadowRemovalConnection then
     ShadowRemovalConnection:Disconnect()
   end
@@ -1019,7 +715,34 @@ local function f23()
   end)
 end
 
+OrigGlobalShadows = lighting.GlobalShadows
+
+local function f19()
+  for index6, value6 in ipairs(workspace:GetDescendants()) do
+    if value6:IsA("BasePart") and value6.CastShadow then
+      ShadowModifiedParts[value6] = true
+      value6.CastShadow = false
+    end
+  end
+end
+
 ShadowModifiedParts = {}
+
+local function f20()
+  if ShadowRemovalConnection then
+    ShadowRemovalConnection:Disconnect()
+    ShadowRemovalConnection = nil
+  end
+
+  for key in pairs(ShadowModifiedParts) do
+    local v33 = key
+
+    if v33 and v33.Parent then
+      pcall(function() v33.CastShadow = true end)
+    end
+  end
+end
+
 ShadowRemovalConnection = nil
 FakeDeathAnimTrack = nil
 FakeInjuredTrack = nil
@@ -1064,7 +787,25 @@ AutoRemoveAxeActive = false
 AutoRemoveAxeConnection = nil
 local qteInput = replicatedStorage:WaitForChild("Events"):WaitForChild("QTEInput")
 
-local v26 = {
+local function f21(p22)
+  local character8 = localPlayer.Character
+
+  if not character8 then
+    return false
+  elseif character8:FindFirstChild(p22) then
+    return true
+  else
+    local backpack = localPlayer:FindFirstChild("Backpack")
+
+    if backpack and backpack:FindFirstChild(p22) then
+      return true
+    end
+
+    return false
+  end
+end
+
+local v34 = {
   E = Enum.KeyCode.E,
   F = Enum.KeyCode.F,
   Q = Enum.KeyCode.Q,
@@ -1075,7 +816,7 @@ local v26 = {
   T = Enum.KeyCode.T,
 }
 
-local v27 = {
+local v35 = {
   E = Enum.KeyCode.ButtonX,
   F = Enum.KeyCode.ButtonA,
   Q = Enum.KeyCode.ButtonB,
@@ -1086,7 +827,7 @@ local v27 = {
   H = Enum.KeyCode.ButtonX,
 }
 
-local function f24()
+local function f22()
   local isTenFootInterface = false
   pcall(function() isTenFootInterface = guiService:IsTenFootInterface() end)
 
@@ -1101,6 +842,13 @@ local function f24()
     return "Console"
   end
 
+  local gamepadEnabled = false
+  pcall(function() gamepadEnabled = userInputService.GamepadEnabled end)
+
+  if gamepadEnabled then
+    return "Console"
+  end
+
   if SentinelDeviceType == "Mobile" or SentinelDeviceType == "UWP" then
     return "Mobile"
   end
@@ -1108,42 +856,42 @@ local function f24()
   return "PC"
 end
 
-Config.AutoQTEPlatform = f24()
+Config.AutoQTEPlatform = f22()
 
-local function f25(p26, p27)
-  virtualInputManager:SendKeyEvent(true, p26, false, game)
-  task.wait(p27 and 0.05 or 0.03)
-  virtualInputManager:SendKeyEvent(false, p26, false, game)
+local function f23(p23, p24)
+  virtualInputManager:SendKeyEvent(true, p23, false, game)
+  task.wait(p24 and 0.05 or 0.03)
+  virtualInputManager:SendKeyEvent(false, p23, false, game)
 end
 
-local connect = nil
+local connect
 
-local function f26(p28)
-  if p28 then
+local function f24(p25)
+  if p25 then
     if not connect then
-      connect = qteInput.OnClientEvent:Connect(function(p29)
-        local v28 = tostring(p29)
-        local v29 = (Config.AutoQTEPlatform or "PC") == "Console"
-        local v30 = v29 and v27[v28] or v26[v28]
+      connect = qteInput.OnClientEvent:Connect(function(p26)
+        local v36 = tostring(p26)
+        local v37 = (Config.AutoQTEPlatform or "PC") == "Console"
+        local v38 = v37 and v35[v36] or v34[v36]
 
-        if v30 then
-          local v31 = tonumber(Config.AutoQTEReactionSpeed) or 12
+        if v38 then
+          local v39 = tonumber(Config.AutoQTEReactionSpeed) or 12
 
-          if v31 < 0 then
-            v31 = 0
+          if v39 < 0 then
+            v39 = 0
           end
 
-          if v31 > 60 then
-            v31 = 60
+          if v39 > 60 then
+            v39 = 60
           end
 
-          local v32 = v31 / 60
+          local v40 = v39 / 60
 
-          if v32 > 0 then
-            task.wait(v32)
+          if v40 > 0 then
+            task.wait(v40)
           end
 
-          f25(v30, v29)
+          f23(v38, v37)
         end
       end)
     end
@@ -1153,12 +901,12 @@ local function f26(p28)
   end
 end
 
-userInputService.LastInputTypeChanged:Connect(function(p30)
+userInputService.LastInputTypeChanged:Connect(function(p27)
   if not Config.AutoQTEEnabled then
     return
   end
 
-  if tostring(p30):match("^Gamepad") and Config.AutoQTEPlatform ~= "Console" then
+  if tostring(p27):match("^Gamepad") and Config.AutoQTEPlatform ~= "Console" then
     Config.AutoQTEPlatform = "Console"
 
     pcall(function()
@@ -1166,7 +914,7 @@ userInputService.LastInputTypeChanged:Connect(function(p30)
         WindUI:Notify({ Title = "QTE", Content = "Switched to Console mode.", Duration = 3 })
       end
     end)
-  elseif p30 == Enum.UserInputType.Keyboard and Config.AutoQTEPlatform == "Console" then
+  elseif p27 == Enum.UserInputType.Keyboard and Config.AutoQTEPlatform == "Console" then
     local config = Config
     config.AutoQTEPlatform = SentinelDeviceType == "Mobile" and "Mobile" or "PC"
 
@@ -1223,28 +971,28 @@ function applyNoRecoil()
       end
     end)
 
-    local v33 = getrawmetatable(currentCamera2)
-    NoRecoilOriginalNewIndex = v33.__newindex
-    setreadonly(v33, false)
+    local v41 = getrawmetatable(currentCamera2)
+    NoRecoilOriginalNewIndex = v41.__newindex
+    setreadonly(v41, false)
 
-    v33.__newindex = newcclosure(function(p31, p32, p33)
-      if p32 == "CFrame" and typeof(p33) == "CFrame" then
-        local v34, v35, v36 = p33:ToEulerAnglesYXZ()
+    v41.__newindex = newcclosure(function(p28, p29, p30)
+      if p29 == "CFrame" and typeof(p30) == "CFrame" then
+        local v42, v43, v44 = p30:ToEulerAnglesYXZ()
 
         if NoRecoilMouseMoved then
           NoRecoilMouseMoved = false
-          NoRecoilStoredPitch = v34
-          return NoRecoilOriginalNewIndex(p31, p32, p33)
+          NoRecoilStoredPitch = v42
+          return NoRecoilOriginalNewIndex(p28, p29, p30)
         end
 
-        return NoRecoilOriginalNewIndex(p31, p32, CFrame.new(p33.Position)
-          * CFrame.fromEulerAnglesYXZ(NoRecoilStoredPitch, v35, v36))
+        return NoRecoilOriginalNewIndex(p28, p29, CFrame.new(p30.Position)
+          * CFrame.fromEulerAnglesYXZ(NoRecoilStoredPitch, v43, v44))
       end
 
-      return NoRecoilOriginalNewIndex(p31, p32, p33)
+      return NoRecoilOriginalNewIndex(p28, p29, p30)
     end)
 
-    setreadonly(v33, true)
+    setreadonly(v41, true)
   end) then
     NoRecoilApplied = true
   else
@@ -1269,10 +1017,10 @@ function removeNoRecoil()
     local currentCamera3 = workspace.CurrentCamera
 
     if currentCamera3 and NoRecoilOriginalNewIndex then
-      local v37 = getrawmetatable(currentCamera3)
-      setreadonly(v37, false)
-      v37.__newindex = NoRecoilOriginalNewIndex
-      setreadonly(v37, true)
+      local v45 = getrawmetatable(currentCamera3)
+      setreadonly(v45, false)
+      v45.__newindex = NoRecoilOriginalNewIndex
+      setreadonly(v45, true)
     end
   end)
 
@@ -1287,18 +1035,18 @@ function removeNoRecoil()
   NoRecoilMouseMoved = false
 end
 
-local function f27(p34)
-  if p34 then
-    pcall(function() p34:SetAttribute("infiniteStamina", true) end)
+local function f25(p31)
+  if p31 then
+    pcall(function() p31:SetAttribute("infiniteStamina", true) end)
   end
 end
 
-function toggleInfiniteStamina(p35)
-  Config.InfiniteStaminaEnabled = p35
-  local character7
+function toggleInfiniteStamina(p32)
+  Config.InfiniteStaminaEnabled = p32
+  local character9
 
-  if p35 then
-    f27(localPlayer.Character)
+  if p32 then
+    f25(localPlayer.Character)
 
     if InfiniteStaminaThread then
       task.cancel(InfiniteStaminaThread)
@@ -1306,10 +1054,10 @@ function toggleInfiniteStamina(p35)
 
     InfiniteStaminaThread = task.spawn(function()
       while Config.InfiniteStaminaEnabled and SentinelActive do
-        local character8 = localPlayer.Character
+        local character10 = localPlayer.Character
 
-        if character8 and character8:GetAttribute("infiniteStamina") ~= true then
-          pcall(function() character8:SetAttribute("infiniteStamina", true) end)
+        if character10 and character10:GetAttribute("infiniteStamina") ~= true then
+          pcall(function() character10:SetAttribute("infiniteStamina", true) end)
         end
 
         task.wait(1)
@@ -1321,37 +1069,47 @@ function toggleInfiniteStamina(p35)
       InfiniteStaminaThread = nil
     end
 
-    character7 = localPlayer.Character
+    character9 = localPlayer.Character
 
-    if character7 then
-      pcall(function() character7:SetAttribute("infiniteStamina", false) end)
+    if character9 then
+      pcall(function() character9:SetAttribute("infiniteStamina", false) end)
     end
   end
 end
 
-localPlayer.CharacterAdded:Connect(function(character9) task.wait(0.5) end)
+localPlayer.CharacterAdded:Connect(function(character11) task.wait(0.5) end)
 
 function deleteSlasherAxe()
   local characters3 = workspaceService:FindFirstChild("Characters")
 
   if not characters3 then
     return
-  end
+  else
+    local count2 = 0
 
-  for i = 1, 5 do
-    local findFirstChild2 = characters3:FindFirstChild("Slasher" .. i)
+    while true do
+      count2 = 1 + count2
 
-    if findFirstChild2 then
-      local rightArm = findFirstChild2:FindFirstChild("Right Arm")
+      if not (count2 <= 5) then
+        break
+      end
 
-      if rightArm then
-        local handle = rightArm:FindFirstChild("Handle")
+      local findFirstChild2 = characters3:FindFirstChild("Slasher" .. count2)
 
-        if handle then
-          handle:Destroy()
+      if findFirstChild2 then
+        local rightArm = findFirstChild2:FindFirstChild("Right Arm")
+
+        if rightArm then
+          local handle = rightArm:FindFirstChild("Handle")
+
+          if handle then
+            handle:Destroy()
+          end
         end
       end
     end
+
+    return
   end
 end
 
@@ -1381,7 +1139,7 @@ end
 AntiRiserDodgeConnections = {}
 AntiRiserDodgeHooked = {}
 
-local v38 = {
+local v46 = {
   ["rbxassetid://129323669816538"] = true,
   ["rbxassetid://100585713982883"] = true,
   ["rbxassetid://102516762592870"] = true,
@@ -1390,15 +1148,15 @@ local v38 = {
   ["rbxassetid://91043768324636"] = true,
 }
 
-local v39 = 0.5
+local v47 = 0.5
 
-local function f28(p36)
-  local humanoidRootPart5 = p36:FindFirstChild("HumanoidRootPart")
+local function f26(p33)
+  local humanoidRootPart4 = p33:FindFirstChild("HumanoidRootPart")
 
-  if humanoidRootPart5 then
-    return humanoidRootPart5.AssemblyLinearVelocity.Magnitude > v39
+  if humanoidRootPart4 then
+    return humanoidRootPart4.AssemblyLinearVelocity.Magnitude > v47
   else
-    local humanoid4 = p36:FindFirstChildOfClass("Humanoid")
+    local humanoid4 = p33:FindFirstChildOfClass("Humanoid")
 
     if humanoid4 then
       return humanoid4.MoveDirection.Magnitude > 0.1
@@ -1408,57 +1166,29 @@ local function f28(p36)
   end
 end
 
-local f29
-
-local function f30()
-  for index9, value9 in ipairs(workspace:GetDescendants()) do
-    if string.lower(value9.Name):find("riser") then
-      local humanoid5 = value9:FindFirstChildOfClass("Humanoid")
-
-      if humanoid5 then
-        local animator = humanoid5:FindFirstChildOfClass("Animator")
-
-        if animator then
-          f29(animator, value9, value9.Name)
-        end
-      end
-
-      local animationController = value9:FindFirstChildOfClass("AnimationController")
-
-      if animationController then
-        local animator2 = animationController:FindFirstChildOfClass("Animator")
-
-        if animator2 then
-          f29(animator2, value9, value9.Name)
-        end
-      end
-    end
-  end
-end
-
-function f29(p37, p38, p39)
-  if AntiRiserDodgeHooked[p37] then
+local function f27(p34, p35, p36)
+  if AntiRiserDodgeHooked[p34] then
     return
   end
 
-  AntiRiserDodgeHooked[p37] = true
+  AntiRiserDodgeHooked[p34] = true
 
-  p37.AnimationPlayed:Connect(function(p40)
+  p34.AnimationPlayed:Connect(function(p37)
     if not Config.AntiRiserDodgeEnabled then
       return
     else
-      local animation = p40.Animation
+      local animation = p37.Animation
 
-      if animation and v38[animation.AnimationId] then
-        pcall(function() p40:Stop(0) end)
+      if animation and v46[animation.AnimationId] then
+        pcall(function() p37:Stop(0) end)
 
-        local animationId = f28(p38) and "rbxassetid://114185638104823"
+        local animationId = f26(p35) and "rbxassetid://114185638104823"
           or "rbxassetid://79525526834566"
 
         local animation2 = Instance.new("Animation")
         animation2.AnimationId = animationId
 
-        p37:LoadAnimation(animation2)
+        p34:LoadAnimation(animation2)
       end
 
       return
@@ -1466,13 +1196,39 @@ function f29(p37, p38, p39)
   end)
 end
 
+local function f28()
+  for index7, value7 in ipairs(workspace:GetDescendants()) do
+    if string.lower(value7.Name):find("riser") then
+      local humanoid5 = value7:FindFirstChildOfClass("Humanoid")
+
+      if humanoid5 then
+        local animator = humanoid5:FindFirstChildOfClass("Animator")
+
+        if animator then
+          f27(animator, value7, value7.Name)
+        end
+      end
+
+      local animationController = value7:FindFirstChildOfClass("AnimationController")
+
+      if animationController then
+        local animator2 = animationController:FindFirstChildOfClass("Animator")
+
+        if animator2 then
+          f27(animator2, value7, value7.Name)
+        end
+      end
+    end
+  end
+end
+
 AntiRiserAddedConn = nil
 
-function AntiRiserDodge_Enable(p41)
-  Config.AntiRiserDodgeEnabled = p41
+function AntiRiserDodge_Enable(p38)
+  Config.AntiRiserDodgeEnabled = p38
 
-  if p41 then
-    f30()
+  if p38 then
+    f28()
 
     if not AntiRiserAddedConn then
       AntiRiserAddedConn = workspace.DescendantAdded:Connect(function(descendant3)
@@ -1489,7 +1245,7 @@ function AntiRiserDodge_Enable(p41)
             local animator3 = humanoid6:FindFirstChildOfClass("Animator")
 
             if animator3 then
-              f29(animator3, descendant3, descendant3.Name)
+              f27(animator3, descendant3, descendant3.Name)
             end
           end
 
@@ -1499,16 +1255,16 @@ function AntiRiserDodge_Enable(p41)
             local animator4 = animationController2:FindFirstChildOfClass("Animator")
 
             if animator4 then
-              f29(animator4, descendant3, descendant3.Name)
+              f27(animator4, descendant3, descendant3.Name)
             end
           end
         end
       end)
     end
   else
-    for index10, value10 in ipairs(AntiRiserDodgeConnections) do
-      local v40 = value10
-      pcall(function() v40:Disconnect() end)
+    for index8, value8 in ipairs(AntiRiserDodgeConnections) do
+      local v48 = value8
+      pcall(function() v48:Disconnect() end)
     end
 
     AntiRiserDodgeConnections = {}
@@ -1526,9 +1282,9 @@ AutoBringHammerRunning = false
 AutoBringAxeLastCheck = 0
 AutoBringHammerLastCheck = 0
 
-function toggleAutoBringAxe(p42)
-  Config.AutoBringAxe = p42
-  AutoBringAxeActive = p42
+function toggleAutoBringAxe(p39)
+  Config.AutoBringAxe = p39
+  AutoBringAxeActive = p39
 
   if AutoBringAxeConn then
     pcall(function() AutoBringAxeConn:Disconnect() end)
@@ -1538,22 +1294,22 @@ function toggleAutoBringAxe(p42)
   AutoBringAxeRunning = false
   AutoBringAxeLastCheck = 0
 
-  if p42 then
+  if p39 then
     AutoBringAxeConn = runService.Heartbeat:Connect(function()
       if not AutoBringAxeActive then
         return
       elseif AutoBringAxeRunning then
         return
-      elseif f8("Axe") then
+      elseif f21("Axe") then
         return
       else
-        local v41 = tick()
+        local v49 = tick()
 
-        if v41 - AutoBringAxeLastCheck < 1.5 then
+        if v49 - AutoBringAxeLastCheck < 1.5 then
           return
         end
 
-        AutoBringAxeLastCheck = v41
+        AutoBringAxeLastCheck = v49
         AutoBringAxeRunning = true
         task.spawn(function() AutoBringAxeRunning = false end)
         return
@@ -1562,9 +1318,9 @@ function toggleAutoBringAxe(p42)
   end
 end
 
-function toggleAutoBringHammer(p43)
-  Config.AutoBringHammer = p43
-  AutoBringHammerActive = p43
+function toggleAutoBringHammer(p40)
+  Config.AutoBringHammer = p40
+  AutoBringHammerActive = p40
 
   if AutoBringHammerConn then
     pcall(function() AutoBringHammerConn:Disconnect() end)
@@ -1574,22 +1330,22 @@ function toggleAutoBringHammer(p43)
   AutoBringHammerRunning = false
   AutoBringHammerLastCheck = 0
 
-  if p43 then
+  if p40 then
     AutoBringHammerConn = runService.Heartbeat:Connect(function()
       if not AutoBringHammerActive then
         return
       elseif AutoBringHammerRunning then
         return
-      elseif f8("Sledgehammer") then
+      elseif f21("Sledgehammer") then
         return
       else
-        local v42 = tick()
+        local v50 = tick()
 
-        if v42 - AutoBringHammerLastCheck < 1.5 then
+        if v50 - AutoBringHammerLastCheck < 1.5 then
           return
         end
 
-        AutoBringHammerLastCheck = v42
+        AutoBringHammerLastCheck = v50
         AutoBringHammerRunning = true
         task.spawn(function() AutoBringHammerRunning = false end)
         return
@@ -1598,23 +1354,23 @@ function toggleAutoBringHammer(p43)
   end
 end
 
-function teleportAndBack(p44, p45)
-  local character10 = localPlayer.Character
+function teleportAndBack(p41, p42)
+  local character12 = localPlayer.Character
 
-  if not character10 then
+  if not character12 then
     return
   else
-    local humanoidRootPart6 = character10:FindFirstChild("HumanoidRootPart")
+    local humanoidRootPart5 = character12:FindFirstChild("HumanoidRootPart")
 
-    if not humanoidRootPart6 then
+    if not humanoidRootPart5 then
       return
     else
-      local cframe = humanoidRootPart6.CFrame
-      character10:PivotTo(p44)
-      task.wait(p45 or 0.5)
+      local cframe2 = humanoidRootPart5.CFrame
+      character12:PivotTo(p41)
+      task.wait(p42 or 0.5)
 
-      if character10 and character10:FindFirstChild("HumanoidRootPart") then
-        character10:PivotTo(cframe)
+      if character12 and character12:FindFirstChild("HumanoidRootPart") then
+        character12:PivotTo(cframe2)
       end
 
       return
@@ -1642,9 +1398,9 @@ InstantProximityConnection = nil
 AutoCompletePromptConnection = nil
 
 function applyInstantProximity()
-  for index11, value11 in ipairs(workspaceService:GetDescendants()) do
-    if value11:IsA("ProximityPrompt") then
-      value11.HoldDuration = 0
+  for index9, value9 in ipairs(workspaceService:GetDescendants()) do
+    if value9:IsA("ProximityPrompt") then
+      value9.HoldDuration = 0
     end
   end
 end
@@ -1679,14 +1435,14 @@ function autoCompleteProximity()
     AutoCompletePromptConnection:Disconnect()
   end
 
-  AutoCompletePromptConnection = proximityPromptService.PromptShown:Connect(function(p46)
+  AutoCompletePromptConnection = proximityPromptService.PromptShown:Connect(function(p43)
     if not Config.AutoCompleteProximityPrompt then
       return
-    elseif not p46.Enabled then
+    elseif not p43.Enabled then
       return
     else
       virtualInputManager:SendKeyEvent(true, Enum.KeyCode.E, false, game)
-      p46.PromptHidden:Wait()
+      p43.PromptHidden:Wait()
       virtualInputManager:SendKeyEvent(false, Enum.KeyCode.E, false, game)
       return
     end
@@ -1714,10 +1470,10 @@ function BreakGasmask()
         elseif maskHole:IsA("Frame") then
           maskHole.Visible = true
 
-          for key2, value12 in pairs(maskHole:GetDescendants()) do
-            if value12:IsA("ImageLabel") then
-              value12.ImageTransparency = 0
-              value12.Visible = true
+          for key2, value10 in pairs(maskHole:GetDescendants()) do
+            if value10:IsA("ImageLabel") then
+              value10.ImageTransparency = 0
+              value10.Visible = true
             end
           end
         end
@@ -1745,7 +1501,7 @@ function BreakGasmask()
   end
 end
 
-function showBloodVignette(p47)
+function showBloodVignette(p44)
   local playerGui2 = localPlayer:FindFirstChild("PlayerGui")
 
   if not playerGui2 then
@@ -1759,9 +1515,9 @@ function showBloodVignette(p47)
       local bloodVignette = gui:FindFirstChild("blood-vignette")
 
       if bloodVignette and bloodVignette:IsA("ImageLabel") then
-        bloodVignette.Visible = p47
+        bloodVignette.Visible = p44
 
-        if p47 then
+        if p44 then
           bloodVignette.ImageTransparency = 0
         else
           bloodVignette.ImageTransparency = 1
@@ -1785,13 +1541,13 @@ function createRedTint()
   return infectionRedTint
 end
 
-function playAnimationOnHumanoid(animationId2, p48, p49)
-  local character11 = localPlayer.Character
+function playAnimationOnHumanoid(animationId2, p45, p46)
+  local character13 = localPlayer.Character
 
-  if not character11 then
+  if not character13 then
     return nil
   else
-    local humanoid7 = character11:FindFirstChildOfClass("Humanoid")
+    local humanoid7 = character13:FindFirstChildOfClass("Humanoid")
 
     if not humanoid7 then
       return nil
@@ -1803,11 +1559,11 @@ function playAnimationOnHumanoid(animationId2, p48, p49)
       animation3.AnimationId = animationId2
 
       local loadAnimation = animator5:LoadAnimation(animation3)
-      loadAnimation.Looped = p48 or false
+      loadAnimation.Looped = p45 or false
       loadAnimation:Play()
 
-      if p49 then
-        loadAnimation.Stopped:Connect(p49)
+      if p46 then
+        loadAnimation.Stopped:Connect(p46)
       end
 
       return loadAnimation
@@ -1820,7 +1576,7 @@ demonicChars = {
   "!",
 }
 
-function spawnDemonicSymbol(p50)
+function spawnDemonicSymbol(p47)
   local playerGui3 = localPlayer:FindFirstChild("PlayerGui")
 
   if not playerGui3 then
@@ -1836,7 +1592,16 @@ function spawnDemonicSymbol(p50)
       infectionEffectsGui.Parent = playerGui3
     end
 
-    for j = 1, p50 and 5 or 3 do
+    local v51 = p47 and 5 or 3
+    local count3 = 0
+
+    while true do
+      count3 = 1 + count3
+
+      if not (count3 <= v51) then
+        break
+      end
+
       local textLabel = Instance.new("TextLabel")
       textLabel.Text = demonicChars[math.random(1, #demonicChars)]
       textLabel.TextColor3 = Color3.fromRGB(255, 100, 100)
@@ -1848,13 +1613,13 @@ function spawnDemonicSymbol(p50)
       textLabel.AnchorPoint = Vector2.new(0.5, 1)
       textLabel.Parent = infectionEffectsGui
 
-      local v43 = math.random()
+      local v52 = math.random()
 
       local create = tweenService:Create(textLabel, TweenInfo.new(
         2.5, Enum.EasingStyle.Linear, Enum.EasingDirection.Out
       ), {
         TextTransparency = 1,
-        Position = UDim2.new(textLabel.Position.X.Scale, 0, 0.1 + v43 * 0.1, 0),
+        Position = UDim2.new(textLabel.Position.X.Scale, 0, 0.1 + v52 * 0.1, 0),
       })
 
       create:Play()
@@ -1885,22 +1650,22 @@ function stopInfection()
     InfectionCleanupFunctions = {}
   end
 
-  for index12, value13 in ipairs({
+  for index10, value11 in ipairs({
     infectionInjuredTrack, infectionHeadShakeTrack, infectionCoughTrack, infectionUnstableTrack,
     infectionFallTrack, infectionLurkerTrack, infectionIdleTrack, infectionWalkTrack,
     infectionRunTrack,
   }) do
-    if value13 then
-      value13:Stop()
+    if value11 then
+      value11:Stop()
     end
   end
 
   infectionTransformDone = false
   infectionCurrentState = nil
-  local character12 = localPlayer.Character
+  local character14 = localPlayer.Character
 
-  if character12 then
-    local humanoid8 = character12:FindFirstChildOfClass("Humanoid")
+  if character14 then
+    local humanoid8 = character14:FindFirstChildOfClass("Humanoid")
 
     if humanoid8 then
       humanoid8.PlatformStand = false
@@ -1910,19 +1675,19 @@ function stopInfection()
       local animator6 = humanoid8:FindFirstChildOfClass("Animator")
 
       if animator6 then
-        for key3, value14 in pairs(animator6:GetPlayingAnimationTracks()) do
-          value14:Stop()
+        for key3, value12 in pairs(animator6:GetPlayingAnimationTracks()) do
+          value12:Stop()
         end
       end
     end
 
-    local humanoidRootPart7 = character12:FindFirstChild("HumanoidRootPart")
+    local humanoidRootPart6 = character14:FindFirstChild("HumanoidRootPart")
 
-    if humanoidRootPart7 then
-      humanoidRootPart7.Anchored = false
+    if humanoidRootPart6 then
+      humanoidRootPart6.Anchored = false
     end
 
-    local clientScripts = character12:FindFirstChild("ClientScripts")
+    local clientScripts = character14:FindFirstChild("ClientScripts")
 
     if clientScripts then
       local stagger = clientScripts:FindFirstChild("Stagger")
@@ -1934,8 +1699,8 @@ function stopInfection()
   end
 end
 
-function startInfectionSequence(p51)
-  local v44 = p51
+function startInfectionSequence(p48)
+  local v53 = p48
 
   if not canInfect then
     pcall(function()
@@ -1955,26 +1720,26 @@ function startInfectionSequence(p51)
     return
   end
 
-  if v44 ~= "Controllable" and v44 ~= "NonControllable" then
-    v44 = "Controllable"
+  if v53 ~= "Controllable" and v53 ~= "NonControllable" then
+    v53 = "Controllable"
   end
 
   canInfect = false
   InfectionActive = true
   infectionIsRunning = true
-  InfectionMode = v44
+  InfectionMode = v53
   BreakGasmask()
   showBloodVignette(true)
-  local character13 = localPlayer.Character
+  local character15 = localPlayer.Character
 
-  if not character13 then
+  if not character15 then
     InfectionActive = false
     infectionIsRunning = false
     canInfect = true
     return
   end
 
-  local humanoid9 = character13:FindFirstChildOfClass("Humanoid")
+  local humanoid9 = character15:FindFirstChildOfClass("Humanoid")
 
   if not humanoid9 then
     InfectionActive = false
@@ -1987,18 +1752,18 @@ function startInfectionSequence(p51)
   infectionInjuredTrack = playAnimationOnHumanoid(InfectionAnims.INJURED, true)
   infectionHeadShakeTrack = playAnimationOnHumanoid(InfectionAnims.HEAD_SHAKE, true)
 
-  local v45 = createRedTint()
-  v45.TintColor = Color3.fromRGB(255, 255, 255)
+  local v54 = createRedTint()
+  v54.TintColor = Color3.fromRGB(255, 255, 255)
 
-  local v46 = tick()
-  local v47 = tick()
+  local v55 = tick()
+  local v56 = tick()
 
   task.spawn(function()
     while infectionIsRunning and humanoid9 and humanoid9.Health > 0 do
-      local v48 = tick() - v46
+      local v57 = tick() - v55
 
-      if tick() - v47 >= 10 and v48 < 60 then
-        v47 = tick()
+      if tick() - v56 >= 10 and v57 < 60 then
+        v56 = tick()
 
         if infectionCoughTrack then
           infectionCoughTrack:Stop()
@@ -2009,7 +1774,7 @@ function startInfectionSequence(p51)
         local sound2 = Instance.new("Sound")
         sound2.SoundId = "rbxassetid://93090593281658"
         sound2.Volume = 1
-        sound2.Parent = character13
+        sound2.Parent = character15
         sound2:Play()
 
         debris:AddItem(sound2, 2)
@@ -2023,19 +1788,19 @@ function startInfectionSequence(p51)
         infectionUnstableTrack = playAnimationOnHumanoid(InfectionAnims.UNSTABLE, true)
       end
 
-      if v48 >= 40 then
-        local v49 = math.min((v48 - 40) / 30, 1)
+      if v57 >= 40 then
+        local v58 = math.min((v57 - 40) / 30, 1)
 
-        v45.TintColor = Color3.fromRGB(
-          255, 255 - math.floor(v49 * 255), 255 - math.floor(v49 * 255)
+        v54.TintColor = Color3.fromRGB(
+          255, 255 - math.floor(v58 * 255), 255 - math.floor(v58 * 255)
         )
       end
 
-      if v48 >= 45 then
+      if v57 >= 45 then
         spawnDemonicSymbol(true)
       end
 
-      if v48 >= 60 then
+      if v57 >= 60 then
         break
       end
 
@@ -2079,10 +1844,10 @@ function startInfectionSequence(p51)
         end
 
         infectionLurkerTrack = playAnimationOnHumanoid(InfectionAnims.LURKER_AWAKE, false, function()
-          local humanoidRootPart8 = character13:FindFirstChild("HumanoidRootPart")
+          local humanoidRootPart7 = character15:FindFirstChild("HumanoidRootPart")
 
-          if humanoidRootPart8 then
-            humanoidRootPart8.Anchored = false
+          if humanoidRootPart7 then
+            humanoidRootPart7.Anchored = false
           end
 
           humanoid9.PlatformStand = false
@@ -2093,25 +1858,25 @@ function startInfectionSequence(p51)
           infectionCurrentState = nil
 
           task.spawn(function()
-            local v50
+            local v59
 
             while infectionIsRunning and humanoid9 and humanoid9.Health > 0 do
-              local humanoidRootPart9 = character13:FindFirstChild("HumanoidRootPart")
+              local humanoidRootPart8 = character15:FindFirstChild("HumanoidRootPart")
 
-              if humanoidRootPart9 then
-                local velocity = humanoidRootPart9.Velocity
-                local magnitude3 = Vector3.new(velocity.X, 0, velocity.Z).Magnitude
+              if humanoidRootPart8 then
+                local velocity = humanoidRootPart8.Velocity
+                local magnitude2 = Vector3.new(velocity.X, 0, velocity.Z).Magnitude
 
-                if isShiftHeld and magnitude3 > 2 then
-                  v50 = "run"
-                elseif magnitude3 > 0.5 then
-                  v50 = "walk"
+                if isShiftHeld and magnitude2 > 2 then
+                  v59 = "run"
+                elseif magnitude2 > 0.5 then
+                  v59 = "walk"
                 else
-                  v50 = "idle"
+                  v59 = "idle"
                 end
 
-                if v50 ~= infectionCurrentState then
-                  infectionCurrentState = v50
+                if v59 ~= infectionCurrentState then
+                  infectionCurrentState = v59
 
                   if infectionIdleTrack then
                     infectionIdleTrack:Stop()
@@ -2128,11 +1893,11 @@ function startInfectionSequence(p51)
                     infectionRunTrack = nil
                   end
 
-                  if v50 == "idle" then
+                  if v59 == "idle" then
                     infectionIdleTrack = playAnimationOnHumanoid(InfectionAnims.IDLE, true)
-                  elseif v50 == "walk" then
+                  elseif v59 == "walk" then
                     infectionWalkTrack = playAnimationOnHumanoid(InfectionAnims.WALK, true)
-                  elseif v50 == "run" then
+                  elseif v59 == "run" then
                     infectionRunTrack = playAnimationOnHumanoid(InfectionAnims.RUN, true)
                   end
                 end
@@ -2191,10 +1956,10 @@ function startInfectionSequence(p51)
     infectionIsRunning = false
     InfectionActive = false
     canInfect = true
-    local humanoidRootPart10 = character13:FindFirstChild("HumanoidRootPart")
+    local humanoidRootPart9 = character15:FindFirstChild("HumanoidRootPart")
 
-    if humanoidRootPart10 then
-      humanoidRootPart10.Anchored = false
+    if humanoidRootPart9 then
+      humanoidRootPart9.Anchored = false
     end
 
     if humanoid9 then
@@ -2203,13 +1968,13 @@ function startInfectionSequence(p51)
       humanoid9.JumpPower = Config.JumpPowerEnabled and Config.JumpPowerValue or 50
     end
 
-    for index13, value15 in ipairs({
+    for index11, value13 in ipairs({
       infectionInjuredTrack, infectionHeadShakeTrack, infectionCoughTrack,
       infectionUnstableTrack, infectionFallTrack, infectionLurkerTrack, infectionIdleTrack,
       infectionWalkTrack, infectionRunTrack,
     }) do
-      if value15 then
-        value15:Stop()
+      if value13 then
+        value13:Stop()
       end
     end
 
@@ -2229,13 +1994,13 @@ function startInfectionSequence(p51)
   end)
 end
 
-function ApplyHitboxToPart(p52, p53)
-  if not p52 or not p52:IsA("BasePart") then
+function ApplyHitboxToPart(p49, p50)
+  if not p49 or not p49:IsA("BasePart") then
     return
-  elseif p52.Name ~= "Head" then
+  elseif p49.Name ~= "Head" then
     return
   else
-    local parent2 = p52.Parent
+    local parent2 = p49.Parent
 
     if not isHumanoidModel(parent2) then
       return
@@ -2244,32 +2009,32 @@ function ApplyHitboxToPart(p52, p53)
     elseif parent2 == localPlayer.Character then
       return
     else
-      if not f20(parent2) then
+      if not f17(parent2) then
         return
       end
 
       pcall(function()
-        if p53 then
-          if not HitboxModifiedHeads[p52] then
-            HitboxModifiedHeads[p52] = {
-              Size = p52.Size,
-              Transparency = p52.Transparency,
-              CanCollide = p52.CanCollide,
+        if p50 then
+          if not HitboxModifiedHeads[p49] then
+            HitboxModifiedHeads[p49] = {
+              Size = p49.Size,
+              Transparency = p49.Transparency,
+              CanCollide = p49.CanCollide,
             }
           end
 
-          p52.Size = Vector3.new(Config.BoxSize, Config.BoxSize, Config.BoxSize)
-          p52.CanCollide = false
-          p52.Transparency = 0.5
+          p49.Size = Vector3.new(Config.BoxSize, Config.BoxSize, Config.BoxSize)
+          p49.CanCollide = false
+          p49.Transparency = 0.5
         else
-          local v51 = HitboxModifiedHeads[p52]
+          local v60 = HitboxModifiedHeads[p49]
 
-          if v51 then
-            p52.Size = v51.Size
-            p52.CanCollide = v51.CanCollide
-            p52.Transparency = v51.Transparency
+          if v60 then
+            p49.Size = v60.Size
+            p49.CanCollide = v60.CanCollide
+            p49.Transparency = v60.Transparency
 
-            HitboxModifiedHeads[p52] = nil
+            HitboxModifiedHeads[p49] = nil
           end
         end
       end)
@@ -2279,14 +2044,14 @@ function ApplyHitboxToPart(p52, p53)
   end
 end
 
-function UpdateAllHitboxes(p54)
-  for index14, value16 in ipairs(workspaceService:GetDescendants()) do
-    if value16:IsA("BasePart") and value16.Name == "Head" then
-      local parent3 = value16.Parent
+function UpdateAllHitboxes(p51)
+  for index12, value14 in ipairs(workspaceService:GetDescendants()) do
+    if value14:IsA("BasePart") and value14.Name == "Head" then
+      local parent3 = value14.Parent
 
       if isHumanoidModel(parent3) and not isPlayerCharacter(parent3)
-        and parent3 ~= localPlayer.Character and f20(parent3) then
-        ApplyHitboxToPart(value16, p54)
+        and parent3 ~= localPlayer.Character and f17(parent3) then
+        ApplyHitboxToPart(value14, p51)
       end
     end
   end
@@ -2297,7 +2062,7 @@ workspaceService.DescendantAdded:Connect(function(descendant5)
     local parent4 = descendant5.Parent
 
     if isHumanoidModel(parent4) and not isPlayerCharacter(parent4)
-      and parent4 ~= localPlayer.Character and f20(parent4) then
+      and parent4 ~= localPlayer.Character and f17(parent4) then
       ApplyHitboxToPart(descendant5, true)
     end
   end
@@ -2308,7 +2073,7 @@ workspaceService.DescendantAdded:Connect(function(descendant5)
         local parent5 = descendant5.Parent
 
         if isHumanoidModel(parent5) and not isPlayerCharacter(parent5)
-          and parent5 ~= localPlayer.Character and f20(parent5) then
+          and parent5 ~= localPlayer.Character and f17(parent5) then
           ApplyHitboxToPart(descendant5, true)
         end
       end
@@ -2319,6 +2084,7 @@ end)
 flyMobileUp = false
 flyMobileDown = false
 flyMobileGui = nil
+local v61, v62
 
 function cleanFly()
   flyMobileUp = false
@@ -2330,53 +2096,65 @@ function cleanFly()
   end
 
   if flyBV then
-    flyBV:Destroy()
-    flyBV = nil
+    local gui2 = localPlayer.PlayerGui:FindFirstChild("Gui")
+
+    if gui2 then
+      for key4, clean in pairs(gui2:GetChildren()) do
+        if clean.Name == "blood" then
+          clean.Name = "clean"
+          v61[v62[4]]:Create(clean, TweenInfo.new(0.2), { ImageTransparency = 1 }):Play()
+          v61[v62[5]]:AddItem(clean, 0.5)
+        end
+      end
+    end
+
+    return
+  else
+    if flyBG then
+      flyBG:Destroy()
+      flyBG = nil
+    end
+
+    if flyWeld then
+      flyWeld:Destroy()
+      flyWeld = nil
+    end
+
+    if flySeat then
+      flySeat:Destroy()
+      flySeat = nil
+    end
+
+    local character16 = localPlayer.Character
+
+    local humanoid10 = character16
+    humanoid10 = character16 and character16:FindFirstChildOfClass("Humanoid")
+
+    if humanoid10 then
+      humanoid10.PlatformStand = false
+      humanoid10:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
+    end
+
+    flyActive = false
+    return
   end
-
-  if flyBG then
-    flyBG:Destroy()
-    flyBG = nil
-  end
-
-  if flyWeld then
-    flyWeld:Destroy()
-    flyWeld = nil
-  end
-
-  if flySeat then
-    flySeat:Destroy()
-    flySeat = nil
-  end
-
-  local character14 = localPlayer.Character
-
-  local humanoid10 = character14
-  humanoid10 = character14 and character14:FindFirstChildOfClass("Humanoid")
-
-  if humanoid10 then
-    humanoid10.PlatformStand = false
-    humanoid10:SetStateEnabled(Enum.HumanoidStateType.Seated, true)
-  end
-
-  flyActive = false
 end
 
-function enableFly(p55)
-  if not p55 then
+function enableFly(p52)
+  if not p52 then
     cleanFly()
     return
   else
-    local character15 = localPlayer.Character
+    local character17 = localPlayer.Character
 
-    if not character15 then
+    if not character17 then
       return
     else
-      local humanoidRootPart11 = character15:FindFirstChild("HumanoidRootPart")
-      local v52 = not humanoidRootPart11
-      local humanoid11 = character15:FindFirstChildOfClass("Humanoid")
+      local humanoidRootPart10 = character17:FindFirstChild("HumanoidRootPart")
+      local v63 = not humanoidRootPart10
+      local humanoid11 = character17:FindFirstChildOfClass("Humanoid")
 
-      if v52 or not humanoid11 then
+      if v63 or not humanoid11 then
         return
       end
 
@@ -2390,7 +2168,7 @@ function enableFly(p55)
       flySeat.Parent = workspace
 
       flyWeld = Instance.new("Weld")
-      flyWeld.Part0 = humanoidRootPart11
+      flyWeld.Part0 = humanoidRootPart10
       flyWeld.Part1 = flySeat
       flyWeld.C0 = CFrame.new(0, -1.5, 0)
       flyWeld.Parent = flySeat
@@ -2476,66 +2254,66 @@ runService.Heartbeat:Connect(function(delta)
   elseif not flyActive then
     return
   else
-    local character16 = localPlayer.Character
+    local character18 = localPlayer.Character
 
-    if not character16 then
+    if not character18 then
       return
     else
-      local humanoidRootPart12 = character16:FindFirstChild("HumanoidRootPart")
-      local humanoid12 = character16:FindFirstChildOfClass("Humanoid")
+      local v64 = not character18:FindFirstChild("HumanoidRootPart")
+      local humanoid12 = character18:FindFirstChildOfClass("Humanoid")
 
-      if not humanoidRootPart12 or not humanoid12 then
+      if v64 or not humanoid12 then
         return
       else
-        local vector8 = Vector3.new()
+        local vector = Vector3.new()
 
         if SentinelDeviceType == "Mobile" then
           local moveDirection = humanoid12.MoveDirection
 
           if moveDirection.Magnitude > 0 then
-            vector8 = Vector3.new(moveDirection.X, 0, moveDirection.Z)
+            vector = Vector3.new(moveDirection.X, 0, moveDirection.Z)
           end
 
           if flyMobileUp then
-            vector8 = vector8 + Vector3.new(0, 1, 0)
+            vector = vector + Vector3.new(0, 1, 0)
           end
 
           if flyMobileDown then
-            vector8 = vector8 - Vector3.new(0, 1, 0)
+            vector = vector - Vector3.new(0, 1, 0)
           end
         else
           if userInputService:IsKeyDown(Enum.KeyCode.W) then
-            vector8 = vector8 + currentCamera.CFrame.LookVector
+            vector = vector + currentCamera.CFrame.LookVector
           end
 
           if userInputService:IsKeyDown(Enum.KeyCode.S) then
-            vector8 = vector8 - currentCamera.CFrame.LookVector
+            vector = vector - currentCamera.CFrame.LookVector
           end
 
           if userInputService:IsKeyDown(Enum.KeyCode.A) then
-            vector8 = vector8 - currentCamera.CFrame.RightVector
+            vector = vector - currentCamera.CFrame.RightVector
           end
 
           if userInputService:IsKeyDown(Enum.KeyCode.D) then
-            vector8 = vector8 + currentCamera.CFrame.RightVector
+            vector = vector + currentCamera.CFrame.RightVector
           end
 
           if userInputService:IsKeyDown(Enum.KeyCode.Space) then
-            vector8 = vector8 + Vector3.new(0, 1, 0)
+            vector = vector + Vector3.new(0, 1, 0)
           end
 
           if userInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
-            vector8 = vector8 - Vector3.new(0, 1, 0)
+            vector = vector - Vector3.new(0, 1, 0)
           end
         end
 
-        if vector8.Magnitude > 0 then
-          vector8 = vector8.Unit
+        if vector.Magnitude > 0 then
+          vector = vector.Unit
         end
 
         if flyBV and flyBG and flySeat then
           flyBG.CFrame = currentCamera.CFrame
-          flyBV.Velocity = vector8 * FlySpeed
+          flyBV.Velocity = vector * FlySpeed
         end
 
         return
@@ -2551,25 +2329,25 @@ XrayTransparency = 0.3
 XrayModifiedParts = {}
 XrayLoop = nil
 
-function applyXrayToPart(p56, p57)
-  if not p56:IsA("BasePart") then
+function applyXrayToPart(p53, p54)
+  if not p53:IsA("BasePart") then
     return
   end
 
-  if p57 then
-    if not XrayModifiedParts[p56] then
-      XrayModifiedParts[p56] = { Material = p56.Material, Transparency = p56.Transparency }
+  if p54 then
+    if not XrayModifiedParts[p53] then
+      XrayModifiedParts[p53] = { Material = p53.Material, Transparency = p53.Transparency }
     end
 
-    p56.Material = XrayMaterial
-    p56.Transparency = XrayTransparency
+    p53.Material = XrayMaterial
+    p53.Transparency = XrayTransparency
   else
-    local v53 = XrayModifiedParts[p56]
+    local v65 = XrayModifiedParts[p53]
 
-    if v53 then
-      p56.Material = v53.Material
-      p56.Transparency = v53.Transparency
-      XrayModifiedParts[p56] = nil
+    if v65 then
+      p53.Material = v65.Material
+      p53.Transparency = v65.Transparency
+      XrayModifiedParts[p53] = nil
     end
   end
 end
@@ -2579,13 +2357,13 @@ function updateXrayMaterialAndTransparency()
     return
   end
 
-  for key4, value17 in pairs(XrayModifiedParts) do
-    local v54 = key4
+  for key5, value15 in pairs(XrayModifiedParts) do
+    local v66 = key5
 
-    if v54 and v54:IsA("BasePart") then
+    if v66 and v66:IsA("BasePart") then
       pcall(function()
-        v54.Material = XrayMaterial
-        v54.Transparency = XrayTransparency
+        v66.Material = XrayMaterial
+        v66.Transparency = XrayTransparency
       end)
     end
   end
@@ -2598,15 +2376,15 @@ function updateXray()
       XrayLoop = nil
     end
 
-    local v55 = {}
+    local v67 = {}
 
-    for key5, value18 in pairs(XrayModifiedParts) do
-      table.insert(v55, key5)
+    for key6, value16 in pairs(XrayModifiedParts) do
+      table.insert(v67, key6)
     end
 
-    for index15, value19 in ipairs(v55) do
-      local v56 = value19
-      pcall(function() applyXrayToPart(v56, false) end)
+    for index13, value17 in ipairs(v67) do
+      local v68 = value17
+      pcall(function() applyXrayToPart(v68, false) end)
     end
 
     return
@@ -2622,44 +2400,44 @@ function updateXray()
     elseif not XrayEnabled then
       return
     else
-      local character17 = localPlayer.Character
+      local character19 = localPlayer.Character
 
-      if not character17 then
+      if not character19 then
         return
       else
-        local humanoidRootPart13 = character17:FindFirstChild("HumanoidRootPart")
+        local humanoidRootPart11 = character19:FindFirstChild("HumanoidRootPart")
 
-        if not humanoidRootPart13 then
+        if not humanoidRootPart11 then
           return
         else
-          local v57 = {}
+          local v69 = {}
 
-          for index16, value20 in ipairs((workspaceService:GetPartBoundsInRadius(
-            humanoidRootPart13.Position, XrayDistance
+          for index14, value18 in ipairs((workspaceService:GetPartBoundsInRadius(
+            humanoidRootPart11.Position, XrayDistance
           ))) do
-            if value20:IsA("BasePart") and not value20:IsDescendantOf(character17) then
-              v57[value20] = true
+            if value18:IsA("BasePart") and not value18:IsDescendantOf(character19) then
+              v69[value18] = true
 
-              if not XrayModifiedParts[value20] then
-                applyXrayToPart(value20, true)
-              elseif value20.Material ~= XrayMaterial
-                or value20.Transparency ~= XrayTransparency then
-                value20.Material = XrayMaterial
-                value20.Transparency = XrayTransparency
+              if not XrayModifiedParts[value18] then
+                applyXrayToPart(value18, true)
+              elseif value18.Material ~= XrayMaterial
+                or value18.Transparency ~= XrayTransparency then
+                value18.Material = XrayMaterial
+                value18.Transparency = XrayTransparency
               end
             end
           end
 
-          local v58 = {}
+          local v70 = {}
 
-          for key6 in pairs(XrayModifiedParts) do
-            if not v57[key6] then
-              table.insert(v58, key6)
+          for key7 in pairs(XrayModifiedParts) do
+            if not v69[key7] then
+              table.insert(v70, key7)
             end
           end
 
-          for index17, value21 in ipairs(v58) do
-            applyXrayToPart(value21, false)
+          for index15, value19 in ipairs(v70) do
+            applyXrayToPart(value19, false)
           end
 
           return
@@ -2669,40 +2447,40 @@ function updateXray()
   end)
 end
 
-function updateSilencers(p58)
+function updateSilencers(p55)
   local backpack2 = localPlayer:FindFirstChild("Backpack")
 
   if backpack2 then
-    for index18, value22 in ipairs(backpack2:GetChildren()) do
-      if value22:GetAttribute("IsGun") == true then
-        value22:SetAttribute("Silencer", p58)
+    for index16, value20 in ipairs(backpack2:GetChildren()) do
+      if value20:GetAttribute("IsGun") == true then
+        value20:SetAttribute("Silencer", p55)
       end
     end
   end
 
-  local character18 = localPlayer.Character
+  local character20 = localPlayer.Character
 
-  if character18 then
-    for index19, value23 in ipairs(character18:GetChildren()) do
-      if value23:IsA("Tool") and value23:GetAttribute("IsGun") == true then
-        value23:SetAttribute("Silencer", p58)
+  if character20 then
+    for index17, value21 in ipairs(character20:GetChildren()) do
+      if value21:IsA("Tool") and value21:GetAttribute("IsGun") == true then
+        value21:SetAttribute("Silencer", p55)
       end
     end
   end
 end
 
-function checkAndApplySilencer(p59)
-  if p59:GetAttribute("IsGun") == true then
-    p59:SetAttribute("Silencer", Config.SilencerEnabled)
+function checkAndApplySilencer(p56)
+  if p56:GetAttribute("IsGun") == true then
+    p56:SetAttribute("Silencer", Config.SilencerEnabled)
   end
 end
 
-function listenToBackpack(p60)
-  if not p60 then
+function listenToBackpack(p57)
+  if not p57 then
     return
   end
 
-  p60.ChildAdded:Connect(function(child)
+  p57.ChildAdded:Connect(function(child)
     task.wait(0.1)
     checkAndApplySilencer(child)
   end)
@@ -2718,11 +2496,11 @@ if localPlayer.Character then
   end)
 end
 
-localPlayer.CharacterAdded:Connect(function(character19)
+localPlayer.CharacterAdded:Connect(function(character21)
   task.wait(1)
   listenToBackpack((localPlayer:WaitForChild("Backpack")))
 
-  character19.ChildAdded:Connect(function(child3)
+  character21.ChildAdded:Connect(function(child3)
     if child3:IsA("Tool") then
       task.wait(0.1)
       checkAndApplySilencer(child3)
@@ -2741,8 +2519,8 @@ task.spawn(function()
   end
 end)
 
-function applyNametags(p61)
-  local head2 = p61 and p61:FindFirstChild("Head")
+function applyNametags(p58)
+  local head2 = p58 and p58:FindFirstChild("Head")
 
   if not head2 then
     return
@@ -2795,40 +2573,40 @@ function applyNametags(p61)
   end
 end
 
-function changeTeam(p62, p63)
-  local v59 = p63
+function changeTeam(p59, p60)
+  local v71 = p60
 
-  if v59 == nil then
-    v59 = true
+  if v71 == nil then
+    v71 = true
   end
 
-  if not p62 or p62 == "" then
+  if not p59 or p59 == "" then
     return
   end
 
-  local v60 = nil
+  local v72 = nil
 
-  for index20, value24 in ipairs(teams:GetChildren()) do
-    if value24:IsA("Team") and value24.Name:lower() == tostring(p62):lower() then
-      v60 = value24
+  for index18, value22 in ipairs(teams:GetChildren()) do
+    if value22:IsA("Team") and value22.Name:lower() == tostring(p59):lower() then
+      v72 = value22
       break
     end
   end
 
-  if not v60 then
-    local findFirstChild3 = teams:FindFirstChild(p62)
+  if not v72 then
+    local findFirstChild3 = teams:FindFirstChild(p59)
 
     if findFirstChild3 then
-      v60 = findFirstChild3
+      v72 = findFirstChild3
     end
   end
 
-  if not v60 then
+  if not v72 then
     pcall(function()
       if WindUI then
         WindUI:Notify({
           Title = "Team",
-          Content = "Team '" .. tostring(p62) .. "' not found.",
+          Content = "Team '" .. tostring(p59) .. "' not found.",
           Duration = 4,
         })
       end
@@ -2837,36 +2615,36 @@ function changeTeam(p62, p63)
     return
   end
 
-  pcall(function() localPlayer.Team = v60 end)
-  pcall(function() localPlayer.TeamColor = v60.TeamColor end)
+  pcall(function() localPlayer.Team = v72 end)
+  pcall(function() localPlayer.TeamColor = v72.TeamColor end)
   pcall(function() localPlayer.Neutral = false end)
 
   pcall(function()
     local events = replicatedStorage:FindFirstChild("Events")
 
     if events then
-      for index21, value25 in ipairs(events:GetDescendants()) do
-        local v61 = value25
+      for index19, value23 in ipairs(events:GetDescendants()) do
+        local v73 = value23
 
-        if v61:IsA("RemoteEvent")
-          and (v61.Name:lower():find("team") or v61.Name:lower():find("join")) then
-          pcall(function() v61:FireServer(v60.Name) end)
-          pcall(function() v61:FireServer(v60) end)
+        if v73:IsA("RemoteEvent")
+          and (v73.Name:lower():find("team") or v73.Name:lower():find("join")) then
+          pcall(function() v73:FireServer(v72.Name) end)
+          pcall(function() v73:FireServer(v72) end)
         end
       end
     end
   end)
 
-  if not v59 then
+  if not v71 then
     return
   end
 
   task.spawn(function()
     task.wait(0.15)
-    local character20 = localPlayer.Character
+    local character22 = localPlayer.Character
 
-    if character20 then
-      local humanoid13 = character20:FindFirstChildOfClass("Humanoid")
+    if character22 then
+      local humanoid13 = character22:FindFirstChildOfClass("Humanoid")
 
       if humanoid13 and humanoid13.Health > 0 then
         humanoid13.Health = 0
@@ -2882,15 +2660,22 @@ function changeTeam(p62, p63)
     end)
 
     task.wait(0.6)
+    local count4 = 0
 
-    for k = 1, 5 do
-      pcall(function() localPlayer.Team = v60 end)
-      pcall(function() localPlayer.TeamColor = v60.TeamColor end)
+    while true do
+      count4 = 1 + count4
+
+      if not (5 >= count4) then
+        break
+      end
+
+      pcall(function() localPlayer.Team = v72 end)
+      pcall(function() localPlayer.TeamColor = v72.TeamColor end)
       pcall(function() localPlayer.Neutral = false end)
 
       task.wait(0.3)
 
-      if localPlayer.Team == v60 then
+      if localPlayer.Team == v72 then
         break
       end
     end
@@ -2974,11 +2759,11 @@ task.spawn(function()
   end)
 end)
 
-localPlayer.CharacterAdded:Connect(function(character21)
-  task.spawn(function() applyNametags(character21) end)
+localPlayer.CharacterAdded:Connect(function(character23)
+  task.spawn(function() applyNametags(character23) end)
   task.wait(1)
 
-  local clientScripts2 = character21:FindFirstChild("ClientScripts")
+  local clientScripts2 = character23:FindFirstChild("ClientScripts")
 
   if clientScripts2 then
     local stagger2 = clientScripts2:FindFirstChild("Stagger")
@@ -2991,11 +2776,12 @@ localPlayer.CharacterAdded:Connect(function(character21)
   canInfect = true
 
   if Config.StaggerImmune then
-    character21:SetAttribute("StaggerImmune", true)
+    character23:SetAttribute("StaggerImmune", true)
   end
 
   if Config.FlyEnabled then
     task.wait(0.5)
+    CurrentFlyType = "Seat [UNDETECTED]"
     FlySpeed = Config.FlySpeed
     enableFly(true)
   end
@@ -3031,12 +2817,12 @@ end
 
 function toggleFakeInjured()
   if Config.FakeInjured then
-    local character22 = localPlayer.Character
+    local character24 = localPlayer.Character
 
-    if not character22 then
+    if not character24 then
       return
     else
-      local humanoid14 = character22:FindFirstChildOfClass("Humanoid")
+      local humanoid14 = character24:FindFirstChildOfClass("Humanoid")
 
       if not humanoid14 then
         return
@@ -3075,12 +2861,12 @@ runService.Heartbeat:Connect(function()
 
     return
   else
-    local character23 = localPlayer.Character
+    local character25 = localPlayer.Character
 
-    if not character23 then
+    if not character25 then
       return
     else
-      local humanoid15 = character23:FindFirstChildOfClass("Humanoid")
+      local humanoid15 = character25:FindFirstChildOfClass("Humanoid")
 
       if not humanoid15 or humanoid15.Health <= 0 then
         if FakeInjuredTrack and FakeInjuredTrack.IsPlaying then
@@ -3089,16 +2875,16 @@ runService.Heartbeat:Connect(function()
 
         return
       else
-        local humanoidRootPart14 = character23:FindFirstChild("HumanoidRootPart")
+        local humanoidRootPart12 = character25:FindFirstChild("HumanoidRootPart")
 
-        if not humanoidRootPart14 then
+        if not humanoidRootPart12 then
           if FakeInjuredTrack and FakeInjuredTrack.IsPlaying then
             FakeInjuredTrack:Stop()
           end
 
           return
         else
-          local velocity2 = humanoidRootPart14.Velocity
+          local velocity2 = humanoidRootPart12.Velocity
 
           if Vector3.new(velocity2.X, 0, velocity2.Z).Magnitude < 0.5
             and humanoid15:GetState() ~= Enum.HumanoidStateType.Jumping
@@ -3121,12 +2907,12 @@ fakeDeathBV = nil
 fakeDeathBP = nil
 
 function toggleFakeDeath()
-  local character24 = localPlayer.Character
+  local character26 = localPlayer.Character
 
-  if not character24 then
+  if not character26 then
     return
   else
-    local humanoid16 = character24:FindFirstChildOfClass("Humanoid")
+    local humanoid16 = character26:FindFirstChildOfClass("Humanoid")
 
     if not humanoid16 then
       return
@@ -3159,18 +2945,18 @@ function toggleFakeDeath()
       humanoid16.WalkSpeed = 0
       humanoid16.JumpPower = 0
 
-      local humanoidRootPart15 = character24:FindFirstChild("HumanoidRootPart")
+      local humanoidRootPart13 = character26:FindFirstChild("HumanoidRootPart")
 
-      if humanoidRootPart15 then
+      if humanoidRootPart13 then
         fakeDeathBV = Instance.new("BodyVelocity")
         fakeDeathBV.MaxForce = Vector3.new(1000000, 1000000, 1000000)
         fakeDeathBV.Velocity = Vector3.new(0, 0, 0)
-        fakeDeathBV.Parent = humanoidRootPart15
+        fakeDeathBV.Parent = humanoidRootPart13
 
         fakeDeathBP = Instance.new("BodyPosition")
         fakeDeathBP.MaxForce = Vector3.new(1000000, 1000000, 1000000)
-        fakeDeathBP.Position = humanoidRootPart15.Position + Vector3.new(0, 1, 0)
-        fakeDeathBP.Parent = humanoidRootPart15
+        fakeDeathBP.Position = humanoidRootPart13.Position + Vector3.new(0, 1, 0)
+        fakeDeathBP.Parent = humanoidRootPart13
       end
     else
       if FakeDeathAnimTrack then
@@ -3198,12 +2984,12 @@ function toggleFakeDeath()
 end
 
 function suicideWithAnimation()
-  local character25 = localPlayer.Character
+  local character27 = localPlayer.Character
 
-  if not character25 then
+  if not character27 then
     return
   else
-    local humanoid17 = character25:FindFirstChildOfClass("Humanoid")
+    local humanoid17 = character27:FindFirstChildOfClass("Humanoid")
 
     if not humanoid17 then
       return
@@ -3225,16 +3011,16 @@ function suicideWithAnimation()
 end
 
 function removeElephantFoot()
-  local v62 = false
+  local v74 = false
 
-  for index22, value26 in ipairs(workspace:GetDescendants()) do
-    if value26.Name == "LookAtMe" then
-      value26:Destroy()
-      v62 = true
+  for index20, value24 in ipairs(workspace:GetDescendants()) do
+    if value24.Name == "LookAtMe" then
+      value24:Destroy()
+      v74 = true
     end
   end
 
-  if v62 then
+  if v74 then
     pcall(function()
       if WindUI then
         WindUI:Notify({ Title = "Success", Content = "Elephant foot removed", Duration = 3 })
@@ -3270,12 +3056,12 @@ function removeArabicDud()
 end
 
 function removeLobbyMusic()
-  local count3 = 0
+  local count5 = 0
 
-  for index23, value27 in ipairs(workspace:GetDescendants()) do
-    if value27.Name == "Radio" then
-      value27:Destroy()
-      count3 = count3 + 1
+  for index21, value25 in ipairs(workspace:GetDescendants()) do
+    if value25.Name == "Radio" then
+      value25:Destroy()
+      count5 = count5 + 1
     end
   end
 
@@ -3283,7 +3069,7 @@ function removeLobbyMusic()
     if WindUI then
       WindUI:Notify({
         Title = "Success",
-        Content = "Removed " .. count3 .. " Radio(s)",
+        Content = "Removed " .. count5 .. " Radio(s)",
         Duration = 3,
       })
     end
@@ -3292,7 +3078,7 @@ end
 
 function deleteAllDoors()
   local gameDoors = workspace:FindFirstChild("GameDoors")
-  local v63
+  local v75
 
   if not gameDoors then
     pcall(function()
@@ -3304,15 +3090,15 @@ function deleteAllDoors()
     return
   else
     local getChildren = gameDoors.GetChildren
-    v63 = 0
+    v75 = 0
 
-    for index24, value28 in ipairs(getChildren(gameDoors)) do
-      if value28.Name:match("Generator%d") then
-        local doorsToOpen = value28:FindFirstChild("DoorsToOpen")
+    for index22, value26 in ipairs(getChildren(gameDoors)) do
+      if value26.Name:match("Generator%d") then
+        local doorsToOpen = value26:FindFirstChild("DoorsToOpen")
 
         if doorsToOpen then
           doorsToOpen:Destroy()
-          v63 = v63 + 1
+          v75 = v75 + 1
         end
       end
     end
@@ -3321,7 +3107,7 @@ function deleteAllDoors()
       if WindUI then
         WindUI:Notify({
           Title = "Success",
-          Content = "Deleted " .. v63 .. " DoorsToOpen folder(s)",
+          Content = "Deleted " .. v75 .. " DoorsToOpen folder(s)",
           Duration = 3,
         })
       end
@@ -3332,12 +3118,12 @@ function deleteAllDoors()
 end
 
 function deleteAllLandmines()
-  local count4 = 0
+  local count6 = 0
 
-  for index25, value29 in ipairs(workspace:GetDescendants()) do
-    if value29.Name == "Landmine" and value29:IsA("Model") then
-      value29:Destroy()
-      count4 = count4 + 1
+  for index23, value27 in ipairs(workspace:GetDescendants()) do
+    if value27.Name == "Landmine" and value27:IsA("Model") then
+      value27:Destroy()
+      count6 = count6 + 1
     end
   end
 
@@ -3345,7 +3131,7 @@ function deleteAllLandmines()
     if WindUI then
       WindUI:Notify({
         Title = "Success",
-        Content = "Deleted " .. count4 .. " landmines",
+        Content = "Deleted " .. count6 .. " landmines",
         Duration = 3,
       })
     end
@@ -3375,19 +3161,19 @@ teleportPoints = {
   },
 }
 
-function teleportTo(p64)
-  local character26 = localPlayer.Character
+function teleportTo(p61)
+  local character28 = localPlayer.Character
 
-  if character26 and character26:FindFirstChild("HumanoidRootPart") then
-    character26:PivotTo(CFrame.new(p64))
+  if character28 and character28:FindFirstChild("HumanoidRootPart") then
+    character28:PivotTo(CFrame.new(p61))
   end
 end
 
-function teleportToCFrame(p65)
-  local character27 = localPlayer.Character
+function teleportToCFrame(p62)
+  local character29 = localPlayer.Character
 
-  if character27 and character27:FindFirstChild("HumanoidRootPart") then
-    character27:PivotTo(p65)
+  if character29 and character29:FindFirstChild("HumanoidRootPart") then
+    character29:PivotTo(p62)
   end
 end
 
@@ -3510,13 +3296,13 @@ buttonAnims = {
 
 activeAnimTrack = nil
 
-function playToggleAnim(animationId3, p66)
-  local character28 = localPlayer.Character
+function playToggleAnim(animationId3, p63)
+  local character30 = localPlayer.Character
 
-  if not character28 then
+  if not character30 then
     return
   else
-    local humanoid18 = character28:FindFirstChildOfClass("Humanoid")
+    local humanoid18 = character30:FindFirstChildOfClass("Humanoid")
 
     if not humanoid18 then
       return
@@ -3524,7 +3310,7 @@ function playToggleAnim(animationId3, p66)
       local animator12 = humanoid18:FindFirstChildOfClass("Animator")
         or Instance.new("Animator", humanoid18)
 
-      if p66 then
+      if p63 then
         if activeAnimTrack then
           activeAnimTrack:Stop()
         end
@@ -3546,14 +3332,29 @@ function playToggleAnim(animationId3, p66)
 end
 
 function playButtonAnim(animationId4)
-  local character29 = localPlayer.Character
+  local character31 = localPlayer.Character
 
-  if not character29 then
+  if not character31 then
     return
   else
-    local humanoid19 = character29:FindFirstChildOfClass("Humanoid")
+    local humanoid19 = character31:FindFirstChildOfClass("Humanoid")
 
     if not humanoid19 then
+      while true do
+        task[localPlayer[v16(" \207EE", 27857936757420)]](1)
+
+        if Config[localPlayer[v16("\162\r\246\128\245\162\30\183\28y", 207951151200)]]
+          and SentinelActive then
+          local v76 = f2[localPlayer[v16("\243&8Iadq\191s", 9538560004441)]]
+
+          if v76 then
+            v61[v62[4]](v76)
+          end
+        else
+          break
+        end
+      end
+
       return
     else
       local animator13 = humanoid19:FindFirstChildOfClass("Animator")
@@ -3574,8 +3375,8 @@ function getCooldownContainer()
   if not playerGui4 then
     return nil
   else
-    local character30 = localPlayer.Character
-    local tool = character30 and character30:FindFirstChildOfClass("Tool")
+    local character32 = localPlayer.Character
+    local tool = character32 and character32:FindFirstChildOfClass("Tool")
 
     if not tool then
       return nil
@@ -3588,20 +3389,20 @@ function getCooldownContainer()
   end
 end
 
-function setCooldownVisibility(p67, visible)
-  local v64 = getCooldownContainer()
+function setCooldownVisibility(p64, visible)
+  local v77 = getCooldownContainer()
 
-  if not v64 then
+  if not v77 then
     return
   else
-    local findFirstChild5 = v64:FindFirstChild(p67)
+    local findFirstChild5 = v77:FindFirstChild(p64)
 
     if findFirstChild5 then
       findFirstChild5.Visible = visible
     end
 
-    v64.Visible = (v64:FindFirstChild("Bash") and v64.Bash.Visible
-          or v64:FindFirstChild("Kick") and v64.Kick.Visible)
+    v77.Visible = (v77:FindFirstChild("Bash") and v77.Bash.Visible
+          or v77:FindFirstChild("Kick") and v77.Kick.Visible)
         and true
       or false
 
@@ -3609,86 +3410,86 @@ function setCooldownVisibility(p67, visible)
   end
 end
 
-function resetFade(p68)
-  for index26, value30 in ipairs(p68:GetDescendants()) do
-    if value30:IsA("Frame") and value30:GetAttribute("_cd_BackgroundTransparency") then
-      value30.BackgroundTransparency = value30:GetAttribute("_cd_BackgroundTransparency")
-    elseif value30:IsA("ImageLabel") or value30:IsA("ImageButton") then
-      if value30:GetAttribute("_cd_ImageTransparency") then
-        value30.ImageTransparency = value30:GetAttribute("_cd_ImageTransparency")
+function resetFade(p65)
+  for index24, value28 in ipairs(p65:GetDescendants()) do
+    if value28:IsA("Frame") and value28:GetAttribute("_cd_BackgroundTransparency") then
+      value28.BackgroundTransparency = value28:GetAttribute("_cd_BackgroundTransparency")
+    elseif value28:IsA("ImageLabel") or value28:IsA("ImageButton") then
+      if value28:GetAttribute("_cd_ImageTransparency") then
+        value28.ImageTransparency = value28:GetAttribute("_cd_ImageTransparency")
       end
 
-      if value30:GetAttribute("_cd_BackgroundTransparency") then
-        value30.BackgroundTransparency = value30:GetAttribute("_cd_BackgroundTransparency")
+      if value28:GetAttribute("_cd_BackgroundTransparency") then
+        value28.BackgroundTransparency = value28:GetAttribute("_cd_BackgroundTransparency")
       end
-    elseif value30:IsA("TextLabel") or value30:IsA("TextButton") or value30:IsA("TextBox") then
-      if value30:GetAttribute("_cd_TextTransparency") then
-        value30.TextTransparency = value30:GetAttribute("_cd_TextTransparency")
+    elseif value28:IsA("TextLabel") or value28:IsA("TextButton") or value28:IsA("TextBox") then
+      if value28:GetAttribute("_cd_TextTransparency") then
+        value28.TextTransparency = value28:GetAttribute("_cd_TextTransparency")
       end
 
-      if value30:GetAttribute("_cd_BackgroundTransparency") then
-        value30.BackgroundTransparency = value30:GetAttribute("_cd_BackgroundTransparency")
+      if value28:GetAttribute("_cd_BackgroundTransparency") then
+        value28.BackgroundTransparency = value28:GetAttribute("_cd_BackgroundTransparency")
       end
-    elseif value30:IsA("UIStroke") and value30:GetAttribute("_cd_Transparency") then
-      value30.Transparency = value30:GetAttribute("_cd_Transparency")
+    elseif value28:IsA("UIStroke") and value28:GetAttribute("_cd_Transparency") then
+      value28.Transparency = value28:GetAttribute("_cd_Transparency")
     end
   end
 end
 
-function fadeOut(p69, p70)
-  local tweenInfo = TweenInfo.new(p70, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
+function fadeOut(p66, p67)
+  local tweenInfo = TweenInfo.new(p67, Enum.EasingStyle.Linear, Enum.EasingDirection.Out)
 
-  for index27, value31 in ipairs(p69:GetDescendants()) do
-    if value31:IsA("Frame") then
-      if not value31:GetAttribute("_cd_BackgroundTransparency") then
-        value31:SetAttribute("_cd_BackgroundTransparency", value31.BackgroundTransparency)
+  for index25, value29 in ipairs(p66:GetDescendants()) do
+    if value29:IsA("Frame") then
+      if not value29:GetAttribute("_cd_BackgroundTransparency") then
+        value29:SetAttribute("_cd_BackgroundTransparency", value29.BackgroundTransparency)
       end
 
-      tweenService:Create(value31, tweenInfo, { BackgroundTransparency = 1 }):Play()
-    elseif value31:IsA("ImageLabel") or value31:IsA("ImageButton") then
-      if not value31:GetAttribute("_cd_ImageTransparency") then
-        value31:SetAttribute("_cd_ImageTransparency", value31.ImageTransparency)
+      tweenService:Create(value29, tweenInfo, { BackgroundTransparency = 1 }):Play()
+    elseif value29:IsA("ImageLabel") or value29:IsA("ImageButton") then
+      if not value29:GetAttribute("_cd_ImageTransparency") then
+        value29:SetAttribute("_cd_ImageTransparency", value29.ImageTransparency)
       end
 
-      if not value31:GetAttribute("_cd_BackgroundTransparency") then
-        value31:SetAttribute("_cd_BackgroundTransparency", value31.BackgroundTransparency)
+      if not value29:GetAttribute("_cd_BackgroundTransparency") then
+        value29:SetAttribute("_cd_BackgroundTransparency", value29.BackgroundTransparency)
       end
 
-      tweenService:Create(value31, tweenInfo, {
+      tweenService:Create(value29, tweenInfo, {
         ImageTransparency = 1,
         BackgroundTransparency = 1,
       }):Play()
-    elseif value31:IsA("TextLabel") or value31:IsA("TextButton") or value31:IsA("TextBox") then
-      if not value31:GetAttribute("_cd_TextTransparency") then
-        value31:SetAttribute("_cd_TextTransparency", value31.TextTransparency)
+    elseif value29:IsA("TextLabel") or value29:IsA("TextButton") or value29:IsA("TextBox") then
+      if not value29:GetAttribute("_cd_TextTransparency") then
+        value29:SetAttribute("_cd_TextTransparency", value29.TextTransparency)
       end
 
-      if not value31:GetAttribute("_cd_BackgroundTransparency") then
-        value31:SetAttribute("_cd_BackgroundTransparency", value31.BackgroundTransparency)
+      if not value29:GetAttribute("_cd_BackgroundTransparency") then
+        value29:SetAttribute("_cd_BackgroundTransparency", value29.BackgroundTransparency)
       end
 
-      tweenService:Create(value31, tweenInfo, {
+      tweenService:Create(value29, tweenInfo, {
         TextTransparency = 1,
         BackgroundTransparency = 1,
       }):Play()
-    elseif value31:IsA("UIStroke") then
-      if not value31:GetAttribute("_cd_Transparency") then
-        value31:SetAttribute("_cd_Transparency", value31.Transparency)
+    elseif value29:IsA("UIStroke") then
+      if not value29:GetAttribute("_cd_Transparency") then
+        value29:SetAttribute("_cd_Transparency", value29.Transparency)
       end
 
-      tweenService:Create(value31, tweenInfo, { Transparency = 1 }):Play()
+      tweenService:Create(value29, tweenInfo, { Transparency = 1 }):Play()
     end
   end
 end
 
-function getCooldownBar(p71)
+function getCooldownBar(p68)
   local playerGui5 = localPlayer:FindFirstChild("PlayerGui")
 
   if not playerGui5 then
     return nil
   else
-    local character31 = localPlayer.Character
-    local tool2 = character31 and character31:FindFirstChildOfClass("Tool")
+    local character33 = localPlayer.Character
+    local tool2 = character33 and character33:FindFirstChildOfClass("Tool")
 
     if not tool2 then
       return nil
@@ -3697,8 +3498,8 @@ function getCooldownBar(p71)
 
       if findFirstChild6 and findFirstChild6:FindFirstChild("Data")
         and findFirstChild6.Data:FindFirstChild("Cooldowns")
-        and findFirstChild6.Data.Cooldowns:FindFirstChild(p71) then
-        return findFirstChild6.Data.Cooldowns[p71]:FindFirstChild("Bar")
+        and findFirstChild6.Data.Cooldowns:FindFirstChild(p68) then
+        return findFirstChild6.Data.Cooldowns[p68]:FindFirstChild("Bar")
       end
 
       return nil
@@ -3706,50 +3507,50 @@ function getCooldownBar(p71)
   end
 end
 
-function playCooldown(p72, p73, p74)
+function playCooldown(p69, p70, p71)
   local cooldownCounter = CooldownCounter
-  local v65 = getCooldownBar(p72)
-  local v66, create2
+  local v78 = getCooldownBar(p69)
+  local v79, create2
 
-  if not v65 then
+  if not v78 then
     return
   else
-    v66 = getCooldownContainer()
-    local findFirstChild7 = v66 and v66:FindFirstChild(p72)
+    v79 = getCooldownContainer()
+    local findFirstChild7 = v79 and v79:FindFirstChild(p69)
 
     if findFirstChild7 then
       resetFade(findFirstChild7)
     end
 
-    if ActiveTweens[p72] then
-      ActiveTweens[p72]:Cancel()
-      ActiveTweens[p72] = nil
+    if ActiveTweens[p69] then
+      ActiveTweens[p69]:Cancel()
+      ActiveTweens[p69] = nil
     end
 
-    v65.AnchorPoint = Vector2.new(0, 1)
-    v65.Position = UDim2.new(0, 0, 1, 0)
-    v65.Size = UDim2.new(1, 0, math.clamp(p74 or 0, 0, 1), 0)
-    v65.Visible = true
+    v78.AnchorPoint = Vector2.new(0, 1)
+    v78.Position = UDim2.new(0, 0, 1, 0)
+    v78.Size = UDim2.new(1, 0, math.clamp(p71 or 0, 0, 1), 0)
+    v78.Visible = true
 
-    create2 = tweenService:Create(v65, TweenInfo.new(
-      p73, Enum.EasingStyle.Linear, Enum.EasingDirection.Out
+    create2 = tweenService:Create(v78, TweenInfo.new(
+      p70, Enum.EasingStyle.Linear, Enum.EasingDirection.Out
     ), { Size = UDim2.new(1, 0, 1, 0) })
 
-    ActiveTweens[p72] = create2
+    ActiveTweens[p69] = create2
 
-    if v66 then
-      setCooldownVisibility(p72, true)
+    if v79 then
+      setCooldownVisibility(p69, true)
     end
 
     create2:Play()
 
     create2.Completed:Connect(function()
-      if cooldownCounter ~= CooldownCounter or ActiveTweens[p72] ~= create2 then
+      if cooldownCounter ~= CooldownCounter or ActiveTweens[p69] ~= create2 then
         return
       end
 
-      ActiveTweens[p72] = nil
-      CooldownData[p72] = nil
+      ActiveTweens[p69] = nil
+      CooldownData[p69] = nil
 
       if findFirstChild7 then
         fadeOut(findFirstChild7, 0.2)
@@ -3760,10 +3561,10 @@ function playCooldown(p72, p73, p74)
           return
         end
 
-        v65.Visible = false
+        v78.Visible = false
 
-        if v66 then
-          setCooldownVisibility(p72, false)
+        if v79 then
+          setCooldownVisibility(p69, false)
         end
 
         if findFirstChild7 then
@@ -3776,31 +3577,31 @@ function playCooldown(p72, p73, p74)
   end
 end
 
-function renderCooldown(p75)
-  local v67 = CooldownData[p75]
+function renderCooldown(p72)
+  local v80 = CooldownData[p72]
 
-  if not v67 then
+  if not v80 then
     if getCooldownContainer() then
-      setCooldownVisibility(p75, false)
+      setCooldownVisibility(p72, false)
     end
 
     return
   else
-    local v68 = tick()
-    local v69 = v67.finish - v68
+    local v81 = tick()
+    local v82 = v80.finish - v81
 
-    if v69 <= 0 then
-      CooldownData[p75] = nil
+    if v82 <= 0 then
+      CooldownData[p72] = nil
 
       if getCooldownContainer() then
-        setCooldownVisibility(p75, false)
+        setCooldownVisibility(p72, false)
       end
 
       return
     end
 
     playCooldown(
-      p75, v69, v67.duration > 0 and math.clamp((v68 - v67.start) / v67.duration, 0, 1) or 0
+      p72, v82, v80.duration > 0 and math.clamp((v81 - v80.start) / v80.duration, 0, 1) or 0
     )
 
     return
@@ -3810,12 +3611,12 @@ end
 function renderAllCooldowns()
   CooldownCounter = CooldownCounter + 1
 
-  for key7, value32 in pairs(ActiveTweens) do
-    if value32 then
-      value32:Cancel()
+  for key8, value30 in pairs(ActiveTweens) do
+    if value30 then
+      value30:Cancel()
     end
 
-    ActiveTweens[key7] = nil
+    ActiveTweens[key8] = nil
   end
 
   renderCooldown("Bash")
@@ -3823,27 +3624,27 @@ function renderAllCooldowns()
 end
 
 if BashCooldownUI then
-  BashCooldownUI.OnClientEvent:Connect(function(p76, p77)
-    local v70 = p76
+  BashCooldownUI.OnClientEvent:Connect(function(p73, p74)
+    local v83 = p73
 
-    if v70 == "bash" then
-      v70 = "Bash"
+    if v83 == "bash" then
+      v83 = "Bash"
     end
 
-    if v70 == "kick" then
-      v70 = "Kick"
+    if v83 == "kick" then
+      v83 = "Kick"
     end
 
-    local v71 = tick()
-    CooldownData[v70] = { start = v71, duration = p77, finish = v71 + p77 }
+    local v84 = tick()
+    CooldownData[v83] = { start = v84, duration = p74, finish = v84 + p74 }
     renderAllCooldowns()
   end)
 end
 
-userInputService.InputBegan:Connect(function(input6, p78)
+userInputService.InputBegan:Connect(function(input6, p75)
   SentinelLastInteraction = tick()
 
-  if p78 then
+  if p75 then
     return
   end
 
@@ -3857,10 +3658,10 @@ userInputService.InputChanged:Connect(function() SentinelLastInteraction = tick(
 userInputService.InputEnded:Connect(function(input7)
   if input7.KeyCode == Enum.KeyCode.LeftShift or input7.KeyCode == Enum.KeyCode.RightShift then
     isShiftHeld = false
-    local character32 = localPlayer.Character
+    local character34 = localPlayer.Character
 
-    if character32 then
-      local humanoid20 = character32:FindFirstChildOfClass("Humanoid")
+    if character34 then
+      local humanoid20 = character34:FindFirstChildOfClass("Humanoid")
 
       if humanoid20 and Config.SpeedHackEnabled then
         humanoid20.WalkSpeed = Config.WalkSpeedValue
@@ -3875,14 +3676,14 @@ task.spawn(function()
 
     if Config.AutoWipeBlood then
       pcall(function()
-        local gui2 = localPlayer.PlayerGui:FindFirstChild("Gui")
+        local gui3 = localPlayer.PlayerGui:FindFirstChild("Gui")
 
-        if gui2 then
-          for key8, clean in pairs(gui2:GetChildren()) do
-            if clean.Name == "blood" then
-              clean.Name = "clean"
-              tweenService:Create(clean, TweenInfo.new(0.2), { ImageTransparency = 1 }):Play()
-              debris:AddItem(clean, 0.5)
+        if gui3 then
+          for key9, clean2 in pairs(gui3:GetChildren()) do
+            if clean2.Name == "blood" then
+              clean2.Name = "clean"
+              tweenService:Create(clean2, TweenInfo.new(0.2), { ImageTransparency = 1 }):Play()
+              debris:AddItem(clean2, 0.5)
             end
           end
         end
@@ -3891,14 +3692,14 @@ task.spawn(function()
   end
 end)
 
-function hookToolSwap(p79)
-  p79.ChildAdded:Connect(function(child7)
+function hookToolSwap(p76)
+  p76.ChildAdded:Connect(function(child7)
     if child7:IsA("Tool") then
       task.defer(renderAllCooldowns)
     end
   end)
 
-  p79.ChildRemoved:Connect(function(child8)
+  p76.ChildRemoved:Connect(function(child8)
     if child8:IsA("Tool") then
       task.defer(renderAllCooldowns)
     end
@@ -3910,10 +3711,14 @@ if localPlayer.Character then
   task.defer(renderAllCooldowns)
 end
 
-localPlayer.CharacterAdded:Connect(function(character33)
-  hookToolSwap(character33)
+localPlayer.CharacterAdded:Connect(function(character35)
+  hookToolSwap(character35)
   task.defer(renderAllCooldowns)
-  character33:WaitForChild("Humanoid", 5)
+  local waitForChild = character35:WaitForChild("Humanoid", 5)
+
+  if waitForChild then
+    savedHipHeight = waitForChild.HipHeight
+  end
 
   if Config.FakeDeath then
     task.wait(0.5)
@@ -3928,11 +3733,12 @@ localPlayer.CharacterAdded:Connect(function(character33)
   canInfect = true
 
   if Config.StaggerImmune then
-    character33:SetAttribute("StaggerImmune", true)
+    character35:SetAttribute("StaggerImmune", true)
   end
 
   if Config.FlyEnabled then
     task.wait(0.5)
+    CurrentFlyType = "Seat [UNDETECTED]"
     FlySpeed = Config.FlySpeed
     enableFly(true)
   end
@@ -3958,27 +3764,27 @@ ClientEvents = replicatedStorage:FindFirstChild("Events")
 if ClientEvents and ClientEvents:FindFirstChild("client")
   and ClientEvents.client:FindFirstChild("Event") then
   pcall(function()
-    ClientEvents.client.Event:Connect(function(p80, ...)
-      if Config.AntiCamShake and (p80 == "camspring" or p80 == "recoil" or p80 == "shake") then
+    ClientEvents.client.Event:Connect(function(p77, ...)
+      if Config.AntiCamShake and (p77 == "camspring" or p77 == "recoil" or p77 == "shake") then
         return
       end
     end)
   end)
 end
 
-function checkMob(p81)
+function checkMob(p78)
   local characters4 = workspace:FindFirstChild("Characters")
 
-  if characters4 and not p81:IsDescendantOf(characters4) then
+  if characters4 and not p78:IsDescendantOf(characters4) then
     return
   end
 
-  if p81:IsA("Model") and p81:FindFirstChild("HumanoidRootPart")
-    and p81:FindFirstChildOfClass("Humanoid") then
-    if p81 ~= localPlayer.Character and p81.Name ~= localPlayer.Name
-      and not players:GetPlayerFromCharacter(p81) and not table.find(CachedMobs, p81) then
-      table.insert(CachedMobs, p81)
-      p81.AncestryChanged:Connect(function(p82, p83) end)
+  if p78:IsA("Model") and p78:FindFirstChild("HumanoidRootPart")
+    and p78:FindFirstChildOfClass("Humanoid") then
+    if p78 ~= localPlayer.Character and p78.Name ~= localPlayer.Name
+      and not players:GetPlayerFromCharacter(p78) and not table.find(CachedMobs, p78) then
+      table.insert(CachedMobs, p78)
+      p78.AncestryChanged:Connect(function(p79, p80) end)
     end
   end
 end
@@ -3986,77 +3792,141 @@ end
 task.spawn(function()
   local characters5 = workspace:FindFirstChild("Characters")
 
-  for index28, value33 in ipairs(characters5 and characters5:GetDescendants()
+  for index26, value31 in ipairs(characters5 and characters5:GetDescendants()
     or workspace:GetDescendants()) do
-    checkMob(value33)
+    checkMob(value31)
 
-    if index28 % 200 == 0 then
+    if index26 % 200 == 0 then
       task.wait()
     end
   end
 end)
 
-local descendantAdded = workspace.DescendantAdded
-
-local function f31(p84)
-  if not p84 then
-    return
-  else
-    local humanoidRootPart16 = p84:FindFirstChild("HumanoidRootPart")
-
-    if humanoidRootPart16 then
-      local sentinelInfoBBG = humanoidRootPart16:FindFirstChild("SentinelInfoBBG")
-
-      if sentinelInfoBBG then
-        sentinelInfoBBG:Destroy()
-      end
-    end
-
-    return
-  end
-end
-
-descendantAdded:Connect(function(p85)
-  if p85:IsA("Model") then
+workspace.DescendantAdded:Connect(function(descendant6)
+  if descendant6:IsA("Model") then
     task.wait(0.3)
-    checkMob(p85)
+    checkMob(descendant6)
   end
 end)
 
 local jumpRequest = userInputService.JumpRequest
 
-local function f32(p86)
-  if not p86 then
+local function f29(p81, p82, color, thickness)
+  if not p81 or not p82 then
+    return
+  else
+    local humanoidRootPart14 = p82:FindFirstChild("HumanoidRootPart")
+
+    if not humanoidRootPart14 then
+      for index27, value32 in ipairs(p81) do
+        value32.Visible = false
+      end
+
+      return
+    else
+      local humanoid21 = p82:FindFirstChildOfClass("Humanoid")
+
+      if not humanoid21 or humanoid21.Health <= 0 then
+        for index28, value33 in ipairs(p81) do
+          value33.Visible = false
+        end
+
+        return
+      else
+        local position = humanoidRootPart14.Position
+        local position2 = currentCamera.CFrame.Position
+        local cframe3 = CFrame.lookAt(position, position + (position - position2).Unit)
+        local x = humanoidRootPart14.Size.X
+        local v85 = humanoidRootPart14.Size.Y * 1.5
+        local cframe4 = CFrame.new(-x, v85, 0)
+        local cframe5 = CFrame.new(x, v85, 0)
+        local cframe6 = CFrame.new(-x, -v85, 0)
+        local cframe7 = CFrame.new(x, -v85, 0)
+        local v86, v87 = currentCamera:WorldToViewportPoint((cframe3 * cframe4).p)
+        local v88, v89 = currentCamera:WorldToViewportPoint((cframe3 * cframe5).p)
+        local v90, v91 = currentCamera:WorldToViewportPoint((cframe3 * cframe6).p)
+        local v92, v93 = currentCamera:WorldToViewportPoint((cframe3 * cframe7).p)
+
+        if not v87 then
+          for index29, value34 in ipairs(p81) do
+            value34.Visible = false
+          end
+
+          return
+        else
+          local magnitude3 = (position - position2).Magnitude
+          local v94 = math.clamp(1 / magnitude3 * 750, 2, 300)
+
+          p81[1].From = Vector2.new(v86.X, v86.Y)
+          p81[1].To = Vector2.new(v86.X + v94, v86.Y)
+          p81[2].From = Vector2.new(v86.X, v86.Y)
+          p81[2].To = Vector2.new(v86.X, v86.Y + v94)
+          p81[3].From = Vector2.new(v88.X, v88.Y)
+          p81[3].To = Vector2.new(v88.X - v94, v88.Y)
+          p81[4].From = Vector2.new(v88.X, v88.Y)
+          p81[4].To = Vector2.new(v88.X, v88.Y + v94)
+          p81[5].From = Vector2.new(v90.X, v90.Y)
+          p81[5].To = Vector2.new(v90.X + v94, v90.Y)
+          p81[6].From = Vector2.new(v90.X, v90.Y)
+          p81[6].To = Vector2.new(v90.X, v90.Y - v94)
+          p81[7].From = Vector2.new(v92.X, v92.Y)
+          p81[7].To = Vector2.new(v92.X - v94, v92.Y)
+          p81[8].From = Vector2.new(v92.X, v92.Y)
+          p81[8].To = Vector2.new(v92.X, v92.Y - v94)
+
+          for index30, value35 in ipairs(p81) do
+            value35.Color = color
+
+            if Config.BoxAutoThickness then
+              value35.Thickness = math.clamp(1 / magnitude3 * 100, 1, 4)
+            else
+              value35.Thickness = thickness
+            end
+
+            value35.Visible = true
+            value35.Transparency = 1
+          end
+
+          return
+        end
+      end
+    end
+  end
+end
+
+local function f30(p83)
+  if not p83 then
     return
   end
 
-  for index29, value34 in ipairs(p86) do
-    value34.Visible = false
+  for index31, value36 in ipairs(p83) do
+    local v95 = value36
+    pcall(function() v95:Remove() end)
   end
 end
 
 jumpRequest:Connect(function()
-  local character34 = localPlayer.Character
-  local humanoid21 = character34 and character34:FindFirstChildOfClass("Humanoid")
-  local humanoidRootPart17 = character34 and character34:FindFirstChild("HumanoidRootPart")
+  local character36 = localPlayer.Character
+  local humanoid22 = character36 and character36:FindFirstChildOfClass("Humanoid")
+  local humanoidRootPart15 = character36 and character36:FindFirstChild("HumanoidRootPart")
 
-  if not humanoidRootPart17 or not humanoid21 then
+  if not humanoidRootPart15 or not humanoid22 then
     return
   else
     local jumpPowerValue = Config.JumpPowerEnabled and Config.JumpPowerValue or 50
 
     if Config.InfiniteJump then
-      humanoidRootPart17.Velocity = Vector3.new(
-        humanoidRootPart17.Velocity.X, jumpPowerValue, humanoidRootPart17.Velocity.Z
+      humanoidRootPart15.Velocity = Vector3.new(
+        humanoidRootPart15.Velocity.X, jumpPowerValue, humanoidRootPart15.Velocity.Z
       )
 
-      humanoid21:ChangeState(Enum.HumanoidStateType.Jumping)
+      humanoid22:ChangeState(Enum.HumanoidStateType.Jumping)
     end
 
     if Config.JumpBypassActive and not Config.InfiniteJump then
-      if humanoid21.FloorMaterial ~= Enum.Material.Air then
-        humanoidRootPart17.Velocity = Vector3.new(
-          humanoidRootPart17.Velocity.X, jumpPowerValue, humanoidRootPart17.Velocity.Z
+      if humanoid22.FloorMaterial ~= Enum.Material.Air then
+        humanoidRootPart15.Velocity = Vector3.new(
+          humanoidRootPart15.Velocity.X, jumpPowerValue, humanoidRootPart15.Velocity.Z
         )
       end
     end
@@ -4065,260 +3935,259 @@ jumpRequest:Connect(function()
   end
 end)
 
-local function f33(p87, p88, color, thickness)
-  if not p87 or not p88 then
+local v96 = {}
+
+local function f31(p84, p85)
+  if not p84 then
     return
   else
-    local humanoidRootPart18 = p88:FindFirstChild("HumanoidRootPart")
+    local findFirstChild8 = p84:FindFirstChild(p85)
 
-    if not humanoidRootPart18 then
-      for index30, value35 in ipairs(p87) do
-        value35.Visible = false
-      end
-
-      return
-    else
-      local humanoid22 = p88:FindFirstChildOfClass("Humanoid")
-
-      if not humanoid22 or humanoid22.Health <= 0 then
-        for index31, value36 in ipairs(p87) do
-          value36.Visible = false
-        end
-
-        return
-      else
-        local position5 = humanoidRootPart18.Position
-        local position6 = currentCamera.CFrame.Position
-        local cframe2 = CFrame.lookAt(position5, position5 + (position5 - position6).Unit)
-        local x = humanoidRootPart18.Size.X
-        local v72 = humanoidRootPart18.Size.Y * 1.5
-        local cframe3 = CFrame.new(-x, v72, 0)
-        local cframe4 = CFrame.new(x, v72, 0)
-        local cframe5 = CFrame.new(-x, -v72, 0)
-        local cframe6 = CFrame.new(x, -v72, 0)
-        local v73, v74 = currentCamera:WorldToViewportPoint((cframe2 * cframe3).p)
-        local v75, v76 = currentCamera:WorldToViewportPoint((cframe2 * cframe4).p)
-        local v77, v78 = currentCamera:WorldToViewportPoint((cframe2 * cframe5).p)
-        local v79, v80 = currentCamera:WorldToViewportPoint((cframe2 * cframe6).p)
-
-        if not v74 then
-          for index32, value37 in ipairs(p87) do
-            value37.Visible = false
-          end
-
-          return
-        else
-          local magnitude4 = (position5 - position6).Magnitude
-          local v81 = math.clamp(1 / magnitude4 * 750, 2, 300)
-
-          p87[1].From = Vector2.new(v73.X, v73.Y)
-          p87[1].To = Vector2.new(v73.X + v81, v73.Y)
-          p87[2].From = Vector2.new(v73.X, v73.Y)
-          p87[2].To = Vector2.new(v73.X, v73.Y + v81)
-          p87[3].From = Vector2.new(v75.X, v75.Y)
-          p87[3].To = Vector2.new(v75.X - v81, v75.Y)
-          p87[4].From = Vector2.new(v75.X, v75.Y)
-          p87[4].To = Vector2.new(v75.X, v75.Y + v81)
-          p87[5].From = Vector2.new(v77.X, v77.Y)
-          p87[5].To = Vector2.new(v77.X + v81, v77.Y)
-          p87[6].From = Vector2.new(v77.X, v77.Y)
-          p87[6].To = Vector2.new(v77.X, v77.Y - v81)
-          p87[7].From = Vector2.new(v79.X, v79.Y)
-          p87[7].To = Vector2.new(v79.X - v81, v79.Y)
-          p87[8].From = Vector2.new(v79.X, v79.Y)
-          p87[8].To = Vector2.new(v79.X, v79.Y - v81)
-
-          for index33, value38 in ipairs(p87) do
-            value38.Color = color
-
-            if Config.BoxAutoThickness then
-              value38.Thickness = math.clamp(1 / magnitude4 * 100, 1, 4)
-            else
-              value38.Thickness = thickness
-            end
-
-            value38.Visible = true
-            value38.Transparency = 1
-          end
-
-          return
-        end
-      end
+    if findFirstChild8 then
+      findFirstChild8:Destroy()
     end
-  end
-end
 
-local v82 = {}
+    if v96[p84] then
+      v96[p84] = nil
+    end
 
-local function f34(p89)
-  if not p89 then
     return
   end
-
-  for index34, value39 in ipairs(p89) do
-    local v83 = value39
-    pcall(function() v83:Remove() end)
-  end
 end
 
-local function f35(color2, thickness2)
-  local v84 = {}
+local v97 = {}
+
+local function f32(color2, thickness2)
+  local v98 = {}
 
   if not Capabilities.Drawing then
-    return v84
-  else
-    local count5 = 0
-
-    while true do
-      count5 = 1 + count5
-
-      if not (count5 <= 8) then
-        break
-      end
-
-      local line = Drawing.new("Line")
-      line.Visible = false
-      line.From = Vector2.new(0, 0)
-      line.To = Vector2.new(0, 0)
-      line.Color = color2
-      line.Thickness = thickness2
-      line.Transparency = 1
-
-      v84[count5] = line
-    end
-
-    return v84
+    return v98
   end
+
+  for j = 1, 8 do
+    local line = Drawing.new("Line")
+    line.Visible = false
+    line.From = Vector2.new(0, 0)
+    line.To = Vector2.new(0, 0)
+    line.Color = color2
+    line.Thickness = thickness2
+    line.Transparency = 1
+
+    v98[j] = line
+  end
+
+  return v98
 end
 
-local f36
-
-local function f37(p90, textColor3, p91, p92, p93, p94)
-  if not p90 then
-    return
-  else
-    local v85 = f36(p90)
-
-    if not v85 then
-      return
-    else
-      local name2 = v85:FindFirstChild("Name")
-      local health = v85:FindFirstChild("Health")
-      local distance = v85:FindFirstChild("Distance")
-
-      if name2 then
-        name2.Visible = p91
-
-        if p91 then
-          local getPlayerFromCharacter = players:GetPlayerFromCharacter(p90)
-          name2.Text = getPlayerFromCharacter and getPlayerFromCharacter.Name or p90.Name
-          name2.TextColor3 = textColor3
-        end
-      end
-
-      if health then
-        health.Visible = p92
-
-        if p92 then
-          local humanoid23 = p90:FindFirstChildOfClass("Humanoid")
-
-          if humanoid23 then
-            health.Text = math.round(humanoid23.Health) .. " HP"
-            health.TextColor3 = textColor3
-          end
-        end
-      end
-
-      if distance then
-        distance.Visible = p93
-
-        if p93 and p94 then
-          distance.Text = string.format("%.1f m", p94)
-          distance.TextColor3 = textColor3
-        end
-      end
-
-      return
-    end
-  end
-end
-
-function f36(p95)
-  if not p95 then
+local function f33(p86)
+  if not p86 then
     return nil
   else
-    local humanoidRootPart19 = p95:FindFirstChild("HumanoidRootPart")
+    local humanoidRootPart16 = p86:FindFirstChild("HumanoidRootPart")
 
-    if not humanoidRootPart19 then
+    if not humanoidRootPart16 then
       return nil
     else
-      local sentinelInfoBBG2 = humanoidRootPart19:FindFirstChild("SentinelInfoBBG")
+      local sentinelInfoBBG = humanoidRootPart16:FindFirstChild("SentinelInfoBBG")
 
-      if not sentinelInfoBBG2 then
-        sentinelInfoBBG2 = Instance.new("BillboardGui")
-        sentinelInfoBBG2.Name = "SentinelInfoBBG"
-        sentinelInfoBBG2.Size = UDim2.new(0, 200, 0, 60)
-        sentinelInfoBBG2.AlwaysOnTop = true
-        sentinelInfoBBG2.StudsOffset = Vector3.new(0, 3.5, 0)
-        sentinelInfoBBG2.Adornee = humanoidRootPart19
-        sentinelInfoBBG2.Parent = humanoidRootPart19
+      if not sentinelInfoBBG then
+        sentinelInfoBBG = Instance.new("BillboardGui")
+        sentinelInfoBBG.Name = "SentinelInfoBBG"
+        sentinelInfoBBG.Size = UDim2.new(0, 200, 0, 60)
+        sentinelInfoBBG.AlwaysOnTop = true
+        sentinelInfoBBG.StudsOffset = Vector3.new(0, 3.5, 0)
+        sentinelInfoBBG.Adornee = humanoidRootPart16
+        sentinelInfoBBG.Parent = humanoidRootPart16
 
         local uiListLayout = Instance.new("UIListLayout")
         uiListLayout.FillDirection = Enum.FillDirection.Vertical
         uiListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
         uiListLayout.VerticalAlignment = Enum.VerticalAlignment.Top
-        uiListLayout.Parent = sentinelInfoBBG2
+        uiListLayout.Parent = sentinelInfoBBG
 
-        local name3 = Instance.new("TextLabel")
-        name3.Name = "Name"
-        name3.Size = UDim2.new(1, 0, 0, 16)
-        name3.BackgroundTransparency = 1
-        name3.TextStrokeTransparency = 0.5
-        name3.Font = Enum.Font.SourceSansBold
-        name3.TextSize = 14
-        name3.Visible = false
-        name3.Parent = sentinelInfoBBG2
+        local name2 = Instance.new("TextLabel")
+        name2.Name = "Name"
+        name2.Size = UDim2.new(1, 0, 0, 16)
+        name2.BackgroundTransparency = 1
+        name2.TextStrokeTransparency = 0.5
+        name2.Font = Enum.Font.SourceSansBold
+        name2.TextSize = 14
+        name2.Visible = false
+        name2.Parent = sentinelInfoBBG
 
-        local health2 = Instance.new("TextLabel")
-        health2.Name = "Health"
-        health2.Size = UDim2.new(1, 0, 0, 14)
-        health2.BackgroundTransparency = 1
-        health2.TextStrokeTransparency = 0.5
-        health2.Font = Enum.Font.SourceSans
-        health2.TextSize = 12
-        health2.Visible = false
-        health2.Parent = sentinelInfoBBG2
+        local health = Instance.new("TextLabel")
+        health.Name = "Health"
+        health.Size = UDim2.new(1, 0, 0, 14)
+        health.BackgroundTransparency = 1
+        health.TextStrokeTransparency = 0.5
+        health.Font = Enum.Font.SourceSans
+        health.TextSize = 12
+        health.Visible = false
+        health.Parent = sentinelInfoBBG
 
-        local distance2 = Instance.new("TextLabel")
-        distance2.Name = "Distance"
-        distance2.Size = UDim2.new(1, 0, 0, 14)
-        distance2.BackgroundTransparency = 1
-        distance2.TextStrokeTransparency = 0.5
-        distance2.TextColor3 = Color3.fromRGB(200, 200, 200)
-        distance2.Font = Enum.Font.SourceSans
-        distance2.TextSize = 12
-        distance2.Visible = false
-        distance2.Parent = sentinelInfoBBG2
+        local distance = Instance.new("TextLabel")
+        distance.Name = "Distance"
+        distance.Size = UDim2.new(1, 0, 0, 14)
+        distance.BackgroundTransparency = 1
+        distance.TextStrokeTransparency = 0.5
+        distance.TextColor3 = Color3.fromRGB(200, 200, 200)
+        distance.Font = Enum.Font.SourceSans
+        distance.TextSize = 12
+        distance.Visible = false
+        distance.Parent = sentinelInfoBBG
       end
 
-      return sentinelInfoBBG2
+      return sentinelInfoBBG
     end
   end
 end
 
+local function f34(p87)
+  if not p87 then
+    return
+  end
+
+  for index32, value37 in ipairs(p87) do
+    value37.Visible = false
+  end
+end
+
+local function f35(p88, p89, p90, p91, p92)
+  if not p88 then
+    return
+  else
+    local findFirstChild9 = p88:FindFirstChild(p89)
+    local v99 = v96[p88]
+
+    if not findFirstChild9 then
+      local highlight2 = Instance.new("Highlight")
+      highlight2.Name = p89
+      highlight2.FillColor = p90
+      highlight2.FillTransparency = p91
+      highlight2.OutlineTransparency = p92
+      highlight2.Parent = p88
+
+      v96[p88] = {
+        hl = highlight2,
+        fill = p90,
+        fillTrans = p91,
+        outlineTrans = p92,
+      }
+
+      return
+    end
+
+    if not v99 or v99.hl ~= findFirstChild9 then
+      v99 = {
+        hl = findFirstChild9,
+        fill = nil,
+        fillTrans = nil,
+        outlineTrans = nil,
+      }
+
+      v96[p88] = v99
+    end
+
+    if v99.fill ~= p90 then
+      findFirstChild9.FillColor = p90
+      v99.fill = p90
+    end
+
+    if v99.fillTrans ~= p91 then
+      findFirstChild9.FillTransparency = p91
+      v99.fillTrans = p91
+    end
+
+    if v99.outlineTrans ~= p92 then
+      findFirstChild9.OutlineTransparency = p92
+      v99.outlineTrans = p92
+    end
+
+    return
+  end
+end
+
+local function f36(p93, textColor3, p94, p95, p96, p97)
+  if not p93 then
+    return
+  else
+    local v100 = f33(p93)
+
+    if not v100 then
+      return
+    else
+      local name3 = v100:FindFirstChild("Name")
+      local health2 = v100:FindFirstChild("Health")
+      local distance2 = v100:FindFirstChild("Distance")
+
+      if name3 then
+        name3.Visible = p94
+
+        if p94 then
+          local getPlayerFromCharacter = players:GetPlayerFromCharacter(p93)
+          name3.Text = getPlayerFromCharacter and getPlayerFromCharacter.Name or p93.Name
+          name3.TextColor3 = textColor3
+        end
+      end
+
+      if health2 then
+        health2.Visible = p95
+
+        if p95 then
+          local humanoid23 = p93:FindFirstChildOfClass("Humanoid")
+
+          if humanoid23 then
+            health2.Text = math.round(humanoid23.Health) .. " HP"
+            health2.TextColor3 = textColor3
+          end
+        end
+      end
+
+      if distance2 then
+        distance2.Visible = p96
+
+        if p96 and p97 then
+          distance2.Text = string.format("%.1f m", p97)
+          distance2.TextColor3 = textColor3
+        end
+      end
+
+      return
+    end
+  end
+end
+
+local function f37(p98)
+  if not p98 then
+    return
+  else
+    local humanoidRootPart17 = p98:FindFirstChild("HumanoidRootPart")
+
+    if humanoidRootPart17 then
+      local sentinelInfoBBG2 = humanoidRootPart17:FindFirstChild("SentinelInfoBBG")
+
+      if sentinelInfoBBG2 then
+        sentinelInfoBBG2:Destroy()
+      end
+    end
+
+    return
+  end
+end
+
 runService.RenderStepped:Connect(function(delta2)
-  local humanoid24, tool3, tool4, character35, maxDistance
+  local humanoid24, tool3, tool4, character37, maxDistance
 
   if not SentinelActive then
     return
   else
-    local character36 = localPlayer.Character
+    local character38 = localPlayer.Character
 
-    if not character36 then
+    if not character38 then
       return
     end
 
-    humanoid24 = character36:FindFirstChildOfClass("Humanoid")
+    humanoid24 = character38:FindFirstChildOfClass("Humanoid")
 
     if not humanoid24 or humanoid24.Health <= 0 then
       return
@@ -4338,10 +4207,10 @@ runService.RenderStepped:Connect(function(delta2)
         local playerGui6 = localPlayer:FindFirstChild("PlayerGui")
 
         if playerGui6 then
-          local gui3 = playerGui6:FindFirstChild("Gui")
+          local gui4 = playerGui6:FindFirstChild("Gui")
 
-          if gui3 then
-            local heartbeat = gui3:FindFirstChild("heartbeat")
+          if gui4 then
+            local heartbeat = gui4:FindFirstChild("heartbeat")
 
             if heartbeat then
               if heartbeat:IsA("Sound") then
@@ -4351,7 +4220,7 @@ runService.RenderStepped:Connect(function(delta2)
               heartbeat:Destroy()
             end
 
-            local heartbeat2 = gui3:FindFirstChild("heartbeat2")
+            local heartbeat2 = gui4:FindFirstChild("heartbeat2")
 
             if heartbeat2 then
               if heartbeat2:IsA("Sound") then
@@ -4361,13 +4230,13 @@ runService.RenderStepped:Connect(function(delta2)
               heartbeat2:Destroy()
             end
 
-            local vignette = gui3:FindFirstChild("vignette")
+            local vignette = gui4:FindFirstChild("vignette")
 
             if vignette then
               vignette.Visible = false
             end
 
-            local statusFrame = gui3:FindFirstChild("statusFrame")
+            local statusFrame = gui4:FindFirstChild("statusFrame")
 
             if statusFrame then
               local stamina = statusFrame:FindFirstChild("stamina")
@@ -4447,37 +4316,37 @@ runService.RenderStepped:Connect(function(delta2)
       end
 
       if Config.AntiAnchorEnabled then
-        local character37 = localPlayer.Character
+        local character39 = localPlayer.Character
 
-        if character37 then
-          local humanoidRootPart20 = character37:FindFirstChild("HumanoidRootPart")
+        if character39 then
+          local humanoidRootPart18 = character39:FindFirstChild("HumanoidRootPart")
 
-          if humanoidRootPart20 and humanoidRootPart20.Anchored then
-            humanoidRootPart20.Anchored = false
+          if humanoidRootPart18 and humanoidRootPart18.Anchored then
+            humanoidRootPart18.Anchored = false
           end
         end
       end
 
       if Config.ViewModelEnabled then
-        tool3 = character36:FindFirstChildWhichIsA("Tool")
+        tool3 = character38:FindFirstChildWhichIsA("Tool")
 
         if tool3 then
-          pcall(function() f5(tool3) end)
+          pcall(function() f8(tool3) end)
         end
       end
 
       if Config.CustomWeaponsEnabled then
-        tool4 = character36:FindFirstChildWhichIsA("Tool")
+        tool4 = character38:FindFirstChildWhichIsA("Tool")
 
         if tool4 then
-          pcall(function() f7(tool4) end)
+          pcall(function() f9(tool4) end)
         end
       end
 
-      character35 = localPlayer.Character
-      local humanoidRootPart21 = character35 and character35:FindFirstChild("HumanoidRootPart")
+      character37 = localPlayer.Character
+      local humanoidRootPart19 = character37 and character37:FindFirstChild("HumanoidRootPart")
 
-      if not humanoidRootPart21 then
+      if not humanoidRootPart19 then
         return
       else
         maxDistance = Config.MaxDistance
@@ -4487,165 +4356,123 @@ runService.RenderStepped:Connect(function(delta2)
           Config.MaxDistance = 1000
         end
 
-        local v86 = {}
+        local v101 = {}
 
-        for key9, value40 in pairs(v82) do
-          if not key9 or not key9.Parent then
-            table.insert(v86, key9)
+        for key10, value38 in pairs(v97) do
+          if not key10 or not key10.Parent then
+            table.insert(v101, key10)
           end
         end
 
-        for index35, value41 in ipairs(v86) do
-          if v82[value41] then
-            f34(v82[value41])
-            v82[value41] = nil
+        for index33, value39 in ipairs(v101) do
+          if v97[value39] then
+            f30(v97[value39])
+            v97[value39] = nil
           end
 
-          f31(value41)
+          f37(value39)
+
+          if v96[value39] then
+            v96[value39] = nil
+          end
         end
 
         pcall(function()
-          local colorFriends, highlightFriends, boxFriends, showNameFriends, showHealthFriends,
-            showDistanceFriends
+          for key11, value40 in pairs(players:GetPlayers()) do
+            if value40 ~= localPlayer then
+              local character40 = value40.Character
 
-          for key10, value42 in pairs(players:GetPlayers()) do
-            local v87 = value42
+              local humanoidRootPart20 = character40
 
-            if v87 ~= localPlayer then
-              local character38 = v87.Character
+              humanoidRootPart20 = character40
+                and character40:FindFirstChild("HumanoidRootPart")
 
-              local humanoidRootPart22 = character38
+              local humanoid25 = character40
+              humanoid25 = character40 and character40:FindFirstChildOfClass("Humanoid")
 
-              humanoidRootPart22 = character38
-                and character38:FindFirstChild("HumanoidRootPart")
+              if humanoidRootPart20 and humanoid25 then
+                local magnitude4 = (humanoidRootPart19.Position - humanoidRootPart20.Position).Magnitude
 
-              local humanoid25 = character38
-              humanoid25 = character38 and character38:FindFirstChildOfClass("Humanoid")
-
-              if humanoidRootPart22 and humanoid25 then
-                local magnitude5 = (humanoidRootPart21.Position - humanoidRootPart22.Position).Magnitude
-
-                local v88, v89 = pcall(function()
-                  return localPlayer:IsFriendsWith(v87.UserId)
-                end)
-
-                local v90 = v89
-
-                if not v88 then
-                  v90 = false
-                end
-
-                if v90 then
-                  colorFriends = Config.ColorFriends
-                  highlightFriends = Config.HighlightFriends
-                  boxFriends = Config.BoxFriends
-                  showNameFriends = Config.ShowNameFriends
-                  showHealthFriends = Config.ShowHealthFriends
-                  showDistanceFriends = Config.ShowDistanceFriends
-                else
-                  colorFriends = Config.ColorPlayer
-                  highlightFriends = Config.HighlightPlayer
-                  boxFriends = Config.BoxPlayers
-                  showNameFriends = Config.ShowNamePlayers
-                  showHealthFriends = Config.ShowHealthPlayers
-                  showDistanceFriends = Config.ShowDistancePlayers
-                end
-
-                if magnitude5 <= maxDistance and humanoid25.Health > 0 then
-                  local sentinelHL = character38:FindFirstChild("SentinelHL")
-
-                  if highlightFriends then
-                    if not sentinelHL then
-                      sentinelHL = Instance.new("Highlight", character38)
-                      sentinelHL.Name = "SentinelHL"
-                    end
-
-                    sentinelHL.FillColor = colorFriends
-                    sentinelHL.FillTransparency = Config.HLFillTrans
-                    sentinelHL.OutlineTransparency = Config.HLOutlineTrans
-                  elseif sentinelHL then
-                    sentinelHL:Destroy()
+                if magnitude4 <= maxDistance and humanoid25.Health > 0 then
+                  if Config.HighlightPlayer then
+                    f35(
+                      character40, "SentinelHL", Config.ColorPlayer, Config.HLFillTrans,
+                      Config.HLOutlineTrans
+                    )
+                  else
+                    f31(character40, "SentinelHL")
                   end
 
-                  if boxFriends then
-                    if not v82[character38] then
-                      v82[character38] = f35(colorFriends, Config.BoxThickness)
+                  if Config.BoxPlayers then
+                    if not v97[character40] then
+                      v97[character40] = f32(Config.ColorPlayer, Config.BoxThickness)
                     end
 
-                    f33(v82[character38], character38, colorFriends, Config.BoxThickness)
-                  elseif v82[character38] then
-                    f32(v82[character38])
+                    f29(v97[character40], character40, Config.ColorPlayer, Config.BoxThickness)
+                  elseif v97[character40] then
+                    f34(v97[character40])
                   end
 
-                  f37(
-                    character38, colorFriends, showNameFriends, showHealthFriends,
-                    showDistanceFriends, magnitude5
+                  f36(
+                    character40, Config.ColorPlayer, Config.ShowNamePlayers,
+                    Config.ShowHealthPlayers, Config.ShowDistancePlayers, magnitude4
                   )
                 else
-                  if v82[character38] then
-                    f32(v82[character38])
+                  if v97[character40] then
+                    f34(v97[character40])
                   end
 
-                  if character38:FindFirstChild("SentinelHL") then
-                    character38.SentinelHL:Destroy()
-                  end
-
-                  f31(character38)
+                  f31(character40, "SentinelHL")
+                  f37(character40)
                 end
-              elseif character38 then
-                if v82[character38] then
-                  f34(v82[character38])
-                  v82[character38] = nil
+              elseif character40 then
+                if v97[character40] then
+                  f30(v97[character40])
+                  v97[character40] = nil
                 end
 
-                if character38:FindFirstChild("SentinelHL") then
-                  character38.SentinelHL:Destroy()
-                end
-
-                f31(character38)
+                f31(character40, "SentinelHL")
+                f37(character40)
               end
             end
           end
         end)
 
         pcall(function()
-          local v91 = #CachedMobs - -1
+          local v102 = #CachedMobs - -1
 
           local colorBosses, highlightBosses, boxBosses, showNameBosses, showHealthBosses,
             showDistanceBosses
 
           while true do
-            v91 = -1 + v91
+            v102 = -1 + v102
 
-            if not (v91 >= 1 or false) then
+            if not (1 <= v102 or false) then
               break
             end
 
-            local v92 = v91
-            local v93 = CachedMobs[v92]
+            local v103 = v102
+            local v104 = CachedMobs[v103]
 
-            if v93 and v93.Parent then
-              if v93 == character35 or v93 == localPlayer.Character
-                or v93.Name == localPlayer.Name or players:GetPlayerFromCharacter(v93) then
-                if v82[v93] then
-                  f34(v82[v93])
-                  v82[v93] = nil
+            if v104 and v104.Parent then
+              if v104 == character37 or v104 == localPlayer.Character
+                or v104.Name == localPlayer.Name or players:GetPlayerFromCharacter(v104) then
+                if v97[v104] then
+                  f30(v97[v104])
+                  v97[v104] = nil
                 end
 
-                if v93:FindFirstChild("SentinelMobHL") then
-                  v93.SentinelMobHL:Destroy()
-                end
-
-                f31(v93)
-                table.remove(CachedMobs, v92)
+                f31(v104, "SentinelMobHL")
+                f37(v104)
+                table.remove(CachedMobs, v103)
               else
-                local humanoidRootPart23 = v93:FindFirstChild("HumanoidRootPart")
-                local humanoid26 = v93:FindFirstChildOfClass("Humanoid")
+                local humanoidRootPart21 = v104:FindFirstChild("HumanoidRootPart")
+                local humanoid26 = v104:FindFirstChildOfClass("Humanoid")
 
-                if humanoidRootPart23 and humanoid26 then
-                  local magnitude6 = (humanoidRootPart21.Position - humanoidRootPart23.Position).Magnitude
+                if humanoidRootPart21 and humanoid26 then
+                  local magnitude5 = (humanoidRootPart19.Position - humanoidRootPart21.Position).Magnitude
 
-                  if f19(v93) then
+                  if f16(v104) then
                     colorBosses = Config.ColorBosses
                     highlightBosses = Config.HighlightBosses
                     boxBosses = Config.BoxBosses
@@ -4661,57 +4488,53 @@ runService.RenderStepped:Connect(function(delta2)
                     showDistanceBosses = Config.ShowDistanceMobs
                   end
 
-                  if magnitude6 <= maxDistance and humanoid26.Health > 0 then
-                    local sentinelMobHL = v93:FindFirstChild("SentinelMobHL")
-
+                  if magnitude5 <= maxDistance and humanoid26.Health > 0 then
                     if highlightBosses then
-                      if not sentinelMobHL then
-                        sentinelMobHL = Instance.new("Highlight", v93)
-                        sentinelMobHL.Name = "SentinelMobHL"
-                      end
-
-                      sentinelMobHL.FillColor = colorBosses
-                      sentinelMobHL.FillTransparency = Config.HLFillTrans
-                      sentinelMobHL.OutlineTransparency = Config.HLOutlineTrans
-                    elseif sentinelMobHL then
-                      sentinelMobHL:Destroy()
+                      f35(
+                        v104, "SentinelMobHL", colorBosses, Config.HLFillTrans,
+                        Config.HLOutlineTrans
+                      )
+                    else
+                      f31(v104, "SentinelMobHL")
                     end
 
                     if boxBosses then
-                      if not v82[v93] then
-                        v82[v93] = f35(colorBosses, Config.BoxThickness)
+                      if not v97[v104] then
+                        v97[v104] = f32(colorBosses, Config.BoxThickness)
                       end
 
-                      f33(v82[v93], v93, colorBosses, Config.BoxThickness)
-                    elseif v82[v93] then
-                      f32(v82[v93])
+                      f29(v97[v104], v104, colorBosses, Config.BoxThickness)
+                    elseif v97[v104] then
+                      f34(v97[v104])
                     end
 
-                    f37(
-                      v93, colorBosses, showNameBosses, showHealthBosses, showDistanceBosses,
-                      magnitude6
+                    f36(
+                      v104, colorBosses, showNameBosses, showHealthBosses, showDistanceBosses,
+                      magnitude5
                     )
                   else
-                    if v82[v93] then
-                      f32(v82[v93])
+                    if v97[v104] then
+                      f34(v97[v104])
                     end
 
-                    if v93:FindFirstChild("SentinelMobHL") then
-                      v93.SentinelMobHL:Destroy()
-                    end
-
-                    f31(v93)
+                    f31(v104, "SentinelMobHL")
+                    f37(v104)
                   end
                 end
               end
             else
-              if v82[v93] then
-                f34(v82[v93])
-                v82[v93] = nil
+              if v97[v104] then
+                f30(v97[v104])
+                v97[v104] = nil
               end
 
-              f31(v93)
-              table.remove(CachedMobs, v92)
+              f37(v104)
+
+              if v96[v104] then
+                v96[v104] = nil
+              end
+
+              table.remove(CachedMobs, v103)
             end
           end
         end)
@@ -4741,25 +4564,22 @@ animatorWalkTrack = nil
 animatorRunTrack = nil
 animatorLastState = nil
 
-function filterAnimNames(p96)
-  local v94 = {}
+function filterAnimNames(p99)
+  local v105 = {}
 
-  for key11, value43 in pairs(toggleAnims) do
-    local lower = key11:lower()
+  for key12, value41 in pairs(toggleAnims) do
+    local lower = key12:lower()
 
-    for index36, value44 in ipairs(p96) do
-      if lower:sub(-#value44) == value44 then
-        table.insert(v94, key11)
+    for index34, value42 in ipairs(p99) do
+      if lower:sub(-#value42) == value42 then
+        table.insert(v105, key12)
         break
       end
     end
   end
 
-  return v94
+  return v105
 end
-
-idleAnimNames = filterAnimNames({ "idle", "idle (old)" })
-walkAnimNames = filterAnimNames({ "walk", "walk (old)" })
 
 local function f38()
   if AutoReloadToolConn then
@@ -4770,6 +4590,8 @@ local function f38()
   AutoReloadWatching = false
 end
 
+idleAnimNames = filterAnimNames({ "idle", "idle (old)" })
+walkAnimNames = filterAnimNames({ "walk", "walk (old)" })
 runAnimNames = filterAnimNames({ "run", "run (old)" })
 
 function stopAllAnimatorTracks()
@@ -4790,7 +4612,7 @@ function stopAllAnimatorTracks()
 end
 
 function applyAnimatorState()
-  local v95
+  local v106
 
   if Config.FakeDeath then
     stopAllAnimatorTracks()
@@ -4799,46 +4621,46 @@ function applyAnimatorState()
     stopAllAnimatorTracks()
     return
   else
-    local character39 = localPlayer.Character
+    local character41 = localPlayer.Character
 
-    if not character39 then
+    if not character41 then
       return
     else
-      local humanoid27 = character39:FindFirstChildOfClass("Humanoid")
+      local humanoid27 = character41:FindFirstChildOfClass("Humanoid")
 
       if not humanoid27 or humanoid27.Health <= 0 then
         return
       else
-        local humanoidRootPart24 = character39:FindFirstChild("HumanoidRootPart")
+        local humanoidRootPart22 = character41:FindFirstChild("HumanoidRootPart")
 
-        if not humanoidRootPart24 then
+        if not humanoidRootPart22 then
           return
         else
-          local magnitude7 = Vector3.new(
-            humanoidRootPart24.Velocity.X, 0, humanoidRootPart24.Velocity.Z
+          local magnitude6 = Vector3.new(
+            humanoidRootPart22.Velocity.X, 0, humanoidRootPart22.Velocity.Z
           ).Magnitude
 
-          if isShiftHeld and magnitude7 > 2 then
-            v95 = "run"
-          elseif magnitude7 > 0.5 then
-            v95 = "walk"
+          if isShiftHeld and magnitude6 > 2 then
+            v106 = "run"
+          elseif magnitude6 > 0.5 then
+            v106 = "walk"
           else
-            v95 = "idle"
+            v106 = "idle"
           end
 
-          if v95 ~= animatorLastState then
-            animatorLastState = v95
+          if v106 ~= animatorLastState then
+            animatorLastState = v106
             stopAllAnimatorTracks()
 
-            if v95 == "idle" and Config.AnimatorIdleAnimName then
+            if v106 == "idle" and Config.AnimatorIdleAnimName then
               animatorIdleTrack = playAnimationOnHumanoid(
                 toggleAnims[Config.AnimatorIdleAnimName], true
               )
-            elseif v95 == "walk" and Config.AnimatorWalkAnimName then
+            elseif v106 == "walk" and Config.AnimatorWalkAnimName then
               animatorWalkTrack = playAnimationOnHumanoid(
                 toggleAnims[Config.AnimatorWalkAnimName], true
               )
-            elseif v95 == "run" and Config.AnimatorRunAnimName then
+            elseif v106 == "run" and Config.AnimatorRunAnimName then
               animatorRunTrack = playAnimationOnHumanoid(
                 toggleAnims[Config.AnimatorRunAnimName], true
               )
@@ -4852,22 +4674,38 @@ function applyAnimatorState()
   end
 end
 
-local v96 = false
+local v107 = false
 
 local function f39()
-  while v96 and SentinelActive do
+  local playerGui7 = localPlayer:FindFirstChild("PlayerGui")
+
+  if not playerGui7 then
+    return nil
+  else
+    local findFirstChild10 = playerGui7:FindFirstChild("MobileControls", true)
+
+    if not findFirstChild10 then
+      return nil
+    end
+
+    return findFirstChild10:FindFirstChild("Reload", true)
+  end
+end
+
+local function f40()
+  while v107 and SentinelActive do
     local backpack4 = localPlayer:FindFirstChild("Backpack")
 
     if backpack4 then
-      for key12, value45 in pairs(backpack4:GetChildren()) do
-        local v97 = value45
+      for key13, value43 in pairs(backpack4:GetChildren()) do
+        local v108 = value43
 
-        if v97:IsA("Tool") and v97:GetAttribute("ClipCurrent") then
-          if v97:GetAttribute("ClipCurrent") < 1e+24 then
+        if v108:IsA("Tool") and v108:GetAttribute("ClipCurrent") then
+          if v108:GetAttribute("ClipCurrent") < 1e+24 then
             pcall(function()
-              v97:SetAttribute("ClipSize", 1e+24)
-              v97:SetAttribute("ClipCurrent", 1e+24)
-              v97:SetAttribute("MaxAmmo", 1e+24)
+              v108:SetAttribute("ClipSize", 1e+24)
+              v108:SetAttribute("ClipCurrent", 1e+24)
+              v108:SetAttribute("MaxAmmo", 1e+24)
             end)
           end
         end
@@ -4878,37 +4716,51 @@ local function f39()
   end
 end
 
-local v98
+local v109
 
-function toggleNightStalkerInfAmmo(p97)
-  Config.NightStalkerInfAmmo = p97
+function toggleNightStalkerInfAmmo(p100)
+  Config.NightStalkerInfAmmo = p100
 
-  if p97 then
-    if not v96 then
-      v96 = true
+  if p100 then
+    if not v107 then
+      v107 = true
 
-      if v98 then
-        task.cancel(v98)
+      if v109 then
+        task.cancel(v109)
       end
 
-      v98 = task.spawn(f39)
+      v109 = task.spawn(f40)
     end
   else
-    v96 = false
+    v107 = false
 
-    if v98 then
-      task.cancel(v98)
-      v98 = nil
+    if v109 then
+      task.cancel(v109)
+      v109 = nil
     end
   end
 end
 
 AutoReloadWatching = false
 AutoReloadToolConn = nil
-AutoReloadCharConn = nil
-local f40
+local f41
 
-local function f41()
+local function f42(p101)
+  local clipCurrent = p101:GetAttribute("ClipCurrent")
+  local maxAmmo = p101:GetAttribute("MaxAmmo")
+  local reloading = p101:GetAttribute("Reloading")
+
+  if clipCurrent == 0 and (maxAmmo or 0) > 0 and not reloading and not AutoReloadWatching then
+    AutoReloadWatching = true
+
+    task.delay(1.5, function()
+      f41()
+      task.delay(0.5, function() AutoReloadWatching = false end)
+    end)
+  end
+end
+
+function f41()
   if keypress and keyrelease then
     pcall(function()
       keypress(82)
@@ -4922,11 +4774,11 @@ local function f41()
     end)
   end
 
-  local v99 = f40()
+  local v110 = f39()
   local activated
 
-  if v99 then
-    activated = v99.Activated
+  if v110 then
+    activated = v110.Activated
 
     if activated then
       pcall(function() activated:Fire() end)
@@ -4934,79 +4786,50 @@ local function f41()
   end
 end
 
-function f40()
-  local playerGui7 = localPlayer:FindFirstChild("PlayerGui")
+local f43
 
-  if not playerGui7 then
-    return nil
-  else
-    local findFirstChild8 = playerGui7:FindFirstChild("MobileControls", true)
-
-    if not findFirstChild8 then
-      return nil
-    end
-
-    return findFirstChild8:FindFirstChild("Reload", true)
-  end
-end
-
-local function f42(p98)
-  local clipCurrent = p98:GetAttribute("ClipCurrent")
-  local maxAmmo = p98:GetAttribute("MaxAmmo")
-  local reloading = p98:GetAttribute("Reloading")
-
-  if clipCurrent == 0 and (maxAmmo or 0) > 0 and not reloading and not AutoReloadWatching then
-    AutoReloadWatching = true
-
-    task.delay(1.5, function()
-      f41()
-      task.delay(0.5, function() AutoReloadWatching = false end)
-    end)
-  end
-end
-
-local function f43(p99)
+local function f44(p102)
   f38()
 
-  if not p99:GetAttribute("IsGun") then
-    return
-  end
-
-  task.delay(1.5, function() f42(p99) end)
-
-  AutoReloadToolConn = p99:GetAttributeChangedSignal("ClipCurrent"):Connect(function()
-    f42(p99)
-  end)
-end
-
-local function f44(p100)
-  f38()
-
-  p100.ChildAdded:Connect(function(child9)
+  p102.ChildAdded:Connect(function(child9)
     if child9:IsA("Tool") then
       f43(child9)
     end
   end)
 
-  p100.ChildRemoved:Connect(function(child10)
+  p102.ChildRemoved:Connect(function(child10)
     if child10:IsA("Tool") then
       f38()
     end
   end)
 
-  local tool5 = p100:FindFirstChildOfClass("Tool")
+  local tool5 = p102:FindFirstChildOfClass("Tool")
 
   if tool5 then
     f43(tool5)
   end
 end
 
+function f43(p103)
+  f38()
+
+  if not p103:GetAttribute("IsGun") then
+    return
+  end
+
+  task.delay(1.5, function() f42(p103) end)
+
+  AutoReloadToolConn = p103:GetAttributeChangedSignal("ClipCurrent"):Connect(function()
+    f42(p103)
+  end)
+end
+
 AutoReloadCharacterConn = nil
 
-function toggleAutoReload(p101)
-  Config.AutoReload = p101
+function toggleAutoReload(p104)
+  Config.AutoReload = p104
 
-  if p101 then
+  if p104 then
     if localPlayer.Character then
       f44(localPlayer.Character)
     end
@@ -5026,86 +4849,110 @@ function toggleAutoReload(p101)
   end
 end
 
-local v100 = {
+local v111 = {
   ["+100%"] = { attr = "FelsiReloadSpeedMult", val = 1 },
   ["+200%"] = { attr = "SquadReloadSpeedMultiplier", val = 2 },
   ["+150%"] = { attr = "AdminstalSpeedMult", val = 1.5 },
 }
 
-local v101 = { "FelsiReloadSpeedMult", "SquadReloadSpeedMultiplier", "AdminstalSpeedMult" }
+local v112 = { "FelsiReloadSpeedMult", "SquadReloadSpeedMultiplier", "AdminstalSpeedMult" }
 
-local function f45(p102)
-  if not p102 then
+local function f45(p105)
+  if not p105 then
     return
   end
 
-  for index37, value46 in ipairs(v101) do
-    p102:SetAttribute(value46, 1)
+  for index35, value44 in ipairs(v112) do
+    p105:SetAttribute(value44, 1)
   end
 
-  for index38, value47 in ipairs(Config.FastReloadBoosts) do
-    local v102 = v100[value47]
+  for index36, value45 in ipairs(Config.FastReloadBoosts) do
+    local v113 = v111[value45]
 
-    if v102 then
-      p102:SetAttribute(v102.attr, v102.val)
+    if v113 then
+      p105:SetAttribute(v113.attr, v113.val)
     end
   end
 end
 
-local function f46(p103)
-  if not p103 then
+local function f46(p106)
+  if not p106 then
     return
   end
 
-  for index39, value48 in ipairs(v101) do
-    p103:SetAttribute(value48, 1)
+  for index37, value46 in ipairs(v112) do
+    p106:SetAttribute(value46, 1)
   end
 end
 
-local connect2
+local connect2, v114
 
-function toggleFastReload(p104)
-  Config.FastReload = p104
+function toggleFastReload(p107)
+  Config.FastReload = p107
 
   if connect2 then
     connect2:Disconnect()
     connect2 = nil
   end
 
-  if p104 then
+  if v114 then
+    task.cancel(v114)
+    v114 = nil
+  end
+
+  if p107 then
     if localPlayer.Character then
       f45(localPlayer.Character)
     end
 
-    connect2 = localPlayer.CharacterAdded:Connect(function(character40)
-      character40:WaitForChild("Humanoid")
-      f45(character40)
+    connect2 = localPlayer.CharacterAdded:Connect(function(character42)
+      character42:WaitForChild("Humanoid")
+      task.wait(0.5)
+      f45(character42)
+
+      task.delay(2, function()
+        if Config.FastReload and character42.Parent then
+          f45(character42)
+        end
+      end)
+    end)
+
+    v114 = task.spawn(function()
+      while Config.FastReload and SentinelActive do
+        local character43 = localPlayer.Character
+
+        if character43 then
+          f45(character43)
+        end
+
+        task.wait(1)
+      end
     end)
   elseif localPlayer.Character then
     f46(localPlayer.Character)
   end
 end
 
-local function f47(p105)
-  local v103 = {}
+local function f47(p108)
+  local v115 = {}
 
-  if type(p105) == "table" then
-    for index40, value49 in ipairs(p105) do
-      local title = value49
+  if type(p108) == "table" then
+    for index38, value47 in ipairs(p108) do
+      local title = value47
 
-      if type(value49) == "table" then
-        title = value49.Title or value49.Value
+      if type(value47) == "table" then
+        title = value47.Title or value47.Value
       end
 
-      if v100[title] then
-        table.insert(v103, title)
+      if v111[title] then
+        table.insert(v115, title)
       end
     end
-  elseif type(p105) == "string" and v100[p105] then
-    v103 = { p105 }
+  elseif type(p108) == "string" and v111[p108] then
+    v115 = { p108 }
   end
 
-  Config.FastReloadBoosts = v103
+  Config.FastReloadBoosts = v115
 
   if Config.FastReload and localPlayer.Character then
     pcall(f45, localPlayer.Character)
@@ -5113,45 +4960,45 @@ local function f47(p105)
 end
 
 InstantShotgunConnection = nil
-local v104 = { ["SRS-58"] = true, ["PMS-12T 'Hammer'"] = true }
+local v116 = { ["SRS-58"] = true, ["PMS-12T 'Hammer'"] = true }
 
-local v105 = {
+local v117 = {
   ["rbxassetid://83290487541789"] = true,
   ["rbxassetid://116823220427411"] = true,
   ["rbxassetid://126710614165281"] = true,
   ["rbxassetid://115903749552317"] = true,
 }
 
-local function f48(p106)
+local function f48(p109)
   if InstantShotgunConnection then
     InstantShotgunConnection:Disconnect()
     InstantShotgunConnection = nil
   end
 
-  if not p106 then
+  if not p109 then
     return
   elseif not Config.InstantShotgunReload then
     return
   else
-    InstantShotgunConnection = p106:WaitForChild("Humanoid"):WaitForChild("Animator").AnimationPlayed:Connect(function(p107)
+    InstantShotgunConnection = p109:WaitForChild("Humanoid"):WaitForChild("Animator").AnimationPlayed:Connect(function(p110)
       if not Config.InstantShotgunReload then
         return
       end
 
-      if not (p107.Animation and v105[p107.Animation.AnimationId]) then
+      if not (p110.Animation and v117[p110.Animation.AnimationId]) then
         return
       else
-        local tool6 = p106:FindFirstChildOfClass("Tool")
+        local tool6 = p109:FindFirstChildOfClass("Tool")
 
-        if not tool6 or not v104[tool6.Name] then
+        if not tool6 or not v116[tool6.Name] then
           return
         end
 
-        pcall(function() p107:AdjustSpeed(100) end)
+        pcall(function() p110:AdjustSpeed(100) end)
 
         task.delay(0.05, function()
-          if p107.IsPlaying then
-            pcall(function() p107:AdjustSpeed(100) end)
+          if p110.IsPlaying then
+            pcall(function() p110:AdjustSpeed(100) end)
           end
         end)
 
@@ -5163,126 +5010,207 @@ local function f48(p106)
   end
 end
 
-function setupInstantShotgunReload(p108)
+function setupInstantShotgunReload(p111)
   if InstantShotgunConnection then
     InstantShotgunConnection:Disconnect()
     InstantShotgunConnection = nil
   end
 
-  Config.InstantShotgunReload = p108
+  Config.InstantShotgunReload = p111
 
-  if p108 then
+  if p111 then
     if localPlayer.Character then
       f48(localPlayer.Character)
     end
   end
 end
 
-localPlayer.CharacterAdded:Connect(function(character41)
+localPlayer.CharacterAdded:Connect(function(character44)
   if Config.InstantShotgunReload then
     task.wait(1)
-    f48(character41)
+    f48(character44)
   end
 end)
 
-local v106 = { fovCircle = nil, hooked = false, originalNew = nil }
-local v107 = cloneref or function(p109) return p109 end
-local v108 = clonefunction or function(p110) return p110 end
-local v109 = newcclosure or v108
-local v110 = v107(players)
-local v111 = v107(runService)
-local v112 = v107(userInputService)
-local v113 = v107(replicatedStorage)
+local v118 = { fovCircle = nil, hooked = false, originalNew = nil }
+local v119 = cloneref or function(p112) return p112 end
+local v120 = clonefunction or function(p113) return p113 end
+local v121 = newcclosure or v120
+local v122 = v119(players)
+local v123 = v119(runService)
+local v124 = v119(userInputService)
+local v125 = v119(replicatedStorage)
 
 if Capabilities.Drawing then
-  v106.fovCircle = Drawing.new("Circle")
-  v106.fovCircle.Thickness = 1.5
-  v106.fovCircle.NumSides = 128
-  v106.fovCircle.Filled = false
-  v106.fovCircle.Transparency = 1
-  v106.fovCircle.Radius = Config.SilentAimFOVRadius
-  v106.fovCircle.Color = Config.SilentAimFOVNoTargetColor
-  v106.fovCircle.Visible = false
+  v118.fovCircle = Drawing.new("Circle")
+  v118.fovCircle.Thickness = 1.5
+  v118.fovCircle.NumSides = 128
+  v118.fovCircle.Filled = false
+  v118.fovCircle.Transparency = 1
+  v118.fovCircle.Radius = Config.SilentAimFOVRadius
+  v118.fovCircle.Color = Config.SilentAimFOVNoTargetColor
+  v118.fovCircle.Visible = false
 end
 
-local raycastParams2 = RaycastParams.new()
-raycastParams2.FilterType = Enum.RaycastFilterType.Exclude
-raycastParams2.IgnoreWater = true
+local raycastParams = RaycastParams.new()
+raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+raycastParams.IgnoreWater = true
 
-local function f49()
-  local v114 = {}
+local f49
 
-  for index41, value50 in ipairs(v110:GetPlayers()) do
-    if value50.Character then
-      table.insert(v114, value50.Character)
-    end
-  end
+local function f50(p114, p115, p116)
+  local character45 = v122.LocalPlayer.Character
 
-  return v114
-end
-
-local function f50(p111)
-  return p111:FindFirstChild("HumanoidRootPart") or p111:FindFirstChild("Torso")
-    or p111:FindFirstChild("UpperTorso") or p111:FindFirstChild("LowerTorso")
-    or p111.PrimaryPart or p111:FindFirstChildWhichIsA("BasePart")
-end
-
-local function f51(p112, p113, p114)
-  local character42 = v110.LocalPlayer.Character
-
-  if not (character42 and p112) then
+  if not (character45 and p114) then
     return false, nil, nil
   else
-    local v115 = { character42, workspace.CurrentCamera, workspace.Terrain }
+    local v126 = { character45, workspace.CurrentCamera, workspace.Terrain }
     local characters6 = workspace:FindFirstChild("Characters")
 
     if characters6 then
-      for index42, value51 in ipairs(characters6:GetChildren()) do
-        if value51 ~= p114 then
-          table.insert(v115, value51)
+      for index39, value48 in ipairs(characters6:GetChildren()) do
+        if value48 ~= p116 then
+          table.insert(v126, value48)
         end
       end
     end
 
-    for index43, value52 in ipairs(f49()) do
-      if value52 ~= p114 then
-        table.insert(v115, value52)
+    for index40, value49 in ipairs(f49()) do
+      if value49 ~= p116 then
+        table.insert(v126, value49)
       end
     end
 
-    raycastParams2.FilterDescendantsInstances = v115
+    raycastParams.FilterDescendantsInstances = v126
 
-    local position7 = p113
+    local position3 = p115
       or workspace.CurrentCamera and workspace.CurrentCamera.CFrame
         and workspace.CurrentCamera.CFrame.Position
       or Vector3.zero
 
-    local raycast2 = workspace:Raycast(position7, p112.Position - position7, raycastParams2)
+    local raycast = workspace:Raycast(position3, p114.Position - position3, raycastParams)
 
-    if not raycast2 then
-      return true, p112, p112.Position
+    if not raycast then
+      return true, p114, p114.Position
     else
-      local parent6 = p114 or p112.Parent
+      local parent6 = p116 or p114.Parent
 
-      if parent6 and raycast2.Instance:IsDescendantOf(parent6) then
-        return true, p114 and p114:FindFirstChild("Right Arm")
-            and p114["Right Arm"]:FindFirstChild("Shield") and p114:FindFirstChild("Head")
-          or raycast2.Instance, raycast2.Position
+      if parent6 and raycast.Instance:IsDescendantOf(parent6) then
+        return true, p116 and p116:FindFirstChild("Right Arm")
+            and p116["Right Arm"]:FindFirstChild("Shield") and p116:FindFirstChild("Head")
+          or raycast.Instance, raycast.Position
       end
 
-      return false, raycast2.Instance, raycast2.Position
+      return false, raycast.Instance, raycast.Position
     end
   end
 end
 
-local f52
+local function f51(p117)
+  return p117:FindFirstChild("HumanoidRootPart") or p117:FindFirstChild("Torso")
+    or p117:FindFirstChild("UpperTorso") or p117:FindFirstChild("LowerTorso")
+    or p117.PrimaryPart or p117:FindFirstChildWhichIsA("BasePart")
+end
 
-local function f53(p115)
+function f49()
+  local v127 = {}
+
+  for index41, value50 in ipairs(v122:GetPlayers()) do
+    if value50.Character then
+      table.insert(v127, value50.Character)
+    end
+  end
+
+  return v127
+end
+
+local function f52(p118)
+  local head3 = p118:FindFirstChild("Head")
+
+  if head3 and head3:IsA("BasePart") then
+    return head3
+  else
+    local collisions = p118:FindFirstChild("Collisions")
+
+    if collisions then
+      local headCollision = collisions:FindFirstChild("Head Collision")
+        or collisions:FindFirstChild("Head")
+
+      if headCollision and headCollision:IsA("BasePart") then
+        return headCollision
+      end
+
+      for index42, value51 in ipairs(p118:GetChildren()) do
+        if value51:IsA("BasePart") and value51.Name:lower():find("head") then
+          return value51
+        end
+      end
+
+      return nil
+    end
+
+    for index43, value52 in ipairs(p118:GetChildren()) do
+      if value52:IsA("BasePart") and value52.Name:lower():find("head") then
+        return value52
+      end
+    end
+
+    return nil
+  end
+end
+
+local f53
+
+local function f54()
+  local v128
+
+  if v118.hooked then
+    return
+  elseif not Capabilities.SilentAim then
+    return
+  else
+    local v129, v130 = pcall(require, v125.Assets.Modules.Raycast.ActiveCast)
+
+    if v129 and v130 then
+      v128 = nil
+
+      v128 = v120(hookfunction(rawget(v130, "new"), v121(function(p119, p120, p121, p122, ...)
+        local v131, v132 = f53(p120)
+
+        if v131 and v132 and p120 then
+          local v133 = v132 - p120
+
+          if typeof(v133) == "Vector3" and v133.Magnitude > 0 then
+            local magnitude7 = 1000
+
+            if typeof(p122) == "Vector3" and p122.Magnitude > 0 then
+              magnitude7 = p122.Magnitude
+            end
+
+            local v134 = v133.Unit
+            return v128(p119, p120, v134, v134 * magnitude7, ...)
+          end
+
+          return v128(p119, p120, p121, p122, ...)
+        end
+
+        return v128(p119, p120, p121, p122, ...)
+      end)))
+
+      v118.hooked = true
+      v118.originalNew = v128
+    end
+
+    return
+  end
+end
+
+function f53(p123)
   if not Config.SilentAimEnabled then
     return nil, nil
   else
-    local v116 = nil
-    local v117 = nil
+    local v135 = nil
+    local v136 = nil
     local silentAimFOVRadius = Config.SilentAimFOVRadius or 150
 
     if type(silentAimFOVRadius) ~= "number" then
@@ -5292,13 +5220,13 @@ local function f53(p115)
     local currentCamera4 = workspace.CurrentCamera
     local viewportSize = currentCamera4 and currentCamera4.ViewportSize
 
-    local vector9 = viewportSize
-    vector9 = viewportSize or Vector2.new(800, 600)
+    local vector2 = viewportSize
+    vector2 = viewportSize or Vector2.new(800, 600)
 
-    local getMouseLocation = Config.SilentAimFOVMode == "Mouse" and v112:GetMouseLocation()
+    local getMouseLocation = Config.SilentAimFOVMode == "Mouse" and v124:GetMouseLocation()
 
-    local vector10 = getMouseLocation
-    vector10 = getMouseLocation or Vector2.new((vector9.X or 800) / 2, (vector9.Y or 600) / 2)
+    local vector3 = getMouseLocation
+    vector3 = getMouseLocation or Vector2.new((vector2.X or 800) / 2, (vector2.Y or 600) / 2)
 
     local characters7 = workspace:FindFirstChild("Characters")
 
@@ -5314,60 +5242,60 @@ local function f53(p115)
 
       if humanoid28 and humanoid28.Health > 0
         and not value53:FindFirstChildOfClass("ForceField")
-        and (value53:FindFirstChild("AI") or not v110:GetPlayerFromCharacter(value53)) then
-        local headCollision = nil
+        and (value53:FindFirstChild("AI") or not v122:GetPlayerFromCharacter(value53)) then
+        local headCollision2 = nil
 
         if Config.SilentAimTargetPart == "Head" then
-          headCollision = f52(value53)
+          headCollision2 = f52(value53)
         end
 
-        if not headCollision then
-          headCollision = f50(value53)
+        if not headCollision2 then
+          headCollision2 = f51(value53)
         end
 
-        if not headCollision then
-          local collisions = value53:FindFirstChild("Collisions")
+        if not headCollision2 then
+          local collisions2 = value53:FindFirstChild("Collisions")
 
-          if collisions then
-            headCollision = collisions:FindFirstChild("Head Collision")
-              or collisions:FindFirstChild("Left Arm Collision")
-              or collisions:FindFirstChild("Right Arm Collision")
-              or collisions:FindFirstChildWhichIsA("BasePart")
+          if collisions2 then
+            headCollision2 = collisions2:FindFirstChild("Head Collision")
+              or collisions2:FindFirstChild("Left Arm Collision")
+              or collisions2:FindFirstChild("Right Arm Collision")
+              or collisions2:FindFirstChildWhichIsA("BasePart")
           end
         end
 
-        if headCollision then
-          local position8 = headCollision.Position
-          local v118, v119 = currentCamera4:WorldToViewportPoint(position8)
+        if headCollision2 then
+          local position4 = headCollision2.Position
+          local v137, v138 = currentCamera4:WorldToViewportPoint(position4)
 
-          if v119 then
-            local v120 = true
+          if v138 then
+            local v139 = true
 
             if Config.SilentAimWallCheck then
-              local v121, v122, v123 = f51(headCollision, p115, value53)
+              local v140, v141, v142 = f50(headCollision2, p123, value53)
 
-              if not v121 then
-                local v124 = f50(value53)
+              if not v140 then
+                local v143 = f51(value53)
 
-                if v124 then
-                  v121, v122, v123 = f51(v124, p115, value53)
+                if v143 then
+                  v140, v141, v142 = f50(v143, p123, value53)
                 end
               end
 
-              if not v121 then
-                v120 = false
-              elseif v122 and v123 then
-                position8 = v123
-                headCollision = v122
+              if not v140 then
+                v139 = false
+              elseif v141 and v142 then
+                headCollision2 = v141
+                position4 = v142
               end
             end
 
-            if v120 then
-              local magnitude8 = (Vector2.new(v118.X, v118.Y) - vector10).Magnitude
+            if v139 then
+              local magnitude8 = (Vector2.new(v137.X, v137.Y) - vector3).Magnitude
 
               if magnitude8 < silentAimFOVRadius then
-                v117 = position8
-                v116 = headCollision
+                v135 = headCollision2
+                v136 = position4
                 silentAimFOVRadius = magnitude8
               end
             end
@@ -5376,110 +5304,31 @@ local function f53(p115)
       end
     end
 
-    return v116, v117
+    return v135, v136
   end
 end
 
-function f52(p116)
-  local head3 = p116:FindFirstChild("Head")
+function SilentAim_Enable(p124)
+  Config.SilentAimEnabled = p124
 
-  if head3 and head3:IsA("BasePart") then
-    return head3
-  else
-    local collisions2 = p116:FindFirstChild("Collisions")
-
-    if collisions2 then
-      local headCollision2 = collisions2:FindFirstChild("Head Collision")
-        or collisions2:FindFirstChild("Head")
-
-      if headCollision2 and headCollision2:IsA("BasePart") then
-        return headCollision2
-      end
-
-      for index45, value54 in ipairs(p116:GetChildren()) do
-        if value54:IsA("BasePart") and value54.Name:lower():find("head") then
-          return value54
-        end
-      end
-
-      return nil
-    end
-
-    for index46, value55 in ipairs(p116:GetChildren()) do
-      if value55:IsA("BasePart") and value55.Name:lower():find("head") then
-        return value55
-      end
-    end
-
-    return nil
-  end
-end
-
-local function f54()
-  local v125
-
-  if v106.hooked then
-    return
-  elseif not Capabilities.SilentAim then
-    return
-  else
-    local v126, v127 = pcall(require, v113.Assets.Modules.Raycast.ActiveCast)
-
-    if v126 and v127 then
-      v125 = nil
-
-      v125 = v108(hookfunction(rawget(v127, "new"), v109(function(p117, p118, p119, p120, ...)
-        local v128, v129 = f53(p118)
-
-        if v128 and v129 and p118 then
-          local v130 = v129 - p118
-
-          if typeof(v130) == "Vector3" and v130.Magnitude > 0 then
-            local magnitude9 = 1000
-
-            if typeof(p120) == "Vector3" and p120.Magnitude > 0 then
-              magnitude9 = p120.Magnitude
-            end
-
-            local v131 = v130.Unit
-            return v125(p117, p118, v131, v131 * magnitude9, ...)
-          end
-
-          return v125(p117, p118, p119, p120, ...)
-        end
-
-        return v125(p117, p118, p119, p120, ...)
-      end)))
-
-      v106.hooked = true
-      v106.originalNew = v125
-    end
-
-    return
-  end
-end
-
-function SilentAim_Enable(p121)
-  Config.SilentAimEnabled = p121
-
-  if v106.fovCircle then
-    v106.fovCircle.Radius = Config.SilentAimFOVRadius
-    local fovCircle = v106.fovCircle
-    fovCircle.Visible = p121 and Config.SilentAimShowFOV or false
+  if v118.fovCircle then
+    v118.fovCircle.Radius = Config.SilentAimFOVRadius
+    local fovCircle = v118.fovCircle
+    fovCircle.Visible = p124 and Config.SilentAimShowFOV or false
   end
 
-  if p121 then
+  if p124 then
     f54()
   end
 end
 
 function SilentAim_UpdateFOVVisual()
-  if not v106.fovCircle then
+  if not v118.fovCircle then
     return
   else
-    v106.fovCircle.Radius = Config.SilentAimFOVRadius
+    v118.fovCircle.Radius = Config.SilentAimFOVRadius
 
-    local fovCircle2 = v106.fovCircle
+    local fovCircle2 = v118.fovCircle
     fovCircle2.Visible = Config.SilentAimEnabled and Config.SilentAimShowFOV
 
     return
@@ -5490,16 +5339,16 @@ function SilentAim_Cleanup()
   Config.SilentAimEnabled = false
   Config.SilentAimShowFOV = false
 
-  if v106.fovCircle then
-    v106.fovCircle.Visible = false
+  if v118.fovCircle then
+    v118.fovCircle.Visible = false
   end
 end
 
-v111.RenderStepped:Connect(function()
+v123.RenderStepped:Connect(function()
   if not SentinelActive then
     return
   else
-    local fovCircle3 = v106.fovCircle
+    local fovCircle3 = v118.fovCircle
 
     if not fovCircle3 then
       return
@@ -5512,7 +5361,7 @@ v111.RenderStepped:Connect(function()
       local viewportSize2 = currentCamera5 and currentCamera5.ViewportSize
         or Vector2.new(800, 600)
 
-      fovCircle3.Position = Config.SilentAimFOVMode == "Mouse" and v112:GetMouseLocation() or Vector2.new(
+      fovCircle3.Position = Config.SilentAimFOVMode == "Mouse" and v124:GetMouseLocation() or Vector2.new(
         (viewportSize2.X or 800) / 2, (viewportSize2.Y or 600) / 2
       )
 
@@ -5538,11 +5387,11 @@ v111.RenderStepped:Connect(function()
   end
 end)
 
-local function f55(p122)
-  if not p122 then
+local function f55(p125)
+  if not p125 then
     return false
   else
-    local model2 = p122:FindFirstAncestorOfClass("Model")
+    local model2 = p125:FindFirstAncestorOfClass("Model")
 
     if not model2 then
       return false
@@ -5555,40 +5404,18 @@ local function f55(p122)
   end
 end
 
-BulletVisualizerState = { activeTrails = {} }
-
 local function f56()
-  for index47, value56 in ipairs(localPlayer.PlayerGui:GetChildren()) do
-    local data = value56:FindFirstChild("Data")
+  local character46 = localPlayer.Character
 
-    if data then
-      local clip = data:FindFirstChild("clip")
-
-      if clip and clip:IsA("TextLabel") then
-        local v132 = tonumber(clip.Text)
-
-        if v132 ~= nil then
-          return v132 > 0
-        end
-      end
-    end
-  end
-
-  return true
-end
-
-local function f57()
-  local character43 = localPlayer.Character
-
-  if not character43 then
+  if not character46 then
     return nil
   end
 
-  for index48, value57 in ipairs(character43:GetChildren()) do
-    if value57:IsA("Tool") then
-      for index49, value58 in ipairs(value57:GetDescendants()) do
-        if value58:IsA("Attachment") and value58.Name == "FirePoint" then
-          return value58.WorldPosition
+  for index45, value54 in ipairs(character46:GetChildren()) do
+    if value54:IsA("Tool") then
+      for index46, value55 in ipairs(value54:GetDescendants()) do
+        if value55:IsA("Attachment") and value55.Name == "FirePoint" then
+          return value55.WorldPosition
         end
       end
     end
@@ -5597,15 +5424,81 @@ local function f57()
   return nil
 end
 
-local function f58(p123, p124, p125, p126)
-  local magnitude10 = (p124 - p123).Magnitude
-  local bulletVisualizerFadeOut, bulletTrail
+BulletVisualizerState = { activeTrails = {} }
 
-  if magnitude10 < 0.1 then
+local function f57()
+  for index47, value56 in ipairs(localPlayer.PlayerGui:GetChildren()) do
+    local data = value56:FindFirstChild("Data")
+
+    if data then
+      local clip = data:FindFirstChild("clip")
+
+      if clip and clip:IsA("TextLabel") then
+        local v144 = tonumber(clip.Text)
+
+        if v144 ~= nil then
+          return v144 > 0
+        end
+      end
+    end
+  end
+
+  return true
+end
+
+local f58
+
+local function f59()
+  if not Config.BulletVisualizerEnabled then
     return
   else
-    local v133 = (p123 + p124) / 2
-    local v134 = (p124 - p123).Unit
+    local v145 = f57()
+    local v146 = f56()
+
+    if not v146 then
+      return
+    else
+      local getMouse = localPlayer:GetMouse()
+
+      if not getMouse then
+        return
+      else
+        local screenPointToRay = currentCamera:ScreenPointToRay(getMouse.X, getMouse.Y)
+        local character47 = localPlayer.Character
+
+        local raycastParams2 = RaycastParams.new()
+        raycastParams2.FilterDescendantsInstances = { character47 or {} }
+        raycastParams2.FilterType = Enum.RaycastFilterType.Exclude
+
+        local bulletVisualizerRange = Config.BulletVisualizerRange or 500
+
+        if type(bulletVisualizerRange) ~= "number" then
+          bulletVisualizerRange = 500
+        end
+
+        local raycast2 = workspace:Raycast(
+          screenPointToRay.Origin, screenPointToRay.Direction * bulletVisualizerRange,
+          raycastParams2
+        )
+
+        f58(v146, raycast2 and raycast2.Position
+          or screenPointToRay.Origin + screenPointToRay.Direction * bulletVisualizerRange, raycast2 and raycast2.Instance or nil, not v145)
+
+        return
+      end
+    end
+  end
+end
+
+function f58(p126, p127, p128, p129)
+  local magnitude9 = (p127 - p126).Magnitude
+  local bulletVisualizerFadeOut, bulletTrail
+
+  if magnitude9 < 0.1 then
+    return
+  else
+    local v147 = (p126 + p127) / 2
+    local v148 = (p127 - p126).Unit
     local bulletVisualizerThickness = Config.BulletVisualizerThickness or 0.09
     local bulletVisualizerLifetime = Config.BulletVisualizerLifetime or 3
     bulletVisualizerFadeOut = Config.BulletVisualizerFadeOut or 0.8
@@ -5631,18 +5524,18 @@ local function f58(p123, p124, p125, p126)
     bulletTrail.CastShadow = false
 
     bulletTrail.Size = Vector3.new(
-      bulletVisualizerThickness, bulletVisualizerThickness, magnitude10
+      bulletVisualizerThickness, bulletVisualizerThickness, magnitude9
     )
 
-    bulletTrail.CFrame = CFrame.new(v133, v133 + v134)
+    bulletTrail.CFrame = CFrame.new(v147, v147 + v148)
     bulletTrail.Material = Enum.Material.Neon
     bulletTrail.Parent = workspace
 
-    if p126 then
+    if p129 then
       bulletTrail.Color = Config.BulletVisualizerColorLoading or Color3.fromRGB(255, 200, 0)
       bulletTrail.Transparency = 0.5
     else
-      if f55(p125) then
+      if f55(p128) then
         bulletTrail.Color = Config.BulletVisualizerColorSuccess or Color3.fromRGB(0, 255, 80)
       else
         bulletTrail.Color = Config.BulletVisualizerColorMissed or Color3.fromRGB(220, 30, 30)
@@ -5651,9 +5544,9 @@ local function f58(p123, p124, p125, p126)
       bulletTrail.Transparency = 0.45
     end
 
-    local v135 = math.max(bulletVisualizerLifetime - bulletVisualizerFadeOut, 0)
+    local v149 = math.max(bulletVisualizerLifetime - bulletVisualizerFadeOut, 0)
 
-    task.delay(v135, function()
+    task.delay(v149, function()
       if not bulletTrail or not bulletTrail.Parent then
         return
       end
@@ -5672,10 +5565,10 @@ local function f58(p123, p124, p125, p126)
           return
         else
           total = total + delta3
-          local v136 = math.clamp(total / bulletVisualizerFadeOut, 0, 1)
-          bulletTrail.Transparency = transparency + (1 - transparency) * v136
+          local v150 = math.clamp(total / bulletVisualizerFadeOut, 0, 1)
+          bulletTrail.Transparency = transparency + (1 - transparency) * v150
 
-          if v136 >= 1 then
+          if v150 >= 1 then
             connect3:Disconnect()
             bulletTrail:Destroy()
           end
@@ -5691,68 +5584,25 @@ local function f58(p123, p124, p125, p126)
   end
 end
 
-local function f59()
-  if not Config.BulletVisualizerEnabled then
-    return
-  else
-    local v137 = f56()
-    local v138 = f57()
-
-    if not v138 then
-      return
-    else
-      local getMouse = localPlayer:GetMouse()
-
-      if not getMouse then
-        return
-      else
-        local screenPointToRay = currentCamera:ScreenPointToRay(getMouse.X, getMouse.Y)
-        local character44 = localPlayer.Character
-
-        local raycastParams3 = RaycastParams.new()
-        raycastParams3.FilterDescendantsInstances = { character44 or {} }
-        raycastParams3.FilterType = Enum.RaycastFilterType.Exclude
-
-        local bulletVisualizerRange = Config.BulletVisualizerRange or 500
-
-        if type(bulletVisualizerRange) ~= "number" then
-          bulletVisualizerRange = 500
-        end
-
-        local raycast3 = workspace:Raycast(
-          screenPointToRay.Origin, screenPointToRay.Direction * bulletVisualizerRange,
-          raycastParams3
-        )
-
-        f58(v138, raycast3 and raycast3.Position
-          or screenPointToRay.Origin + screenPointToRay.Direction * bulletVisualizerRange, raycast3 and raycast3.Instance or nil, not v137)
-
-        return
-      end
-    end
-  end
-end
-
-local v139 = nil
 local clipCurrent2 = 0
-local connect4 = nil
+local v151, connect4
 
-local function f60(p127)
-  if not p127 or not p127:IsA("Tool") then
+local function f60(p130)
+  if not p130 or not p130:IsA("Tool") then
     return
-  elseif v139 == p127 then
+  elseif v151 == p130 then
     return
   else
-    v139 = p127
+    v151 = p130
 
     if connect4 then
       connect4:Disconnect()
     end
 
-    clipCurrent2 = p127:GetAttribute("ClipCurrent") or 0
+    clipCurrent2 = p130:GetAttribute("ClipCurrent") or 0
 
-    connect4 = p127:GetAttributeChangedSignal("ClipCurrent"):Connect(function()
-      local clipCurrent3 = p127:GetAttribute("ClipCurrent") or 0
+    connect4 = p130:GetAttributeChangedSignal("ClipCurrent"):Connect(function()
+      local clipCurrent3 = p130:GetAttribute("ClipCurrent") or 0
 
       if Config.BulletVisualizerEnabled and clipCurrent3 < clipCurrent2 then
         f59()
@@ -5767,20 +5617,20 @@ end
 
 local connect5
 
-function BulletVisualizer_Enable(p128)
-  Config.BulletVisualizerEnabled = p128
+function BulletVisualizer_Enable(p131)
+  Config.BulletVisualizerEnabled = p131
 
-  if p128 then
+  if p131 then
     if connect5 then
       connect5:Disconnect()
     end
 
-    local character45 = localPlayer.Character
+    local character48 = localPlayer.Character
 
-    if character45 then
-      f60(character45:FindFirstChildOfClass("Tool"))
+    if character48 then
+      f60(character48:FindFirstChildOfClass("Tool"))
 
-      connect5 = character45.ChildAdded:Connect(function(child11)
+      connect5 = character48.ChildAdded:Connect(function(child11)
         if child11:IsA("Tool") then
           task.wait(0.1)
           f60(child11)
@@ -5798,19 +5648,19 @@ function BulletVisualizer_Enable(p128)
       connect5 = nil
     end
 
-    v139 = nil
+    v151 = nil
   end
 end
 
 function BulletVisualizer_Cleanup()
   Config.BulletVisualizerEnabled = false
 
-  for index50, value59 in ipairs(BulletVisualizerState.activeTrails) do
-    local v140 = value59
+  for index48, value57 in ipairs(BulletVisualizerState.activeTrails) do
+    local v152 = value57
 
     pcall(function()
-      if v140 and v140.Parent then
-        v140:Destroy()
+      if v152 and v152.Parent then
+        v152:Destroy()
       end
     end)
   end
@@ -5828,11 +5678,11 @@ function BulletVisualizer_Cleanup()
   end
 end
 
-localPlayer.CharacterAdded:Connect(function(character46)
+localPlayer.CharacterAdded:Connect(function(character49)
   if not Config.BulletVisualizerEnabled then
     return
   else
-    character46:WaitForChild("HumanoidRootPart", 10)
+    character49:WaitForChild("HumanoidRootPart", 10)
     task.wait(0.5)
 
     if connect5 then
@@ -5845,13 +5695,13 @@ localPlayer.CharacterAdded:Connect(function(character46)
       connect4 = nil
     end
 
-    v139 = nil
-    local character47 = localPlayer.Character
+    v151 = nil
+    local character50 = localPlayer.Character
 
-    if character47 then
-      f60(character47:FindFirstChildOfClass("Tool"))
+    if character50 then
+      f60(character50:FindFirstChildOfClass("Tool"))
 
-      connect5 = character47.ChildAdded:Connect(function(child12)
+      connect5 = character50.ChildAdded:Connect(function(child12)
         if child12:IsA("Tool") then
           task.wait(0.1)
           f60(child12)
@@ -5863,13 +5713,13 @@ localPlayer.CharacterAdded:Connect(function(character46)
   end
 end)
 
-local function f61(p129, p130)
-  if not p129 or not p129:IsA("ClickDetector") then
+local function f61(p132, p133)
+  if not p132 or not p132:IsA("ClickDetector") then
     pcall(function()
       if WindUI then
         WindUI:Notify({
           Title = "Free Tools",
-          Content = p130 .. " detector not found",
+          Content = p133 .. " detector not found",
           Duration = 3,
         })
       end
@@ -5878,11 +5728,11 @@ local function f61(p129, p130)
     return
   end
 
-  pcall(function() fireclickdetector(p129) end)
+  pcall(function() fireclickdetector(p132) end)
 
   pcall(function()
     if WindUI then
-      WindUI:Notify({ Title = "Free Tools", Content = "Fired " .. p130, Duration = 2 })
+      WindUI:Notify({ Title = "Free Tools", Content = "Fired " .. p133, Duration = 2 })
     end
   end)
 end
@@ -5890,11 +5740,11 @@ end
 BypassState = { Movement = false }
 MovementBypassHooks = {}
 
-function applyMovementBypass(p131)
-  BypassState.Movement = p131
+function applyMovementBypass(p134)
+  BypassState.Movement = p134
   local humanoid30
 
-  if p131 then
+  if p134 then
     if not Capabilities.Hooks then
       pcall(function()
         if WindUI then
@@ -5910,39 +5760,40 @@ function applyMovementBypass(p131)
       return
     end
 
-    local character48 = localPlayer.Character
+    local character51 = localPlayer.Character
 
-    if character48 then
-      humanoid30 = character48:FindFirstChildOfClass("Humanoid")
+    if character51 then
+      humanoid30 = character51:FindFirstChildOfClass("Humanoid")
 
       if humanoid30 then
         pcall(function()
-          local v141 = getrawmetatable(humanoid30)
+          local v153 = getrawmetatable(humanoid30)
+          local v154 = v153 and not MovementBypassHooks.Humanoid
           local newindex
 
-          if v141 and not MovementBypassHooks.Humanoid then
-            newindex = v141.__newindex
-            setreadonly(v141, false)
+          if v154 then
+            newindex = v153.__newindex
+            setreadonly(v153, false)
 
-            v141.__newindex = newcclosure(function(p132, p133, p134)
-              local v142 = p134
+            v153.__newindex = newcclosure(function(p135, p136, p137)
+              local v155 = p137
 
-              if p133 == "WalkSpeed" or p133 == "JumpPower" then
-                if typeof(v142) == "number" then
-                  if p133 == "WalkSpeed" and v142 > 100 then
-                    v142 = 100
+              if p136 == "WalkSpeed" or p136 == "JumpPower" then
+                if typeof(v155) == "number" then
+                  if p136 == "WalkSpeed" and v155 > 100 then
+                    v155 = 100
                   end
 
-                  if p133 == "JumpPower" and v142 > 200 then
-                    v142 = 200
+                  if p136 == "JumpPower" and v155 > 200 then
+                    v155 = 200
                   end
                 end
               end
 
-              return newindex(p132, p133, v142)
+              return newindex(p135, p136, v155)
             end)
 
-            setreadonly(v141, true)
+            setreadonly(v153, true)
             MovementBypassHooks.Humanoid = true
           end
         end)
@@ -5958,28 +5809,28 @@ function applyAllBypasses()
     applyMovementBypass(false)
     return
   else
-    local v143 = {}
+    local v156 = {}
 
-    for index51, value60 in ipairs(Config.ActiveBypasses) do
-      v143[value60] = true
+    for index49, value58 in ipairs(Config.ActiveBypasses) do
+      v156[value58] = true
     end
 
-    applyMovementBypass(v143["Movement Bypass"] == true)
+    applyMovementBypass(v156["Movement Bypass"] == true)
     return
   end
 end
 
 function collectAllDocuments()
   task.spawn(function()
-    local character49 = localPlayer.Character
-    local currentCamera6, v144
+    local character52 = localPlayer.Character
+    local currentCamera6, v157
 
-    if not character49 then
+    if not character52 then
       return
     else
-      local humanoidRootPart25 = character49:FindFirstChild("HumanoidRootPart")
+      local humanoidRootPart23 = character52:FindFirstChild("HumanoidRootPart")
 
-      if not humanoidRootPart25 then
+      if not humanoidRootPart23 then
         return
       else
         local documents = workspace:FindFirstChild("Documents")
@@ -5999,33 +5850,33 @@ function collectAllDocuments()
         else
           currentCamera6 = workspace.CurrentCamera
           local getChildren2 = documents.GetChildren
-          v144 = {}
+          v157 = {}
 
-          for index52, value61 in ipairs(getChildren2(documents)) do
-            local findFirstChildWhichIsA = value61:FindFirstChildWhichIsA(
+          for index50, value59 in ipairs(getChildren2(documents)) do
+            local findFirstChildWhichIsA2 = value59:FindFirstChildWhichIsA(
               "ProximityPrompt", true
             )
 
-            if findFirstChildWhichIsA then
+            if findFirstChildWhichIsA2 then
               local parent7 = nil
 
-              if findFirstChildWhichIsA.Parent:IsA("Attachment") then
-                parent7 = findFirstChildWhichIsA.Parent.Parent
-              elseif findFirstChildWhichIsA.Parent:IsA("BasePart") then
-                parent7 = findFirstChildWhichIsA.Parent
+              if findFirstChildWhichIsA2.Parent:IsA("Attachment") then
+                parent7 = findFirstChildWhichIsA2.Parent.Parent
+              elseif findFirstChildWhichIsA2.Parent:IsA("BasePart") then
+                parent7 = findFirstChildWhichIsA2.Parent
               end
 
               if parent7 then
-                table.insert(v144, {
-                  pp = findFirstChildWhichIsA,
+                table.insert(v157, {
+                  pp = findFirstChildWhichIsA2,
                   part = parent7,
-                  name = value61.Name,
+                  name = value59.Name,
                 })
               end
             end
           end
 
-          if #v144 == 0 then
+          if #v157 == 0 then
             pcall(function()
               if WindUI then
                 WindUI:Notify({
@@ -6042,46 +5893,46 @@ function collectAllDocuments()
               if WindUI then
                 WindUI:Notify({
                   Title = "Documents",
-                  Content = #v144 .. " document(s) trouvé(s), collecte en cours...",
+                  Content = #v157 .. " document(s) trouvé(s), collecte en cours...",
                   Duration = 3,
                 })
               end
             end)
 
-            for index53, value62 in ipairs(v144) do
-              value62.pp.HoldDuration = 0
-              value62.pp.MaxActivationDistance = 9999
-              value62.pp.Enabled = true
+            for index51, value60 in ipairs(v157) do
+              value60.pp.HoldDuration = 0
+              value60.pp.MaxActivationDistance = 9999
+              value60.pp.Enabled = true
             end
 
-            local cframe7 = humanoidRootPart25.CFrame
+            local cframe8 = humanoidRootPart23.CFrame
             local cameraType = currentCamera6.CameraType
             currentCamera6.CameraType = Enum.CameraType.Scriptable
 
-            local function f62(p135, p136)
-              currentCamera6.CFrame = CFrame.new(p135, p135 + (p136 - p135).Unit)
+            local function f62(p138, p139)
+              currentCamera6.CFrame = CFrame.new(p138, p138 + (p139 - p138).Unit)
             end
 
-            for index54, value63 in ipairs(v144) do
-              local v145 = index54
-              local v146 = value63
+            for index52, value61 in ipairs(v157) do
+              local v158 = index52
+              local v159 = value61
 
-              if not v146.pp or not v146.pp.Parent then
+              if not v159.pp or not v159.pp.Parent then
               else
-                local position9 = v146.part.Position
-                local vector11 = Vector3.new(0, 0, 3)
-                humanoidRootPart25.CFrame = CFrame.new(position9 + vector11, position9)
+                local position5 = v159.part.Position
+                local vector4 = Vector3.new(0, 0, 3)
+                humanoidRootPart23.CFrame = CFrame.new(position5 + vector4, position5)
                 task.wait(0.05)
-                f62(humanoidRootPart25.CFrame.Position + Vector3.new(0, 1.5, 0), position9)
+                f62(humanoidRootPart23.CFrame.Position + Vector3.new(0, 1.5, 0), position5)
                 task.wait(0.1)
-                pcall(function() fireproximityprompt(v146.pp) end)
+                pcall(function() fireproximityprompt(v159.pp) end)
                 task.wait(0.35)
 
                 pcall(function()
                   if WindUI then
                     WindUI:Notify({
-                      Title = "Doc [" .. v145 .. "/" .. #v144 .. "]",
-                      Content = "Picked Up : " .. v146.name,
+                      Title = "Doc [" .. v158 .. "/" .. #v157 .. "]",
+                      Content = "Picked Up : " .. v159.name,
                       Duration = 1,
                     })
                   end
@@ -6090,7 +5941,18 @@ function collectAllDocuments()
             end
 
             currentCamera6.CameraType = cameraType
-            humanoidRootPart25.CFrame = cframe7
+            humanoidRootPart23.CFrame = cframe8
+
+            pcall(function()
+              if WindUI then
+                WindUI:Notify({
+                  Title = "Documents",
+                  Content = "All Documents have been Picked Up.",
+                  Duration = 4,
+                })
+              end
+            end)
+
             return
           end
         end
@@ -6101,26 +5963,26 @@ end
 
 function completeManhattanQuests()
   local userId = localPlayer.UserId
-  local v147 = false
-  local v148 = false
+  local v160 = false
+  local v161 = false
 
-  local v149, v150 = pcall(function()
+  local v162, v163 = pcall(function()
     return badgeService:UserHasBadgeAsync(userId, 2147991835)
   end)
 
-  if v149 and v150 then
-    v147 = true
+  if v162 and v163 then
+    v160 = true
   end
 
-  local v151, v152 = pcall(function()
+  local v164, v165 = pcall(function()
     return badgeService:UserHasBadgeAsync(userId, 282806616820550)
   end)
 
-  if v151 and v152 then
-    v148 = true
+  if v164 and v165 then
+    v161 = true
   end
 
-  if v148 then
+  if v161 then
     pcall(function()
       if WindUI then
         WindUI:Notify({
@@ -6134,7 +5996,7 @@ function completeManhattanQuests()
     return
   end
 
-  if not v147 then
+  if not v160 then
     pcall(function()
       if WindUI then
         WindUI:Notify({
@@ -6186,17 +6048,17 @@ function completeManhattanQuests()
 
         return
       else
-        local character50 = localPlayer.Character
+        local character53 = localPlayer.Character
 
-        if not character50 then
+        if not character53 then
           return
         else
-          local humanoidRootPart26 = character50:FindFirstChild("HumanoidRootPart")
+          local humanoidRootPart24 = character53:FindFirstChild("HumanoidRootPart")
 
-          if not humanoidRootPart26 then
+          if not humanoidRootPart24 then
             return
           else
-            local cframe8 = humanoidRootPart26.CFrame
+            local cframe9 = humanoidRootPart24.CFrame
             local getChildren3 = activeItems:GetChildren()
 
             if #getChildren3 == 0 then
@@ -6213,15 +6075,15 @@ function completeManhattanQuests()
               return
             end
 
-            for index55, value64 in ipairs(getChildren3) do
-              if value64:IsA("BasePart") or value64:IsA("Model") then
-                local position10 = value64:GetPivot().Position
-                humanoidRootPart26.CFrame = CFrame.new(position10 + Vector3.new(0, 2, 0))
+            for index53, value62 in ipairs(getChildren3) do
+              if value62:IsA("BasePart") or value62:IsA("Model") then
+                local position6 = value62:GetPivot().Position
+                humanoidRootPart24.CFrame = CFrame.new(position6 + Vector3.new(0, 2, 0))
                 task.wait(0.3)
-                currentCamera7.CFrame = CFrame.new(currentCamera7.CFrame.Position, position10)
+                currentCamera7.CFrame = CFrame.new(currentCamera7.CFrame.Position, position6)
 
-                humanoidRootPart26.CFrame = CFrame.new(humanoidRootPart26.Position, Vector3.new(
-                  position10.X, humanoidRootPart26.Position.Y, position10.Z
+                humanoidRootPart24.CFrame = CFrame.new(humanoidRootPart24.Position, Vector3.new(
+                  position6.X, humanoidRootPart24.Position.Y, position6.Z
                 ))
 
                 task.wait(0.2)
@@ -6232,7 +6094,7 @@ function completeManhattanQuests()
               end
             end
 
-            humanoidRootPart26.CFrame = cframe8
+            humanoidRootPart24.CFrame = cframe9
             return
           end
         end
@@ -6242,25 +6104,25 @@ function completeManhattanQuests()
 end
 
 function getUnderequippedBadge()
-  local character51 = localPlayer.Character
-  local cframe9, vector12, vector13, walkSpeed, connect6
+  local character54 = localPlayer.Character
+  local cframe10, vector5, vector6, walkSpeed, connect6
 
-  if not character51 then
+  if not character54 then
     return
   else
-    local humanoidRootPart27 = character51:FindFirstChild("HumanoidRootPart")
-    local v153 = not humanoidRootPart27
-    local humanoid31 = character51:FindFirstChildOfClass("Humanoid")
+    local humanoidRootPart25 = character54:FindFirstChild("HumanoidRootPart")
+    local v166 = not humanoidRootPart25
+    local humanoid31 = character54:FindFirstChildOfClass("Humanoid")
 
-    if v153 or not humanoid31 then
+    if v166 or not humanoid31 then
       return
     end
 
-    cframe9 = humanoidRootPart27.CFrame
-    vector12 = Vector3.new(241, -31, -1172)
-    vector13 = Vector3.new(267, -31, -1172)
+    cframe10 = humanoidRootPart25.CFrame
+    vector5 = Vector3.new(241, -31, -1172)
+    vector6 = Vector3.new(267, -31, -1172)
     walkSpeed = humanoid31.WalkSpeed
-    humanoidRootPart27.CFrame = CFrame.lookAt(vector12, vector13)
+    humanoidRootPart25.CFrame = CFrame.lookAt(vector5, vector6)
     humanoid31.WalkSpeed = 9
     task.wait(0.1)
 
@@ -6274,46 +6136,47 @@ function getUnderequippedBadge()
 
         return
       else
-        local character52 = localPlayer.Character
+        local character55 = localPlayer.Character
 
-        if not character52 then
+        if not character55 then
           if connect6 then
             connect6:Disconnect()
           end
 
           return
         else
-          local humanoidRootPart28 = character52:FindFirstChild("HumanoidRootPart")
-          local humanoid32 = character52:FindFirstChildOfClass("Humanoid")
+          local humanoidRootPart26 = character55:FindFirstChild("HumanoidRootPart")
+          local v167 = not humanoidRootPart26
+          local humanoid32 = character55:FindFirstChildOfClass("Humanoid")
 
-          if not humanoidRootPart28 or not humanoid32 then
+          if v167 or not humanoid32 then
             if connect6 then
               connect6:Disconnect()
             end
 
             return
           else
-            local position11 = humanoidRootPart28.Position
+            local position7 = humanoidRootPart26.Position
 
-            if (Vector3.new(vector13.X, position11.Y, vector13.Z) - position11).Magnitude <= 1 then
+            if (Vector3.new(vector6.X, position7.Y, vector6.Z) - position7).Magnitude <= 1 then
               humanoid32.WalkSpeed = walkSpeed
               connect6:Disconnect()
               task.wait(0.5)
-              local character53 = localPlayer.Character
+              local character56 = localPlayer.Character
 
-              if character53 and character53:FindFirstChild("HumanoidRootPart") then
-                character53:PivotTo(cframe9)
+              if character56 and character56:FindFirstChild("HumanoidRootPart") then
+                character56:PivotTo(cframe10)
               end
 
               return
             else
-              local v154 = (vector13 - position11) * Vector3.new(1, 0, 1)
+              local v168 = (vector6 - position7) * Vector3.new(1, 0, 1)
 
-              if v154.Magnitude > 0 then
-                local v155 = v154.Unit * 0.15
+              if v168.Magnitude > 0 then
+                local v169 = v168.Unit * 0.15
 
-                humanoidRootPart28.CFrame = CFrame.lookAt(position11 + v155, position11 + v155
-                  + (vector13 - vector12).Unit)
+                humanoidRootPart26.CFrame = CFrame.lookAt(position7 + v169, position7 + v169
+                  + (vector6 - vector5).Unit)
               end
 
               return
@@ -6341,12 +6204,12 @@ function CleanupAllFeatures()
       noclipConnection = nil
     end
 
-    local character54 = localPlayer.Character
+    local character57 = localPlayer.Character
 
-    if character54 then
-      for key13, value65 in pairs(character54:GetDescendants()) do
-        if value65:IsA("BasePart") then
-          value65.CanCollide = true
+    if character57 then
+      for key14, value63 in pairs(character57:GetDescendants()) do
+        if value63:IsA("BasePart") then
+          value63.CanCollide = true
         end
       end
     end
@@ -6363,8 +6226,8 @@ function CleanupAllFeatures()
   Config.InfiniteJump = false
   Config.JumpBypassActive = false
 
-  local character55 = localPlayer.Character
-  local humanoid33 = character55 and character55:FindFirstChildOfClass("Humanoid")
+  local character58 = localPlayer.Character
+  local humanoid33 = character58 and character58:FindFirstChildOfClass("Humanoid")
 
   if humanoid33 then
     humanoid33.WalkSpeed = 9
@@ -6379,41 +6242,41 @@ function CleanupAllFeatures()
     Config.FakeInjured = false
   end
 
-  for index56, value66 in ipairs({
-    "HighlightPlayer", "HighlightFriends", "HighlightMobs", "HighlightBosses", "BoxPlayers",
-    "BoxFriends", "BoxMobs", "BoxBosses", "ShowNamePlayers", "ShowNameFriends", "ShowNameMobs",
-    "ShowNameBosses", "ShowHealthPlayers", "ShowHealthFriends", "ShowHealthMobs",
-    "ShowHealthBosses", "ShowDistancePlayers", "ShowDistanceFriends", "ShowDistanceMobs",
-    "ShowDistanceBosses",
+  for index54, value64 in ipairs({
+    "HighlightPlayer", "HighlightMobs", "HighlightBosses", "BoxPlayers", "BoxMobs", "BoxBosses",
+    "ShowNamePlayers", "ShowNameMobs", "ShowNameBosses", "ShowHealthPlayers", "ShowHealthMobs",
+    "ShowHealthBosses", "ShowDistancePlayers", "ShowDistanceMobs", "ShowDistanceBosses",
   }) do
-    Config[value66] = false
+    Config[value64] = false
   end
 
   pcall(function()
-    for key14, value67 in pairs(players:GetPlayers()) do
-      if value67 ~= localPlayer and value67.Character then
-        local sentinelHL2 = value67.Character:FindFirstChild("SentinelHL")
+    for key15, value65 in pairs(players:GetPlayers()) do
+      if value65 ~= localPlayer and value65.Character then
+        local sentinelHL = value65.Character:FindFirstChild("SentinelHL")
 
-        if sentinelHL2 then
-          sentinelHL2:Destroy()
+        if sentinelHL then
+          sentinelHL:Destroy()
         end
       end
     end
 
-    for index57, value68 in ipairs(workspace:GetDescendants()) do
-      local sentinelMobHL2 = value68:FindFirstChild("SentinelMobHL")
+    for index55, value66 in ipairs(workspace:GetDescendants()) do
+      local sentinelMobHL = value66:FindFirstChild("SentinelMobHL")
 
-      if sentinelMobHL2 then
-        sentinelMobHL2:Destroy()
+      if sentinelMobHL then
+        sentinelMobHL:Destroy()
       end
 
-      local sentinelInfoBBG3 = value68:FindFirstChild("SentinelInfoBBG")
+      local sentinelInfoBBG3 = value66:FindFirstChild("SentinelInfoBBG")
 
       if sentinelInfoBBG3 then
         sentinelInfoBBG3:Destroy()
       end
     end
   end)
+
+  v96 = {}
 
   if XrayEnabled then
     XrayEnabled = false
@@ -6462,8 +6325,8 @@ function CleanupAllFeatures()
   Config.StaggerEnabled = true
   Config.StaggerImmune = false
 
-  if character55 then
-    local clientScripts4 = character55:FindFirstChild("ClientScripts")
+  if character58 then
+    local clientScripts4 = character58:FindFirstChild("ClientScripts")
 
     local stagger4 = clientScripts4
     stagger4 = clientScripts4 and clientScripts4:FindFirstChild("Stagger")
@@ -6472,7 +6335,7 @@ function CleanupAllFeatures()
       stagger4.Disabled = false
     end
 
-    pcall(function() character55:SetAttribute("StaggerImmune", false) end)
+    pcall(function() character58:SetAttribute("StaggerImmune", false) end)
   end
 
   Config.SilencerEnabled = false
@@ -6494,7 +6357,7 @@ function CleanupAllFeatures()
 
   if Config.AutoQTEEnabled then
     Config.AutoQTEEnabled = false
-    pcall(function() f26(false) end)
+    pcall(function() f24(false) end)
   end
 
   Config.AntiAFKEnabled = false
@@ -6550,7 +6413,7 @@ function CleanupAllFeatures()
       nvgBloom:Destroy()
     end
 
-    pcall(f21)
+    pcall(f20)
   end
 
   Config.RemoveDeathScreen = false
@@ -6591,9 +6454,9 @@ function CleanupAllFeatures()
 
   Config.AntiRiserDodgeEnabled = false
 
-  for index58, value69 in ipairs(AntiRiserDodgeConnections) do
-    local v156 = value69
-    pcall(function() v156:Disconnect() end)
+  for index56, value67 in ipairs(AntiRiserDodgeConnections) do
+    local v170 = value67
+    pcall(function() v170:Disconnect() end)
   end
 
   AntiRiserDodgeConnections = {}
@@ -6609,6 +6472,193 @@ function CleanupAllFeatures()
   end
 
   RadawayState.active = false
+
+  if RadawayState.connection then
+    pcall(function() RadawayState.connection:Disconnect() end)
+    RadawayState.connection = nil
+  end
+end
+
+function FullScriptCleanup()
+  SentinelActive = false
+  pcall(f20)
+
+  if NVForcerConnection then
+    pcall(function() NVForcerConnection:Disconnect() end)
+  end
+
+  if connect then
+    pcall(function() connect:Disconnect() end)
+  end
+
+  if AutoReloadToolConn then
+    pcall(function() AutoReloadToolConn:Disconnect() end)
+  end
+
+  if AutoReloadCharacterConn then
+    pcall(function() AutoReloadCharacterConn:Disconnect() end)
+  end
+
+  if connect2 then
+    pcall(function() connect2:Disconnect() end)
+  end
+
+  if v114 then
+    pcall(function() task.cancel(v114) end)
+    v114 = nil
+  end
+
+  if AutoShieldRemovalConnection then
+    pcall(function() AutoShieldRemovalConnection:Disconnect() end)
+  end
+
+  if AutoRemoveAxeConnection then
+    pcall(function() AutoRemoveAxeConnection:Disconnect() end)
+  end
+
+  if InstantProximityConnection then
+    pcall(function() InstantProximityConnection:Disconnect() end)
+  end
+
+  if AutoCompletePromptConnection then
+    pcall(function() AutoCompletePromptConnection:Disconnect() end)
+  end
+
+  if HeadAccessoryConnection then
+    pcall(function() HeadAccessoryConnection:Disconnect() end)
+  end
+
+  if CharacterAccessoryConnection then
+    pcall(function() CharacterAccessoryConnection:Disconnect() end)
+  end
+
+  if XrayLoop then
+    pcall(function() XrayLoop:Disconnect() end)
+  end
+
+  if v109 then
+    pcall(function() task.cancel(v109) end)
+  end
+
+  if noclipConnection then
+    pcall(function() task.cancel(noclipConnection) end)
+  end
+
+  if InfiniteStaminaThread then
+    pcall(function() task.cancel(InfiniteStaminaThread) end)
+    InfiniteStaminaThread = nil
+  end
+
+  if InstantShotgunConnection then
+    pcall(function() InstantShotgunConnection:Disconnect() end)
+  end
+
+  if connect4 then
+    pcall(function() connect4:Disconnect() end)
+  end
+
+  if connect5 then
+    pcall(function() connect5:Disconnect() end)
+  end
+
+  if AutoBringAxeConn then
+    pcall(function() AutoBringAxeConn:Disconnect() end)
+  end
+
+  if AutoBringHammerConn then
+    pcall(function() AutoBringHammerConn:Disconnect() end)
+  end
+
+  for index57, value68 in ipairs(AntiRiserDodgeConnections) do
+    local v171 = value68
+    pcall(function() v171:Disconnect() end)
+  end
+
+  AntiRiserDodgeConnections = {}
+
+  if vmFolderConnection then
+    pcall(function() vmFolderConnection:Disconnect() end)
+  end
+
+  if vmIgnoreConn then
+    pcall(function() vmIgnoreConn:Disconnect() end)
+  end
+
+  function v9773()
+    for key16, value69 in pairs(v97) do
+    end
+
+    table.clear(v97)
+  end
+
+  function v9731()
+    lighting.Ambient = OrigAmbient
+    lighting.OutdoorAmbient = OrigOutdoorAmbient
+    lighting.Brightness = OrigBrightness
+    lighting.FogEnd = OrigFogEnd
+    lighting.FogStart = OrigFogStart
+    lighting.GlobalShadows = OrigGlobalShadows
+  end
+
+  pcall(function()
+    for key17, value70 in pairs(players:GetPlayers()) do
+      if value70.Character then
+        local sentinelHL2 = value70.Character:FindFirstChild("SentinelHL")
+
+        if sentinelHL2 then
+          sentinelHL2:Destroy()
+        end
+      end
+    end
+
+    for index58, value71 in ipairs(workspace:GetDescendants()) do
+      local sentinelMobHL2 = value71:FindFirstChild("SentinelMobHL")
+
+      if sentinelMobHL2 then
+        sentinelMobHL2:Destroy()
+      end
+
+      local sentinelInfoBBG4 = value71:FindFirstChild("SentinelInfoBBG")
+
+      if sentinelInfoBBG4 then
+        sentinelInfoBBG4:Destroy()
+      end
+    end
+  end)
+
+  v96 = {}
+
+  pcall(function()
+    local infectionRedTint4 = lighting:FindFirstChild("InfectionRedTint")
+
+    if infectionRedTint4 then
+      infectionRedTint4:Destroy()
+    end
+
+    local nvgEffect2 = lighting:FindFirstChild("__NVG_Effect")
+
+    if nvgEffect2 then
+      nvgEffect2:Destroy()
+    end
+
+    local nvgBloom2 = lighting:FindFirstChild("__NVG_Bloom")
+
+    if nvgBloom2 then
+      nvgBloom2:Destroy()
+    end
+  end)
+
+  pcall(function()
+    if mainWindow then
+      mainWindow:Destroy()
+    end
+  end)
+
+  pcall(function()
+    if v118 and v118.fovCircle then
+      v118.fovCircle:Remove()
+    end
+  end)
 end
 
 WindUI = nil
@@ -6627,7 +6677,7 @@ if not loadSuccess or not WindUI then
   return
 end
 
-local f63, f64, notify, sentinelExaminationWindow, sentinelStatusParagraph, v157, f65, f66,
+local f63, f64, notify, sentinelExaminationWindow, sentinelStatusParagraph, v172, f65, f66,
   connect7, f67
 
 if not WindUI.Creator or not WindUI.CreateWindow or not WindUI.SetTheme or not WindUI.Notify then
@@ -6651,16 +6701,16 @@ else
     Name = "Sentinel Key System",
     Icon = "key-round",
     Args = { "Link", "ButtonName", "ButtonDesc" },
-    New = function(p137, p138, p139)
+    New = function(p140, p141, p142)
       return {
-        Name = p138 or "Copy",
-        Desc = p139 or "Click to copy.",
-        Verify = function(p140)
-          if not p140 or p140 == "" then
+        Name = p141 or "Copy",
+        Desc = p142 or "Click to copy.",
+        Verify = function(p143)
+          if not p143 or p143 == "" then
             return false, "Please enter a key."
           end
 
-          if tostring(p140) == "Sentinel.Examination.Uv29b" then
+          if tostring(p143) == "Sentinel.Examination.Uv29b" then
             return true, "Key valid! Welcome to Sentinel."
           end
 
@@ -6668,10 +6718,10 @@ else
         end,
         Copy = function()
           if setclipboard then
-            pcall(setclipboard, p137)
+            pcall(setclipboard, p140)
           end
 
-          return p137
+          return p140
         end,
       }
     end,
@@ -6680,37 +6730,44 @@ else
   sentinelExaminationWindow = nil
   sentinelStatusParagraph = nil
 
-  function ApplyInfiniteNightVision(p141)
-    Config.InfiniteNightVision = p141
-    local nvgEffect2, nvgBloom2
+  function ApplyInfiniteNightVision(p144)
+    Config.InfiniteNightVision = p144
+    local nvgEffect3, nvgBloom3
 
-    if p141 then
-      nvgEffect2 = lighting:FindFirstChild("__NVG_Effect")
+    if p144 then
+      nvgEffect3 = lighting:FindFirstChild("__NVG_Effect")
 
-      if not nvgEffect2 then
-        nvgEffect2 = Instance.new("ColorCorrectionEffect")
-        nvgEffect2.Name = "__NVG_Effect"
-        nvgEffect2.Brightness = 0.2
-        nvgEffect2.Contrast = 0.1
-        nvgEffect2.Saturation = -0.2
-        nvgEffect2.TintColor = Color3.fromRGB(255, 255, 255)
-        nvgEffect2.Parent = lighting
+      if not nvgEffect3 then
+        nvgEffect3 = Instance.new("ColorCorrectionEffect")
+        nvgEffect3.Name = "__NVG_Effect"
+        nvgEffect3.Brightness = 0.2
+        nvgEffect3.Contrast = 0.1
+        nvgEffect3.Saturation = -0.2
+        nvgEffect3.TintColor = Color3.fromRGB(255, 255, 255)
+        nvgEffect3.Parent = lighting
       end
 
-      nvgBloom2 = lighting:FindFirstChild("__NVG_Bloom")
+      nvgBloom3 = lighting:FindFirstChild("__NVG_Bloom")
 
-      if not nvgBloom2 then
-        nvgBloom2 = Instance.new("BloomEffect")
-        nvgBloom2.Name = "__NVG_Bloom"
-        nvgBloom2.Intensity = 2
-        nvgBloom2.Size = 32
-        nvgBloom2.Threshold = 0.4
-        nvgBloom2.Parent = lighting
+      if not nvgBloom3 then
+        nvgBloom3 = Instance.new("BloomEffect")
+        nvgBloom3.Name = "__NVG_Bloom"
+        nvgBloom3.Intensity = 2
+        nvgBloom3.Size = 32
+        nvgBloom3.Threshold = 0.4
+        nvgBloom3.Parent = lighting
       end
 
       lighting.GlobalShadows = false
-      f22()
-      f23()
+      lighting.FogEnd = 999999999
+      lighting.FogStart = 999999999
+      lighting.Ambient = Color3.fromRGB(67, 67, 67)
+      lighting.OutdoorAmbient = Color3.fromRGB(67, 67, 67)
+
+      nvgEffect3.Enabled = true
+      nvgBloom3.Enabled = true
+      f19()
+      f18()
 
       if NVForcerConnection then
         NVForcerConnection:Disconnect()
@@ -6719,25 +6776,28 @@ else
       NVForcerConnection = runService.RenderStepped:Connect(function()
         if not SentinelActive then
           return
-        end
+        elseif not Config.InfiniteNightVision then
+          return
+        else
+          if nvgEffect3 and nvgEffect3.Parent and not nvgEffect3.Enabled then
+            nvgEffect3.Enabled = true
+          end
 
-        if not Config.InfiniteNightVision then
+          if nvgBloom3 and nvgBloom3.Parent and not nvgBloom3.Enabled then
+            nvgBloom3.Enabled = true
+          end
+
+          if lighting.GlobalShadows then
+            lighting.GlobalShadows = false
+          end
+
+          if lighting.FogEnd ~= 999999999 then
+            lighting.FogEnd = 999999999
+            lighting.FogStart = 999999999
+          end
+
           return
         end
-
-        if nvgEffect2 and nvgEffect2.Parent then
-          nvgEffect2.Enabled = true
-        end
-
-        if nvgBloom2 and nvgBloom2.Parent then
-          nvgBloom2.Enabled = true
-        end
-
-        lighting.FogEnd = 999999999
-        lighting.FogStart = 999999999
-        lighting.Ambient = Color3.fromRGB(67, 67, 67)
-        lighting.OutdoorAmbient = Color3.fromRGB(67, 67, 67)
-        lighting.GlobalShadows = false
       end)
     else
       if NVForcerConnection then
@@ -6745,16 +6805,16 @@ else
         NVForcerConnection = nil
       end
 
-      local nvgEffect3 = lighting:FindFirstChild("__NVG_Effect")
+      local nvgEffect4 = lighting:FindFirstChild("__NVG_Effect")
 
-      if nvgEffect3 then
-        nvgEffect3:Destroy()
+      if nvgEffect4 then
+        nvgEffect4:Destroy()
       end
 
-      local nvgBloom3 = lighting:FindFirstChild("__NVG_Bloom")
+      local nvgBloom4 = lighting:FindFirstChild("__NVG_Bloom")
 
-      if nvgBloom3 then
-        nvgBloom3:Destroy()
+      if nvgBloom4 then
+        nvgBloom4:Destroy()
       end
 
       lighting.FogEnd = OrigFogEnd
@@ -6763,7 +6823,7 @@ else
       lighting.OutdoorAmbient = OrigOutdoorAmbient
       lighting.GlobalShadows = OrigGlobalShadows
 
-      f21()
+      f20()
     end
   end
 
@@ -6872,8 +6932,8 @@ else
       Desc = "Enable this to make the selected features undetected. Does NOT activate them.",
       Default = false,
       Flag = "NetworkBypassEnabled",
-      Callback = function(value70)
-        Config.NetworkBypassEnabled = value70
+      Callback = function(value72)
+        Config.NetworkBypassEnabled = value72
         applyAllBypasses()
       end,
     })
@@ -6887,9 +6947,9 @@ else
       Multi = true,
       Value = {},
       Flag = "ActiveBypasses",
-      Callback = function(value71)
-        if type(value71) == "table" then
-          Config.ActiveBypasses = value71
+      Callback = function(value73)
+        if type(value73) == "table" then
+          Config.ActiveBypasses = value73
         else
           Config.ActiveBypasses = {}
         end
@@ -6914,8 +6974,8 @@ else
       Title = "Suicide",
       Callback = function()
         suicideButton:Highlight()
-        local character56 = localPlayer.Character
-        local humanoid34 = character56 and character56:FindFirstChildOfClass("Humanoid")
+        local character59 = localPlayer.Character
+        local humanoid34 = character59 and character59:FindFirstChildOfClass("Humanoid")
 
         if humanoid34 then
           humanoid34.Health = 0
@@ -6939,8 +6999,8 @@ else
       Title = "Fake Death",
       Default = false,
       Flag = "FakeDeath",
-      Callback = function(value72)
-        Config.FakeDeath = value72
+      Callback = function(value74)
+        Config.FakeDeath = value74
         toggleFakeDeath()
       end,
     })
@@ -6949,8 +7009,8 @@ else
       Title = "Fake Injured (idle)",
       Default = false,
       Flag = "FakeInjured",
-      Callback = function(value73)
-        Config.FakeInjured = value73
+      Callback = function(value75)
+        Config.FakeInjured = value75
         toggleFakeInjured()
       end,
     })
@@ -6961,10 +7021,10 @@ else
       Title = "Apply Animator Config",
       Default = false,
       Flag = "AnimatorEnabled",
-      Callback = function(value74)
-        Config.AnimatorEnabled = value74
+      Callback = function(value76)
+        Config.AnimatorEnabled = value76
 
-        if not value74 then
+        if not value76 then
           stopAllAnimatorTracks()
           animatorLastState = nil
         end
@@ -6978,7 +7038,7 @@ else
       Values = idleAnimNames,
       Default = nil,
       Flag = "AnimatorIdleAnimName",
-      Callback = function(value75) Config.AnimatorIdleAnimName = value75 end,
+      Callback = function(value77) Config.AnimatorIdleAnimName = value77 end,
     })
 
     animatorSection:Dropdown({
@@ -6986,7 +7046,7 @@ else
       Values = walkAnimNames,
       Default = nil,
       Flag = "AnimatorWalkAnimName",
-      Callback = function(value76) Config.AnimatorWalkAnimName = value76 end,
+      Callback = function(value78) Config.AnimatorWalkAnimName = value78 end,
     })
 
     animatorSection:Dropdown({
@@ -6994,7 +7054,7 @@ else
       Values = runAnimNames,
       Default = nil,
       Flag = "AnimatorRunAnimName",
-      Callback = function(value77) Config.AnimatorRunAnimName = value77 end,
+      Callback = function(value79) Config.AnimatorRunAnimName = value79 end,
     })
 
     local customizationSection = main:Section({
@@ -7008,8 +7068,8 @@ else
       Default = "",
       Placeholder = "Enter name",
       Flag = "CharacterName",
-      Callback = function(value78)
-        Config.CharacterName = value78
+      Callback = function(value80)
+        Config.CharacterName = value80
         applyNametags(localPlayer.Character)
       end,
     })
@@ -7019,8 +7079,8 @@ else
       Default = "",
       Placeholder = "Enter rank",
       Flag = "CharacterRank",
-      Callback = function(value79)
-        Config.CharacterRank = value79
+      Callback = function(value81)
+        Config.CharacterRank = value81
         applyNametags(localPlayer.Character)
       end,
     })
@@ -7029,8 +7089,8 @@ else
       Title = "Nametag Color",
       Default = Config.TagColor,
       Flag = "TagColor",
-      Callback = function(value80)
-        Config.TagColor = value80
+      Callback = function(value82)
+        Config.TagColor = value82
         applyNametags(localPlayer.Character)
       end,
     })
@@ -7040,9 +7100,9 @@ else
       Values = { "Menlo", "RAID", "RSU" },
       Default = "Menlo",
       Flag = "Team",
-      Callback = function(value81)
-        Config.Team = value81
-        changeTeam(value81, true)
+      Callback = function(value83)
+        Config.Team = value83
+        changeTeam(value83, true)
       end,
     })
 
@@ -7058,7 +7118,7 @@ else
       Title = "Enable Speed Modifiers",
       Default = false,
       Flag = "SpeedHackEnabled",
-      Callback = function(value82) Config.SpeedHackEnabled = value82 end,
+      Callback = function(value84) Config.SpeedHackEnabled = value84 end,
     })
 
     walkspeedSettingsSection:Slider({
@@ -7067,7 +7127,7 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "WalkSpeedValue",
-      Callback = function(value83) Config.WalkSpeedValue = value83 end,
+      Callback = function(value85) Config.WalkSpeedValue = value85 end,
     })
 
     walkspeedSettingsSection:Divider()
@@ -7076,7 +7136,7 @@ else
       Title = "Infinite Stamina",
       Default = false,
       Flag = "InfiniteStaminaEnabled",
-      Callback = function(value84) toggleInfiniteStamina(value84) end,
+      Callback = function(value86) toggleInfiniteStamina(value86) end,
     })
 
     local jumpSettingsSection = player:Section({
@@ -7089,7 +7149,7 @@ else
       Title = "Enable JumpPower",
       Default = false,
       Flag = "JumpPowerEnabled",
-      Callback = function(value85) Config.JumpPowerEnabled = value85 end,
+      Callback = function(value87) Config.JumpPowerEnabled = value87 end,
     })
 
     jumpSettingsSection:Slider({
@@ -7098,7 +7158,7 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "JumpPowerValue",
-      Callback = function(value86) Config.JumpPowerValue = value86 end,
+      Callback = function(value88) Config.JumpPowerValue = value88 end,
     })
 
     jumpSettingsSection:Divider()
@@ -7107,7 +7167,7 @@ else
       Title = "Infinite Jump",
       Default = false,
       Flag = "InfiniteJump",
-      Callback = function(value87) Config.InfiniteJump = value87 end,
+      Callback = function(value89) Config.InfiniteJump = value89 end,
     })
 
     local button2
@@ -7126,10 +7186,11 @@ else
       Title = "Enable Fly",
       Default = false,
       Flag = "FlyEnabled",
-      Callback = function(value88)
-        Config.FlyEnabled = value88
+      Callback = function(value90)
+        Config.FlyEnabled = value90
 
-        if value88 then
+        if value90 then
+          CurrentFlyType = "Seat [UNDETECTED]"
           FlySpeed = Config.FlySpeed
           enableFly(true)
         else
@@ -7145,7 +7206,7 @@ else
       Locked = true,
       LockedTitle = "Locked For Security Reason...",
       Flag = "FlyType",
-      Callback = function(value89) end,
+      Callback = function(value91) Config.FlyType = "Seat [UNDETECTED]" end,
     }):Lock()
 
     flySection:Slider({
@@ -7154,9 +7215,9 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "FlySpeed",
-      Callback = function(value90)
-        Config.FlySpeed = value90
-        FlySpeed = value90
+      Callback = function(value92)
+        Config.FlySpeed = value92
+        FlySpeed = value92
       end,
     })
 
@@ -7164,19 +7225,19 @@ else
       Title = "Enable Noclip",
       Default = false,
       Flag = "NoclipEnabled",
-      Callback = function(value91)
-        Config.NoclipEnabled = value91
+      Callback = function(value93)
+        Config.NoclipEnabled = value93
 
-        if value91 then
+        if value93 then
           if not noclipConnection then
             noclipConnection = task.spawn(function()
               while Config.NoclipEnabled and SentinelActive do
-                local character57 = localPlayer.Character
+                local character60 = localPlayer.Character
 
-                if character57 then
-                  local torso = character57:FindFirstChild("Torso")
-                    or character57:FindFirstChild("UpperTorso")
-                    or character57:FindFirstChild("LowerTorso")
+                if character60 then
+                  local torso = character60:FindFirstChild("Torso")
+                    or character60:FindFirstChild("UpperTorso")
+                    or character60:FindFirstChild("LowerTorso")
 
                   if torso and torso:IsA("BasePart") then
                     torso.CanCollide = false
@@ -7193,12 +7254,12 @@ else
             noclipConnection = nil
           end
 
-          local character58 = localPlayer.Character
+          local character61 = localPlayer.Character
 
-          if character58 then
-            local torso2 = character58:FindFirstChild("Torso")
-              or character58:FindFirstChild("UpperTorso")
-              or character58:FindFirstChild("LowerTorso")
+          if character61 then
+            local torso2 = character61:FindFirstChild("Torso")
+              or character61:FindFirstChild("UpperTorso")
+              or character61:FindFirstChild("LowerTorso")
 
             if torso2 and torso2:IsA("BasePart") then
               torso2.CanCollide = true
@@ -7214,12 +7275,12 @@ else
       Title = "Disable Stagger",
       Default = false,
       Flag = "StaggerEnabled",
-      Callback = function(value92)
-        Config.StaggerEnabled = not value92
-        local character59 = localPlayer.Character
+      Callback = function(value94)
+        Config.StaggerEnabled = not value94
+        local character62 = localPlayer.Character
 
-        if character59 then
-          local clientScripts5 = character59:FindFirstChild("ClientScripts")
+        if character62 then
+          local clientScripts5 = character62:FindFirstChild("ClientScripts")
 
           if clientScripts5 then
             local stagger5 = clientScripts5:FindFirstChild("Stagger")
@@ -7239,7 +7300,7 @@ else
       Desc = "Allow you to move while executing / getting executed",
       Default = false,
       Flag = "AntiAnchorEnabled",
-      Callback = function(value93) Config.AntiAnchorEnabled = value93 end,
+      Callback = function(value95) Config.AntiAnchorEnabled = value95 end,
     })
 
     local combat = Tabs.Combat
@@ -7269,14 +7330,14 @@ else
       Title = "Auto Bring Axe",
       Default = false,
       Flag = "AutoBringAxe",
-      Callback = function(value94) toggleAutoBringAxe(value94) end,
+      Callback = function(value96) toggleAutoBringAxe(value96) end,
     })
 
     bringWeaponsSection:Toggle({
       Title = "Auto Bring Hammer",
       Default = false,
       Flag = "AutoBringHammer",
-      Callback = function(value95) toggleAutoBringHammer(value95) end,
+      Callback = function(value97) toggleAutoBringHammer(value97) end,
     })
 
     local section = combat:Section({
@@ -7292,9 +7353,9 @@ else
       Callback = function()
         button4:Highlight()
 
-        for index59, value96 in ipairs(workspace:GetDescendants()) do
-          if value96.Name == "Shield" then
-            value96:Destroy()
+        for index59, value98 in ipairs(workspace:GetDescendants()) do
+          if value98.Name == "Shield" then
+            value98:Destroy()
           end
         end
       end,
@@ -7304,28 +7365,28 @@ else
       Title = "Auto-Remove Shields",
       Default = false,
       Flag = "AutoRemoveShields",
-      Callback = function(value97)
-        AutoShieldRemovalActive = value97
+      Callback = function(value99)
+        AutoShieldRemovalActive = value99
 
-        if value97 then
-          for index60, value98 in ipairs(workspace:GetDescendants()) do
-            if value98.Name == "Shield" then
-              value98:Destroy()
+        if value99 then
+          for index60, value100 in ipairs(workspace:GetDescendants()) do
+            if value100.Name == "Shield" then
+              value100:Destroy()
             end
           end
 
           if not AutoShieldRemovalConnection then
-            AutoShieldRemovalConnection = workspace.DescendantAdded:Connect(function(descendant6)
+            AutoShieldRemovalConnection = workspace.DescendantAdded:Connect(function(descendant7)
               if AutoShieldRemovalActive then
                 task.wait(0.1)
 
-                if descendant6.Name == "Shield" then
-                  descendant6:Destroy()
+                if descendant7.Name == "Shield" then
+                  descendant7:Destroy()
                 end
 
-                for index61, value99 in ipairs(descendant6:GetDescendants()) do
-                  if value99.Name == "Shield" then
-                    value99:Destroy()
+                for index61, value101 in ipairs(descendant7:GetDescendants()) do
+                  if value101.Name == "Shield" then
+                    value101:Destroy()
                   end
                 end
               end
@@ -7354,14 +7415,13 @@ else
       Title = "Auto-Remove Axe",
       Default = false,
       Flag = "AutoRemoveAxe",
-      Callback = function(value100)
-        AutoRemoveAxeActive = value100
+      Callback = function(value102)
+        AutoRemoveAxeActive = value102
 
-        if value100 then
-          return
-        end
-
-        if AutoRemoveAxeConnection then
+        if value102 then
+          deleteSlasherAxe()
+          setupAutoRemoveAxe()
+        elseif AutoRemoveAxeConnection then
           AutoRemoveAxeConnection:Disconnect()
           AutoRemoveAxeConnection = nil
         end
@@ -7375,7 +7435,7 @@ else
       Desc = "Prevents risers from dodging",
       Default = false,
       Flag = "AntiRiserDodgeEnabled",
-      Callback = function(value101) AntiRiserDodge_Enable(value101) end,
+      Callback = function(value103) AntiRiserDodge_Enable(value103) end,
     })
 
     local viewModelSection = combat:Section({
@@ -7388,7 +7448,7 @@ else
       Title = "Enable VM customizations",
       Default = false,
       Flag = "ViewModelEnabled",
-      Callback = function(value102) Config.ViewModelEnabled = value102 end,
+      Callback = function(value104) Config.ViewModelEnabled = value104 end,
     })
 
     viewModelSection:Divider()
@@ -7397,7 +7457,7 @@ else
       Title = "VM Color",
       Default = Config.ViewModelColor,
       Flag = "ViewModelColor",
-      Callback = function(value103) Config.ViewModelColor = value103 end,
+      Callback = function(value105) Config.ViewModelColor = value105 end,
     })
 
     viewModelSection:Dropdown({
@@ -7405,7 +7465,7 @@ else
       Values = values,
       Value = Config.ViewModelMaterial,
       Flag = "ViewModelMaterial",
-      Callback = function(value104) Config.ViewModelMaterial = value104 end,
+      Callback = function(value106) Config.ViewModelMaterial = value106 end,
     })
 
     local section2 = combat:Section({
@@ -7418,18 +7478,18 @@ else
       Title = "Enable custom Weapons Appearance",
       Default = false,
       Flag = "CustomWeaponsEnabled",
-      Callback = function(value105)
-        Config.CustomWeaponsEnabled = value105
+      Callback = function(value107)
+        Config.CustomWeaponsEnabled = value107
         local tool7
 
-        if value105 then
-          local character60 = localPlayer.Character
+        if value107 then
+          local character63 = localPlayer.Character
 
-          if character60 then
-            tool7 = character60:FindFirstChildWhichIsA("Tool")
+          if character63 then
+            tool7 = character63:FindFirstChildWhichIsA("Tool")
 
             if tool7 then
-              pcall(function() f7(tool7) end)
+              pcall(function() f9(tool7) end)
             end
           end
         end
@@ -7442,7 +7502,7 @@ else
       Title = "Weapons Color",
       Default = Config.CustomWeaponsColor,
       Flag = "CustomWeaponsColor",
-      Callback = function(value106) Config.CustomWeaponsColor = value106 end,
+      Callback = function(value108) Config.CustomWeaponsColor = value108 end,
     })
 
     section2:Dropdown({
@@ -7450,7 +7510,7 @@ else
       Values = values,
       Value = Config.CustomWeaponsMaterial,
       Flag = "CustomWeaponsMaterial",
-      Callback = function(value107) Config.CustomWeaponsMaterial = value107 end,
+      Callback = function(value109) Config.CustomWeaponsMaterial = value109 end,
     })
 
     local gunMods = Tabs.GunMods
@@ -7467,14 +7527,14 @@ else
       Locked = locked3,
       LockedTitle = "Not supported by your executor",
       Flag = "SilentAimEnabled",
-      Callback = function(value108) SilentAim_Enable(value108) end,
+      Callback = function(value110) SilentAim_Enable(value110) end,
     })
 
     silentAimSection:Toggle({
       Title = "Enable Wall Check",
       Default = true,
       Flag = "SilentAimWallCheck",
-      Callback = function(value109) Config.SilentAimWallCheck = value109 end,
+      Callback = function(value111) Config.SilentAimWallCheck = value111 end,
     })
 
     silentAimSection:Divider()
@@ -7484,7 +7544,7 @@ else
       Values = { "Head", "Torso" },
       Value = "Head",
       Flag = "SilentAimTargetPart",
-      Callback = function(value110) Config.SilentAimTargetPart = value110 end,
+      Callback = function(value112) Config.SilentAimTargetPart = value112 end,
     })
 
     silentAimSection:Divider()
@@ -7495,8 +7555,8 @@ else
       Locked = locked,
       LockedTitle = "Not supported by your executor",
       Flag = "SilentAimShowFOV",
-      Callback = function(value111)
-        Config.SilentAimShowFOV = value111
+      Callback = function(value113)
+        Config.SilentAimShowFOV = value113
         SilentAim_UpdateFOVVisual()
       end,
     })
@@ -7507,8 +7567,8 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "SilentAimFOVRadius",
-      Callback = function(value112)
-        Config.SilentAimFOVRadius = value112
+      Callback = function(value114)
+        Config.SilentAimFOVRadius = value114
         SilentAim_UpdateFOVVisual()
       end,
     })
@@ -7518,7 +7578,7 @@ else
       Values = { "Center", "Mouse" },
       Value = "Mouse",
       Flag = "SilentAimFOVMode",
-      Callback = function(value113) Config.SilentAimFOVMode = value113 end,
+      Callback = function(value115) Config.SilentAimFOVMode = value115 end,
     })
 
     local reloadSection = gunMods:Section({
@@ -7540,7 +7600,7 @@ else
       Title = "Fast Reload",
       Default = false,
       Flag = "FastReload",
-      Callback = function(value114) toggleFastReload(value114) end,
+      Callback = function(value116) toggleFastReload(value116) end,
     })
 
     reloadSection:Divider()
@@ -7549,7 +7609,7 @@ else
       Title = "Auto Reload",
       Default = false,
       Flag = "AutoReload",
-      Callback = function(value115) toggleAutoReload(value115) end,
+      Callback = function(value117) toggleAutoReload(value117) end,
     })
 
     reloadSection:Divider()
@@ -7558,7 +7618,7 @@ else
       Title = "Instant Shotgun Reload",
       Default = false,
       Flag = "InstantShotgunReload",
-      Callback = function(value116) setupInstantShotgunReload(value116) end,
+      Callback = function(value118) setupInstantShotgunReload(value118) end,
     })
 
     local bulletVisualizerSection = gunMods:Section({
@@ -7571,21 +7631,21 @@ else
       Title = "Is missed",
       Default = Config.BulletVisualizerColorMissed,
       Flag = "BulletVisualizerColorMissed",
-      Callback = function(value117) Config.BulletVisualizerColorMissed = value117 end,
+      Callback = function(value119) Config.BulletVisualizerColorMissed = value119 end,
     })
 
     bulletVisualizerSection:Colorpicker({
       Title = "Is Succes",
       Default = Config.BulletVisualizerColorSuccess,
       Flag = "BulletVisualizerColorSuccess",
-      Callback = function(value118) Config.BulletVisualizerColorSuccess = value118 end,
+      Callback = function(value120) Config.BulletVisualizerColorSuccess = value120 end,
     })
 
     bulletVisualizerSection:Colorpicker({
       Title = "Loading",
       Default = Config.BulletVisualizerColorLoading,
       Flag = "BulletVisualizerColorLoading",
-      Callback = function(value119) Config.BulletVisualizerColorLoading = value119 end,
+      Callback = function(value121) Config.BulletVisualizerColorLoading = value121 end,
     })
 
     bulletVisualizerSection:Divider()
@@ -7596,7 +7656,7 @@ else
       Rounding = 1,
       Enabled = true,
       Flag = "BulletVisualizerLifetime",
-      Callback = function(value120) Config.BulletVisualizerLifetime = value120 end,
+      Callback = function(value122) Config.BulletVisualizerLifetime = value122 end,
     })
 
     bulletVisualizerSection:Slider({
@@ -7605,7 +7665,7 @@ else
       Rounding = 2,
       Enabled = true,
       Flag = "BulletVisualizerFadeOut",
-      Callback = function(value121) Config.BulletVisualizerFadeOut = value121 end,
+      Callback = function(value123) Config.BulletVisualizerFadeOut = value123 end,
     })
 
     bulletVisualizerSection:Divider()
@@ -7614,7 +7674,7 @@ else
       Title = "Enable Bullet Visualizer",
       Default = false,
       Flag = "BulletVisualizerEnabled",
-      Callback = function(value122) BulletVisualizer_Enable(value122) end,
+      Callback = function(value124) BulletVisualizer_Enable(value124) end,
     })
 
     local hitboxSection = gunMods:Section({ Title = "Hitbox", Opened = true, Icon = "box" })
@@ -7625,8 +7685,8 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "BoxSize",
-      Callback = function(value123)
-        Config.BoxSize = value123
+      Callback = function(value125)
+        Config.BoxSize = value125
 
         if HitboxEnabled then
           UpdateAllHitboxes(true)
@@ -7638,9 +7698,9 @@ else
       Title = "Enable Hitbox Expander",
       Default = false,
       Flag = "HitboxEnabled",
-      Callback = function(value124)
-        HitboxEnabled = value124
-        UpdateAllHitboxes(value124)
+      Callback = function(value126)
+        HitboxEnabled = value126
+        UpdateAllHitboxes(value126)
       end,
     })
 
@@ -7656,10 +7716,10 @@ else
       Locked = locked2,
       LockedTitle = "Not supported by your executor",
       Flag = "AntiCamShake",
-      Callback = function(value125)
-        Config.AntiCamShake = value125
+      Callback = function(value127)
+        Config.AntiCamShake = value127
 
-        if value125 then
+        if value127 then
           applyNoRecoil()
         else
           removeNoRecoil()
@@ -7671,9 +7731,9 @@ else
       Title = "Silencer",
       Default = false,
       Flag = "SilencerEnabled",
-      Callback = function(value126)
-        Config.SilencerEnabled = value126
-        updateSilencers(value126)
+      Callback = function(value128)
+        Config.SilencerEnabled = value128
+        updateSilencers(value128)
       end,
     })
 
@@ -7684,7 +7744,7 @@ else
       Desc = "Only work for Night Stalker Quest.",
       Default = false,
       Flag = "NightStalkerInfAmmo",
-      Callback = function(value127) toggleNightStalkerInfAmmo(value127) end,
+      Callback = function(value129) toggleNightStalkerInfAmmo(value129) end,
     })
 
     local infected = Tabs.Infected
@@ -7730,6 +7790,8 @@ else
       end,
     })
 
+    local divider = playerInfectionSection.Divider
+
     local button7
 
     button7 = playerInfectionSection:Button({
@@ -7765,69 +7827,16 @@ else
       end,
     })
 
-    playerInfectionSection:Divider()
+    divider(playerInfectionSection)
 
     local button8
 
     button8 = playerInfectionSection:Button({
       Title = "Get Infected [BETA]",
-      Locked = true,
-      LockedTitle = "Detected... Fixing.",
+      Desc = "Getting hit by any entities might broke the process. Also, don't heal you until ~20hp, otherwise ur not going to be infected.",
       Callback = function()
         button8:Highlight()
-
-        if not canInfect then
-          pcall(function()
-            if WindUI then
-              WindUI:Notify({
-                Title = "Infection",
-                Content = "You must respawn before starting a new infection.",
-                Duration = 3,
-              })
-            end
-          end)
-
-          return
-        elseif InfectionActive then
-          pcall(function()
-            if WindUI then
-              WindUI:Notify({ Title = "Infection", Content = "Already active!", Duration = 2 })
-            end
-          end)
-
-          return
-        else
-          local character61 = localPlayer.Character
-
-          if not character61 then
-            return
-          else
-            local humanoid35 = character61:FindFirstChildOfClass("Humanoid")
-
-            if not humanoid35 then
-              return
-            elseif humanoid35.Health < 100 then
-              pcall(function()
-                if WindUI then
-                  WindUI:Notify({
-                    Title = "Infection Failed",
-                    Content = "You do not meet all the requirements (100 HP+).",
-                    Duration = 7,
-                  })
-                end
-              end)
-
-              return
-            else
-              if not character61:FindFirstChild("HumanoidRootPart") then
-                return
-              end
-
-              task.spawn(f18)
-              return
-            end
-          end
-        end
+        radawayStartInfectionProcess()
       end,
     })
 
@@ -7841,9 +7850,9 @@ else
       Title = "Auto Complete QTE",
       Default = false,
       Flag = "AutoQTEEnabled",
-      Callback = function(value128)
-        Config.AutoQTEEnabled = value128
-        f26(value128)
+      Callback = function(value130)
+        Config.AutoQTEEnabled = value130
+        f24(value130)
       end,
     })
 
@@ -7853,7 +7862,7 @@ else
       Values = { "PC", "Mobile", "Console" },
       Default = Config.AutoQTEPlatform or "PC",
       Flag = "AutoQTEPlatform",
-      Callback = function(value129) Config.AutoQTEPlatform = value129 end,
+      Callback = function(value131) Config.AutoQTEPlatform = value131 end,
     })
 
     section3:Slider({
@@ -7862,7 +7871,7 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "AutoQTEReactionSpeed",
-      Callback = function(value130) Config.AutoQTEReactionSpeed = value130 end,
+      Callback = function(value132) Config.AutoQTEReactionSpeed = value132 end,
     })
 
     local esp = Tabs.ESP
@@ -7875,7 +7884,7 @@ else
       Rounding = 2,
       Enabled = true,
       Flag = "HLOutlineTrans",
-      Callback = function(value131) Config.HLOutlineTrans = value131 end,
+      Callback = function(value133) Config.HLOutlineTrans = value133 end,
     })
 
     section4:Slider({
@@ -7884,16 +7893,16 @@ else
       Rounding = 2,
       Enabled = true,
       Flag = "HLFillTrans",
-      Callback = function(value132) Config.HLFillTrans = value132 end,
+      Callback = function(value134) Config.HLFillTrans = value134 end,
     })
 
     section4:Slider({
       Title = "Max Distance",
-      Value = { Min = 50, Max = 2000, Default = Config.MaxDistance },
+      Value = { Min = 50, Max = 1000, Default = 250 },
       Rounding = 0,
       Enabled = true,
       Flag = "MaxDistance",
-      Callback = function(value133) Config.MaxDistance = value133 end,
+      Callback = function(value135) Config.MaxDistance = value135 end,
     })
 
     section4:Divider()
@@ -7904,14 +7913,14 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "BoxThickness",
-      Callback = function(value134) Config.BoxThickness = value134 end,
+      Callback = function(value136) Config.BoxThickness = value136 end,
     })
 
     section4:Toggle({
       Title = "Auto Thickness (distance based)",
       Default = Config.BoxAutoThickness,
       Flag = "BoxAutoThickness",
-      Callback = function(value135) Config.BoxAutoThickness = value135 end,
+      Callback = function(value137) Config.BoxAutoThickness = value137 end,
     })
 
     local section5 = esp:Section({
@@ -7924,7 +7933,7 @@ else
       Title = "Players Color",
       Default = Config.ColorPlayer,
       Flag = "ColorPlayer",
-      Callback = function(value136) Config.ColorPlayer = value136 end,
+      Callback = function(value138) Config.ColorPlayer = value138 end,
     })
 
     section5:Divider()
@@ -7933,7 +7942,7 @@ else
       Title = "Highlight Players",
       Default = false,
       Flag = "HighlightPlayer",
-      Callback = function(value137) Config.HighlightPlayer = value137 end,
+      Callback = function(value139) Config.HighlightPlayer = value139 end,
     })
 
     section5:Toggle({
@@ -7942,7 +7951,7 @@ else
       Locked = locked,
       LockedTitle = "Not supported by your executor",
       Flag = "BoxPlayers",
-      Callback = function(value138) Config.BoxPlayers = value138 end,
+      Callback = function(value140) Config.BoxPlayers = value140 end,
     })
 
     section5:Divider()
@@ -7951,175 +7960,121 @@ else
       Title = "Show Players Name",
       Default = false,
       Flag = "ShowNamePlayers",
-      Callback = function(value139) Config.ShowNamePlayers = value139 end,
+      Callback = function(value141) Config.ShowNamePlayers = value141 end,
     })
 
     section5:Toggle({
       Title = "Show Players Health",
       Default = false,
       Flag = "ShowHealthPlayers",
-      Callback = function(value140) Config.ShowHealthPlayers = value140 end,
+      Callback = function(value142) Config.ShowHealthPlayers = value142 end,
     })
 
     section5:Toggle({
       Title = "Show Players Distance",
       Default = false,
       Flag = "ShowDistancePlayers",
-      Callback = function(value141) Config.ShowDistancePlayers = value141 end,
+      Callback = function(value143) Config.ShowDistancePlayers = value143 end,
     })
 
-    local section6 = esp:Section({
-      Title = "Friends ESP Settings",
-      Opened = true,
-      Icon = "user-round-check",
-    })
+    local section6 = esp:Section({ Title = "Mobs ESP Settings", Opened = true, Icon = "syringe" })
 
     section6:Colorpicker({
-      Title = "Friends Color",
-      Default = Config.ColorFriends,
-      Flag = "ColorFriends",
-      Callback = function(value142) Config.ColorFriends = value142 end,
-    })
-
-    section6:Divider()
-
-    section6:Toggle({
-      Title = "Highlight Friends",
-      Default = false,
-      Flag = "HighlightFriends",
-      Callback = function(value143) Config.HighlightFriends = value143 end,
-    })
-
-    section6:Toggle({
-      Title = "Box Friends",
-      Default = false,
-      Locked = locked,
-      LockedTitle = "Not supported by your executor",
-      Flag = "BoxFriends",
-      Callback = function(value144) Config.BoxFriends = value144 end,
-    })
-
-    section6:Divider()
-
-    section6:Toggle({
-      Title = "Show Friends Name",
-      Default = false,
-      Flag = "ShowNameFriends",
-      Callback = function(value145) Config.ShowNameFriends = value145 end,
-    })
-
-    section6:Toggle({
-      Title = "Show Friends Health",
-      Default = false,
-      Flag = "ShowHealthFriends",
-      Callback = function(value146) Config.ShowHealthFriends = value146 end,
-    })
-
-    section6:Toggle({
-      Title = "Show Friends Distance",
-      Default = false,
-      Flag = "ShowDistanceFriends",
-      Callback = function(value147) Config.ShowDistanceFriends = value147 end,
-    })
-
-    local section7 = esp:Section({ Title = "Mobs ESP Settings", Opened = true, Icon = "syringe" })
-
-    section7:Colorpicker({
       Title = "Mobs Color",
       Default = Config.ColorMobs,
       Flag = "ColorMobs",
-      Callback = function(value148) Config.ColorMobs = value148 end,
+      Callback = function(value144) Config.ColorMobs = value144 end,
     })
 
-    section7:Divider()
+    section6:Divider()
 
-    section7:Toggle({
+    section6:Toggle({
       Title = "Highlight Mobs",
       Default = false,
       Flag = "HighlightMobs",
-      Callback = function(value149) Config.HighlightMobs = value149 end,
+      Callback = function(value145) Config.HighlightMobs = value145 end,
     })
 
-    section7:Toggle({
+    section6:Toggle({
       Title = "Box Mobs",
       Default = false,
       Locked = locked,
       LockedTitle = "Not supported by your executor",
       Flag = "BoxMobs",
-      Callback = function(value150) Config.BoxMobs = value150 end,
+      Callback = function(value146) Config.BoxMobs = value146 end,
+    })
+
+    section6:Divider()
+
+    section6:Toggle({
+      Title = "Show Mobs Name",
+      Default = false,
+      Flag = "ShowNameMobs",
+      Callback = function(value147) Config.ShowNameMobs = value147 end,
+    })
+
+    section6:Toggle({
+      Title = "Show Mobs Health",
+      Default = false,
+      Flag = "ShowHealthMobs",
+      Callback = function(value148) Config.ShowHealthMobs = value148 end,
+    })
+
+    section6:Toggle({
+      Title = "Show Mobs Distance",
+      Default = false,
+      Flag = "ShowDistanceMobs",
+      Callback = function(value149) Config.ShowDistanceMobs = value149 end,
+    })
+
+    local section7 = esp:Section({ Title = "Boss ESP Settings", Opened = true, Icon = "skull" })
+
+    section7:Colorpicker({
+      Title = "Boss Color",
+      Default = Config.ColorBosses,
+      Flag = "ColorBosses",
+      Callback = function(value150) Config.ColorBosses = value150 end,
     })
 
     section7:Divider()
 
     section7:Toggle({
-      Title = "Show Mobs Name",
-      Default = false,
-      Flag = "ShowNameMobs",
-      Callback = function(value151) Config.ShowNameMobs = value151 end,
-    })
-
-    section7:Toggle({
-      Title = "Show Mobs Health",
-      Default = false,
-      Flag = "ShowHealthMobs",
-      Callback = function(value152) Config.ShowHealthMobs = value152 end,
-    })
-
-    section7:Toggle({
-      Title = "Show Mobs Distance",
-      Default = false,
-      Flag = "ShowDistanceMobs",
-      Callback = function(value153) Config.ShowDistanceMobs = value153 end,
-    })
-
-    local section8 = esp:Section({ Title = "Boss ESP Settings", Opened = true, Icon = "skull" })
-
-    section8:Colorpicker({
-      Title = "Boss Color",
-      Default = Config.ColorBosses,
-      Flag = "ColorBosses",
-      Callback = function(value154) Config.ColorBosses = value154 end,
-    })
-
-    section8:Divider()
-
-    section8:Toggle({
       Title = "Highlight Bosses",
       Default = false,
       Flag = "HighlightBosses",
-      Callback = function(value155) Config.HighlightBosses = value155 end,
+      Callback = function(value151) Config.HighlightBosses = value151 end,
     })
 
-    section8:Toggle({
+    section7:Toggle({
       Title = "Box Bosses",
       Default = false,
       Locked = locked,
       LockedTitle = "Not supported by your executor",
       Flag = "BoxBosses",
-      Callback = function(value156) Config.BoxBosses = value156 end,
+      Callback = function(value152) Config.BoxBosses = value152 end,
     })
 
-    section8:Divider()
+    section7:Divider()
 
-    section8:Toggle({
+    section7:Toggle({
       Title = "Show Bosses Name",
       Default = false,
       Flag = "ShowNameBosses",
-      Callback = function(value157) Config.ShowNameBosses = value157 end,
+      Callback = function(value153) Config.ShowNameBosses = value153 end,
     })
 
-    section8:Toggle({
+    section7:Toggle({
       Title = "Show Bosses Health",
       Default = false,
       Flag = "ShowHealthBosses",
-      Callback = function(value158) Config.ShowHealthBosses = value158 end,
+      Callback = function(value154) Config.ShowHealthBosses = value154 end,
     })
 
-    section8:Toggle({
+    section7:Toggle({
       Title = "Show Bosses Distance",
       Default = false,
       Flag = "ShowDistanceBosses",
-      Callback = function(value159) Config.ShowDistanceBosses = value159 end,
+      Callback = function(value155) Config.ShowDistanceBosses = value155 end,
     })
 
     local visuals = Tabs.Visuals
@@ -8134,7 +8089,7 @@ else
       Title = "Unlock Third Person",
       Default = false,
       Flag = "UnlockThirdPerson",
-      Callback = function(value160) Config.UnlockThirdPerson = value160 end,
+      Callback = function(value156) Config.UnlockThirdPerson = value156 end,
     })
 
     cameraSettingsSection:Divider()
@@ -8143,7 +8098,7 @@ else
       Title = "Custom FOV",
       Default = false,
       Flag = "CustomFOVEnabled",
-      Callback = function(value161) Config.CustomFOVEnabled = value161 end,
+      Callback = function(value157) Config.CustomFOVEnabled = value157 end,
     })
 
     cameraSettingsSection:Slider({
@@ -8152,7 +8107,7 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "FOVValue",
-      Callback = function(value162) Config.FOVValue = value162 end,
+      Callback = function(value158) Config.FOVValue = value158 end,
     })
 
     local atmosphereSection = visuals:Section({
@@ -8165,10 +8120,10 @@ else
       Title = "Full Bright",
       Default = false,
       Flag = "FullBright",
-      Callback = function(value163)
-        Config.FullBright = value163
+      Callback = function(value159)
+        Config.FullBright = value159
 
-        if value163 then
+        if value159 then
           lighting.Ambient = Color3.fromRGB(255, 255, 255)
           lighting.Brightness = 2
         else
@@ -8182,10 +8137,10 @@ else
       Title = "No Fog",
       Default = false,
       Flag = "NoFog",
-      Callback = function(value164)
-        Config.NoFog = value164
+      Callback = function(value160)
+        Config.NoFog = value160
 
-        if value164 then
+        if value160 then
           lighting.FogEnd = 999999999
           lighting.FogStart = 999999999
         else
@@ -8205,9 +8160,8 @@ else
       Title = "Enable X-Ray",
       Default = false,
       Flag = "Xray",
-      Callback = function(value165)
-        XrayEnabled = value165
-        Config.Xray = value165
+      Callback = function(value161)
+        XrayEnabled = value161
         updateXray()
       end,
     })
@@ -8220,8 +8174,8 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "XrayDistance",
-      Callback = function(value166)
-        XrayDistance = value166
+      Callback = function(value162)
+        XrayDistance = value162
 
         if XrayEnabled then
           updateXray()
@@ -8235,8 +8189,8 @@ else
       Rounding = 0,
       Enabled = true,
       Flag = "XrayTransparency",
-      Callback = function(value167)
-        XrayTransparency = value167 / 100
+      Callback = function(value163)
+        XrayTransparency = value163 / 100
         updateXrayMaterialAndTransparency()
 
         if XrayEnabled then
@@ -8250,8 +8204,8 @@ else
       Values = { "Plastic", "Neon", "ForceField", "Glass", "SmoothPlastic" },
       Value = "ForceField",
       Flag = "XrayMaterial",
-      Callback = function(value168)
-        Config.XrayMaterial = value168
+      Callback = function(value164)
+        Config.XrayMaterial = value164
 
         XrayMaterial = ({
           Plastic = Enum.Material.Plastic,
@@ -8259,7 +8213,7 @@ else
           ForceField = Enum.Material.ForceField,
           Glass = Enum.Material.Glass,
           SmoothPlastic = Enum.Material.SmoothPlastic,
-        })[value168] or Enum.Material.ForceField
+        })[value164] or Enum.Material.ForceField
 
         updateXrayMaterialAndTransparency()
 
@@ -8279,7 +8233,7 @@ else
       Title = "Auto-Wipe Screen Blood",
       Default = false,
       Flag = "AutoWipeBlood",
-      Callback = function(value169) Config.AutoWipeBlood = value169 end,
+      Callback = function(value165) Config.AutoWipeBlood = value165 end,
     })
 
     local cleanScreenButton
@@ -8288,21 +8242,21 @@ else
       Title = "Clean Screen",
       Callback = function()
         cleanScreenButton:Highlight()
-        local gui4 = localPlayer.PlayerGui:FindFirstChild("Gui")
+        local gui5 = localPlayer.PlayerGui:FindFirstChild("Gui")
 
-        if gui4 then
-          for key15, clean2 in pairs(gui4:GetChildren()) do
-            if clean2.Name == "blood" then
-              clean2.Name = "clean"
-              tweenService:Create(clean2, TweenInfo.new(0.2), { ImageTransparency = 1 }):Play()
-              debris:AddItem(clean2, 0.5)
+        if gui5 then
+          for key18, clean3 in pairs(gui5:GetChildren()) do
+            if clean3.Name == "blood" then
+              clean3.Name = "clean"
+              tweenService:Create(clean3, TweenInfo.new(0.2), { ImageTransparency = 1 }):Play()
+              debris:AddItem(clean3, 0.5)
             end
           end
         end
       end,
     })
 
-    local section9 = visuals:Section({
+    local section8 = visuals:Section({
       Title = "Night Vision & Gasmask",
       Opened = true,
       Icon = "moon",
@@ -8310,7 +8264,7 @@ else
 
     local deleteGasmaskButton
 
-    deleteGasmaskButton = section9:Button({
+    deleteGasmaskButton = section8:Button({
       Title = "Delete Gasmask",
       Callback = function()
         deleteGasmaskButton:Highlight()
@@ -8328,7 +8282,7 @@ else
 
     local breakGasmaskButton
 
-    breakGasmaskButton = section9:Button({
+    breakGasmaskButton = section8:Button({
       Title = "Break Gasmask",
       Callback = function()
         breakGasmaskButton:Highlight()
@@ -8336,36 +8290,36 @@ else
       end,
     })
 
-    section9:Toggle({
+    section8:Toggle({
       Title = "Infinite Night Vision",
       Default = false,
       Flag = "InfiniteNightVision",
-      Callback = function(value170) ApplyInfiniteNightVision(value170) end,
+      Callback = function(value166) ApplyInfiniteNightVision(value166) end,
     })
 
     local world = Tabs.World
     local teleportSection = world:Section({ Title = "Teleport", Opened = true, Icon = "globe" })
 
-    for key16, value171 in pairs(teleportPoints) do
-      local v158 = {}
-      local v159 = {}
+    for key19, value167 in pairs(teleportPoints) do
+      local v173 = {}
+      local v174 = {}
 
-      for index62, value172 in ipairs(value171) do
-        local v160, v161 = unpack(value172)
-        table.insert(v158, v160)
-        v159[v160] = v161
+      for index62, value168 in ipairs(value167) do
+        local v175, v176 = unpack(value168)
+        table.insert(v173, v175)
+        v174[v175] = v176
       end
 
       teleportSection:Dropdown({
-        Title = key16,
-        Values = v158,
-        Default = v158[1],
-        Flag = "TP_" .. key16,
-        Callback = function(value173)
-          local v162 = v159[value173]
+        Title = key19,
+        Values = v173,
+        Default = v173[1],
+        Flag = "TP_" .. key19,
+        Callback = function(value169)
+          local v177 = v174[value169]
 
-          if v162 then
-            teleportTo(v162)
+          if v177 then
+            teleportTo(v177)
           end
         end,
       })
@@ -8391,7 +8345,7 @@ else
       Title = "Anti-Radiation Effect",
       Default = false,
       Flag = "ImmuneLookHazard",
-      Callback = function(value174) Config.ImmuneLookHazard = value174 end,
+      Callback = function(value170) Config.ImmuneLookHazard = value170 end,
     })
 
     local button10
@@ -8429,10 +8383,10 @@ else
         local currentCamera8 = workspace.CurrentCamera
 
         if currentCamera8 then
-          for index63, value175 in ipairs(currentCamera8:GetChildren()) do
-            if value175:IsA("ColorCorrectionEffect")
-              and value175.Name == "RadiationColorCorrection" then
-              value175:Destroy()
+          for index63, value171 in ipairs(currentCamera8:GetChildren()) do
+            if value171:IsA("ColorCorrectionEffect")
+              and value171.Name == "RadiationColorCorrection" then
+              value171:Destroy()
             end
           end
         end
@@ -8511,14 +8465,14 @@ else
       Icon = "toggle-right",
     })
 
-    for key17, value176 in pairs(toggleAnims) do
-      local v163 = value176
+    for key20, value172 in pairs(toggleAnims) do
+      local v178 = value172
 
       toggleAnimationsSection:Toggle({
-        Title = key17,
+        Title = key20,
         Default = false,
-        Flag = "Anim_" .. key17:gsub("[^%w]", "_"),
-        Callback = function(value177) playToggleAnim(v163, value177) end,
+        Flag = "Anim_" .. key20:gsub("[^%w]", "_"),
+        Callback = function(value173) playToggleAnim(v178, value173) end,
       })
     end
 
@@ -8528,15 +8482,15 @@ else
       Icon = "play",
     })
 
-    for key18, value178 in pairs(buttonAnims) do
-      local v164 = value178
+    for key21, value174 in pairs(buttonAnims) do
+      local v179 = value174
       local button16
 
       button16 = buttonAnimationsSection:Button({
-        Title = key18,
+        Title = key21,
         Callback = function()
           button16:Highlight()
-          playButtonAnim(v164)
+          playButtonAnim(v179)
         end,
       })
     end
@@ -8549,8 +8503,6 @@ else
       Icon = "scroll",
     })
 
-    local divider = questCompletionSection.Divider
-
     local button17
 
     button17 = questCompletionSection:Button({
@@ -8561,7 +8513,7 @@ else
       end,
     })
 
-    divider(questCompletionSection)
+    questCompletionSection:Divider()
 
     local button18
 
@@ -8581,8 +8533,6 @@ else
       Icon = "award",
     })
 
-    local divider2 = getBadgesSection.Divider
-
     local button19
 
     button19 = getBadgesSection:Button({
@@ -8594,7 +8544,7 @@ else
       end,
     })
 
-    divider2(getBadgesSection)
+    getBadgesSection:Divider()
 
     local button20
 
@@ -8648,7 +8598,7 @@ else
       Title = "Anti-AFK",
       Default = false,
       Flag = "AntiAFKEnabled",
-      Callback = function(value179) Config.AntiAFKEnabled = value179 end,
+      Callback = function(value175) Config.AntiAFKEnabled = value175 end,
     })
 
     mainStuffSection:Divider()
@@ -8657,10 +8607,10 @@ else
       Title = "Auto Remove Death Screen",
       Default = false,
       Flag = "RemoveDeathScreen",
-      Callback = function(value180)
-        Config.RemoveDeathScreen = value180
+      Callback = function(value176)
+        Config.RemoveDeathScreen = value176
 
-        if value180 then
+        if value176 then
           local playerGui11 = localPlayer:FindFirstChild("PlayerGui")
 
           if playerGui11 then
@@ -8689,9 +8639,9 @@ else
       Title = "Show Native Chat (CoreGui)",
       Default = false,
       Flag = "ChatLoggerEnabled",
-      Callback = function(value181)
+      Callback = function(value177)
         chatEverToggled = true
-        Config.ChatLoggerEnabled = value181
+        Config.ChatLoggerEnabled = value177
         applyChatState()
       end,
     })
@@ -8708,10 +8658,10 @@ else
       Locked = locked4,
       LockedTitle = "Not supported by your executor",
       Flag = "InstantProximityPrompt",
-      Callback = function(value182)
-        Config.InstantProximityPrompt = value182
+      Callback = function(value178)
+        Config.InstantProximityPrompt = value178
 
-        if value182 then
+        if value178 then
           setupInstantProximity()
         elseif InstantProximityConnection then
           InstantProximityConnection:Disconnect()
@@ -8726,10 +8676,10 @@ else
       Locked = locked4,
       LockedTitle = "Not supported by your executor",
       Flag = "AutoCompleteProximityPrompt",
-      Callback = function(value183)
-        Config.AutoCompleteProximityPrompt = value183
+      Callback = function(value179)
+        Config.AutoCompleteProximityPrompt = value179
 
-        if value183 then
+        if value179 then
           autoCompleteProximity()
         elseif AutoCompletePromptConnection then
           AutoCompletePromptConnection:Disconnect()
@@ -8738,7 +8688,27 @@ else
       end,
     })
 
-    local interfaceSection = Tabs.Settings:Section({
+    local v180 = Tabs.Settings
+
+    local deleteScriptButton
+
+    deleteScriptButton = v180:Section({
+      Title = "Danger Zone",
+      Opened = true,
+      Icon = "triangle-alert",
+    }):Button({
+      Title = "Delete Script",
+      Icon = "trash",
+      Color = Color3.fromHex("#EF4F1D"),
+      Locked = true,
+      LockedTitle = "Working On...",
+      Callback = function()
+        deleteScriptButton:Highlight()
+        task.spawn(function() FullScriptCleanup() end)
+      end,
+    })
+
+    local interfaceSection = v180:Section({
       Title = "Interface",
       Opened = true,
       Icon = "settings",
@@ -8752,7 +8722,10 @@ else
       },
       Value = "Amber",
       Flag = "UITheme",
-      Callback = function(value184) end,
+      Callback = function(value180)
+        Config.UITheme = value180
+        pcall(function() WindUI:SetTheme(value180) end)
+      end,
     })
 
     interfaceSection:Dropdown({
@@ -8765,11 +8738,11 @@ else
       },
       Value = "K",
       Flag = "MinimizeKeybind",
-      Callback = function(value185)
-        Config.MinimizeKeybind = value185
+      Callback = function(value181)
+        Config.MinimizeKeybind = value181
 
         if sentinelExaminationWindow then
-          pcall(function() sentinelExaminationWindow:SetToggleKey(Enum.KeyCode[value185]) end)
+          pcall(function() sentinelExaminationWindow:SetToggleKey(Enum.KeyCode[value181]) end)
         end
       end,
     })
@@ -8787,21 +8760,21 @@ Ping: 0 ms]],
     })
 
     task.spawn(function()
-      local v165 = 0
-      local v166 = 0
-      local v167 = tick()
+      local v181 = 0
+      local v182 = 0
+      local v183 = tick()
 
       runService.RenderStepped:Connect(function()
         if not SentinelActive then
           return
         else
-          v166 = v166 + 1
-          local v168 = tick()
+          v182 = v182 + 1
+          local v184 = tick()
 
-          if v168 - v167 >= 1 then
-            v165 = v166
-            v166 = 0
-            v167 = v168
+          if v184 - v183 >= 1 then
+            v181 = v182
+            v182 = 0
+            v183 = v184
           end
 
           return
@@ -8810,18 +8783,18 @@ Ping: 0 ms]],
 
       while SentinelActive do
         task.wait(0.5)
-        local v169 = tick() - SentinelLastInteraction >= 10 and "AFK" or "Active"
+        local v185 = tick() - SentinelLastInteraction >= 10 and "AFK" or "Active"
         local getNetworkPing = localPlayer:GetNetworkPing()
 
-        local v170 = "Status: " .. v169 .. "\nFPS: " .. v165 .. "\nPing: "
+        local v186 = "Status: " .. v185 .. "\nFPS: " .. v181 .. "\nPing: "
           .. math.floor(getNetworkPing * 1000) .. " ms"
 
         if sentinelStatusParagraph then
-          if not pcall(function() sentinelStatusParagraph:SetDesc(v170) end) then
+          if not pcall(function() sentinelStatusParagraph:SetDesc(v186) end) then
             pcall(function()
               sentinelStatusParagraph:Set({
                 Title = "Sentinel Status",
-                Desc = v170,
+                Desc = v186,
                 Image = "bookmark",
                 ImageSize = 24,
               })
@@ -8881,6 +8854,15 @@ Get it from the Discord or the website below.]],
 
     pcall(function()
       sentinelExaminationWindow:Tag({
+        Title = "v16.50.00",
+        Icon = "shield-check",
+        Color = Color3.fromHex("#30ff6a"),
+        Radius = 13,
+      })
+    end)
+
+    pcall(function()
+      sentinelExaminationWindow:Tag({
         Title = "Beta",
         Icon = "github",
         Color = Color3.fromHex("#000000"),
@@ -8898,6 +8880,10 @@ Get it from the Discord or the website below.]],
       Enabled = true,
       Draggable = true,
     })
+
+    if Config.WindowBackground ~= "" then
+      pcall(function() sentinelExaminationWindow:SetBackgroundImage(Config.WindowBackground) end)
+    end
 
     BuildUI()
   end
@@ -8917,17 +8903,8 @@ Get it from the Discord or the website below.]],
         Content = SentinelExecutorName .. [[
  isn't fully friendly with the script.Some features have been locked for security reason.
 Recommended executors : Real (free, key) / Potassium (Paid)]],
-        Icon = "alert-triangle",
+        Icon = "app-window",
         Duration = 15,
-      })
-    end)
-
-    pcall(function()
-      WindUI:Notify({
-        Title = "Locked Features",
-        Content = "Locked: " .. table.concat(SentinelMissingFeatures, ", "),
-        Icon = "lock",
-        Duration = 12,
       })
     end)
   end
@@ -8944,8 +8921,8 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
 
   firstHide = true
 
-  userInputService.InputBegan:Connect(function(input8, p142)
-    if p142 then
+  userInputService.InputBegan:Connect(function(input8, p145)
+    if p145 then
       return
     end
 
@@ -8986,10 +8963,10 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
     end
 
     if Config.StaggerImmune then
-      local character62 = localPlayer.Character
+      local character64 = localPlayer.Character
 
-      if character62 then
-        character62:SetAttribute("StaggerImmune", true)
+      if character64 then
+        character64:SetAttribute("StaggerImmune", true)
       end
     end
 
@@ -8997,55 +8974,53 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
       task.wait(1)
     end
 
-    local v171
+    local v187
 
     if Config.Team and Config.Team ~= "" then
       task.wait(0.8)
-      v171 = nil
+      v187 = nil
 
-      for index64, value186 in ipairs(teams:GetChildren()) do
-        if value186:IsA("Team") and value186.Name:lower() == tostring(Config.Team):lower() then
-          v171 = value186
+      for index64, value182 in ipairs(teams:GetChildren()) do
+        if value182:IsA("Team") and value182.Name:lower() == tostring(Config.Team):lower() then
+          v187 = value182
           break
         end
       end
 
-      if v171 and localPlayer.Team ~= v171 then
-        pcall(function() localPlayer.Team = v171 end)
-        pcall(function() localPlayer.TeamColor = v171.TeamColor end)
+      if v187 and localPlayer.Team ~= v187 then
+        pcall(function() localPlayer.Team = v187 end)
+        pcall(function() localPlayer.TeamColor = v187.TeamColor end)
       end
     end
   end)
 
-  local renderStepped = runService.RenderStepped
+  function f63(p146)
+    local v188 = {}
 
-  function f63(p143)
-    local v172 = {}
-
-    if not p143 then
-      return v172
+    if not p146 then
+      return v188
     else
-      local head4 = p143:FindFirstChild("Head")
+      local head4 = p146:FindFirstChild("Head")
 
       if head4 then
-        for index65, value187 in ipairs(head4:GetChildren()) do
-          if value187:IsA("Accessory") or value187:IsA("Hat") then
-            table.insert(v172, value187)
+        for index65, value183 in ipairs(head4:GetChildren()) do
+          if value183:IsA("Accessory") or value183:IsA("Hat") then
+            table.insert(v188, value183)
           end
         end
       end
 
-      for index66, value188 in ipairs(p143:GetChildren()) do
-        if value188:IsA("Accessory") or value188:IsA("Hat") then
-          table.insert(v172, value188)
+      for index66, value184 in ipairs(p146:GetChildren()) do
+        if value184:IsA("Accessory") or value184:IsA("Hat") then
+          table.insert(v188, value184)
         end
       end
 
-      return v172
+      return v188
     end
   end
 
-  renderStepped:Connect(function()
+  runService.RenderStepped:Connect(function()
     if not SentinelActive then
       return
     end
@@ -9070,37 +9045,30 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
   end)
 
   HeadAccessoryConnection = nil
+  CharacterAccessoryConnection = nil
+  v172 = nil
 
-  function f64(p144, p145)
-    if not p144 then
+  function f65(p147, p148)
+    if not p147 then
       return
     end
 
-    for index67, value189 in ipairs(p144:GetDescendants()) do
-      local v173 = value189
+    for index67, value185 in ipairs(p147:GetDescendants()) do
+      local v189 = value185
 
-      if v173:IsA("BasePart") then
-        pcall(function() v173.LocalTransparencyModifier = p145 end)
-      elseif v173:IsA("Decal") then
-        pcall(function() v173.Transparency = p145 end)
+      if v189:IsA("BasePart") then
+        pcall(function() v189.LocalTransparencyModifier = p148 end)
+      elseif v189:IsA("Decal") then
+        pcall(function() v189.Transparency = p148 end)
       end
     end
 
-    if p144:IsA("BasePart") then
-      pcall(function() p144.LocalTransparencyModifier = p145 end)
+    if p147:IsA("BasePart") then
+      pcall(function() p147.LocalTransparencyModifier = p148 end)
     end
   end
 
-  CharacterAccessoryConnection = nil
-  v157 = nil
-
-  function f65(p146, p147)
-    for index68, value190 in ipairs(f63(p146)) do
-      f64(value190, p147)
-    end
-  end
-
-  function f66(p148)
+  function f64(p149)
     if HeadAccessoryConnection then
       HeadAccessoryConnection:Disconnect()
       HeadAccessoryConnection = nil
@@ -9111,61 +9079,67 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
       CharacterAccessoryConnection = nil
     end
 
-    if v157 ~= nil then
-      f65(p148, v157 and 1 or 0)
+    if v172 ~= nil then
+      f66(p149, v172 and 1 or 0)
     end
 
-    local head5 = p148:FindFirstChild("Head")
+    local head5 = p149:FindFirstChild("Head")
 
     if head5 then
       HeadAccessoryConnection = head5.ChildAdded:Connect(function(child15)
         if child15:IsA("Accessory") or child15:IsA("Hat") then
           task.defer(function()
             if child15 and child15.Parent then
-              f64(child15, v157 and 1 or 0)
+              f65(child15, v172 and 1 or 0)
             end
           end)
         end
       end)
     end
 
-    CharacterAccessoryConnection = p148.ChildAdded:Connect(function(child16)
+    CharacterAccessoryConnection = p149.ChildAdded:Connect(function(child16)
       if child16:IsA("Accessory") or child16:IsA("Hat") then
         task.defer(function()
           if child16 and child16.Parent then
-            f64(child16, v157 and 1 or 0)
+            f65(child16, v172 and 1 or 0)
           end
         end)
       end
     end)
   end
 
+  function f66(p150, p151)
+    for index68, value186 in ipairs(f63(p150)) do
+      f65(value186, p151)
+    end
+  end
+
   runService.RenderStepped:Connect(function()
     if not SentinelActive then
       return
     else
-      local character63 = localPlayer.Character
+      local character65 = localPlayer.Character
 
-      if not character63 then
+      if not character65 then
         return
       else
-        local head6 = character63:FindFirstChild("Head")
+        local head6 = character65:FindFirstChild("Head")
 
         if not head6 then
           return
         else
-          local v174 = (currentCamera.CFrame.Position - head6.Position).Magnitude < 1.5
+          local v190 = (currentCamera.CFrame.Position - head6.Position).Magnitude < 1.5
 
-          if v174 ~= v157 then
-            v157 = v174
+          if v190 ~= v172 then
+            v172 = v190
 
-            if v174 then
-              f65(character63, 1)
+            if v190 then
+              f66(character65, 1)
             else
-              f65(character63, 0)
+              f66(character65, 0)
             end
-          elseif v174 then
-            f65(character63, 1)
+          elseif v190 then
+            f66(character65, 1)
           end
 
           return
@@ -9179,23 +9153,23 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
       if not SentinelActive then
         return
       else
-        local character64 = localPlayer.Character
+        local character66 = localPlayer.Character
 
-        if not character64 then
+        if not character66 then
           return
         else
-          local head7 = character64:FindFirstChild("Head")
+          local head7 = character66:FindFirstChild("Head")
 
           if not head7 then
             return
           else
-            local v175 = (currentCamera.CFrame.Position - head7.Position).Magnitude < 3
+            local v191 = (currentCamera.CFrame.Position - head7.Position).Magnitude < 3
 
-            if v175 ~= v157 then
-              v157 = v175
-              f65(character64, v175 and 1 or 0)
-            elseif v175 then
-              f65(character64, 1)
+            if v191 ~= v172 then
+              v172 = v191
+              f66(character66, v191 and 1 or 0)
+            elseif v191 then
+              f66(character66, 1)
             end
 
             return
@@ -9207,12 +9181,12 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
 
   if localPlayer.Character then
     localPlayer.Character:WaitForChild("Head", 5)
-    f66(localPlayer.Character)
+    f64(localPlayer.Character)
   end
 
-  localPlayer.CharacterAdded:Connect(function(character65)
-    character65:WaitForChild("Head", 5)
-    f66(character65)
+  localPlayer.CharacterAdded:Connect(function(character67)
+    character67:WaitForChild("Head", 5)
+    f64(character67)
   end)
 
   connect7 = nil
@@ -9237,8 +9211,8 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
       if child17.Name == localPlayer.Name .. "viewmodel" then
         task.wait(0.1)
 
-        for index69, value191 in ipairs(child17:GetChildren()) do
-          f6(value191)
+        for index69, value187 in ipairs(child17:GetChildren()) do
+          f7(value187)
         end
       end
     end)
@@ -9269,18 +9243,18 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
     end
   end)
 
-  local v176 = os.clock()
+  local v192 = os.clock()
 
   print("\n============ Sentinel Account & Info ============")
   print("User         : " .. SentinelUserName)
   print("Account Age  : " .. SentinelAccountAge)
   print("Device       : " .. SentinelDeviceType)
   print("\n============ Sentinel Script & Executor ============")
-  print("Load Time    : " .. string.format("%.3f", v176 - SentinelLoadStart) .. "s")
+  print("Load Time    : " .. string.format("%.3f", v192 - SentinelLoadStart) .. "s")
   print("Executor     : " .. SentinelExecutorName)
-  print("Full Script Support : " .. (SentinelHookSupported and "YES" or "NO"))
+  print("Full Script Support : " .. (SentinelHookSupported and "✅" or "❌"))
 
-  f1()
+  f3()
 
   if not SentinelHookSupported then
     pcall(function()
@@ -9288,8 +9262,8 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
         WindUI:Notify({
           Title = "Compatibility Warning",
           Content = "Hooks are not supported. Silent Aim may not work.",
-          Icon = "alert-triangle",
-          Duration = 10,
+          Icon = "webhook",
+          Duration = 15,
         })
       end
     end)
@@ -9298,25 +9272,23 @@ Recommended executors : Real (free, key) / Potassium (Paid)]],
   if sentinelExaminationWindow and WindUI then
     pcall(function()
       WindUI:Notify({
-        Title = "Sentinel v16.30.07",
+        Title = "Sentinel v16.50.00",
         Content = [[
 Script Loaded successfully,
 Welcome, ]] .. SentinelUserName .. [[
 .
 Executor: ]] .. SentinelExecutorName,
         Icon = "shield-check",
-        Duration = 10,
+        Duration = 5,
       })
     end)
-
-    task.wait(0.5)
 
     pcall(function()
       WindUI:Notify({
         Title = "News",
-        Content = "Sorry for the downtime :(",
+        Content = "New Get Infected system implemented (60s cooldown).",
         Icon = "newspaper",
-        Duration = 8.3,
+        Duration = 5,
       })
     end)
   end
