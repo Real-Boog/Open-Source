@@ -119,20 +119,3 @@ question several life choices
    ↓
 next script
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-(i used ai on this readme lmao)
