@@ -1089,6 +1089,7 @@ function v1:CreateWindow(text2)
           end
         end)
 
+      
         userInputService.InputChanged:Connect(function(input7)
           if v64 and input7.UserInputType == Enum.UserInputType.MouseMovement then
             f10(p27
