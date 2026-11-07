@@ -1,4 +1,4 @@
--- shit deobfuscation (prob not even runnable too)
+-- shit deobfuscation (prob not even runnable too) also only the login page.
 
 local players = game:GetService("Players")
 local lighting = game:GetService("Lighting")
