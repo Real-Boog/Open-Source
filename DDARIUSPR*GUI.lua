@@ -1,4 +1,5 @@
 -- ts file was created by boog x XD | https://discord.gg/pAfq65sShf
+-- this is for alkedion (ORIGINAL SCRIPT FROM [https://rscripts.net/script/insta-kill-esp-auto-kill-enemies-trigger-bot-3Bog])
 
 local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
