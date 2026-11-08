@@ -1,0 +1,384 @@
+-- ts file was created by boog x XD | https://discord.gg/pAfq65sShf
+-- this is for tsb
+
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local PlayerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
+local bicycleKeySystemGui = Instance.new("ScreenGui")
+bicycleKeySystemGui.Name = "BicycleKeySystem"
+bicycleKeySystemGui.ResetOnSpawn = false
+bicycleKeySystemGui.IgnoreGuiInset = true
+bicycleKeySystemGui.Parent = PlayerGui
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 380, 0, 280)
+frame.Position = UDim2.new(0.5, -190, 0.5, -140)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 0
+frame.Parent = bicycleKeySystemGui
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 12)
+local bicycleHubKeyLabel = Instance.new("TextLabel")
+bicycleHubKeyLabel.Size = UDim2.new(1, 0, 0, 50)
+bicycleHubKeyLabel.BackgroundTransparency = 1
+bicycleHubKeyLabel.Text = "Bicycle Hub Key System"
+bicycleHubKeyLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+bicycleHubKeyLabel.Font = Enum.Font.GothamBold
+bicycleHubKeyLabel.TextSize = 24
+bicycleHubKeyLabel.Parent = frame
+local joinDiscordForLabel = Instance.new("TextLabel")
+joinDiscordForLabel.Size = UDim2.new(0.85, 0, 0, 30)
+joinDiscordForLabel.Position = UDim2.new(0.075, 0, 0.22, 0)
+joinDiscordForLabel.BackgroundTransparency = 1
+joinDiscordForLabel.Text = "Join Discord for key"
+joinDiscordForLabel.TextColor3 = Color3.fromRGB(100, 200, 255)
+joinDiscordForLabel.Font = Enum.Font.GothamSemibold
+joinDiscordForLabel.TextSize = 16
+joinDiscordForLabel.Parent = frame
+local textBox = Instance.new("TextBox")
+textBox.Size = UDim2.new(0.85, 0, 0, 45)
+textBox.Position = UDim2.new(0.075, 0, 0.34, 0)
+textBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+textBox.PlaceholderText = "Enter Key..."
+textBox.Text = ""
+textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+textBox.Font = Enum.Font.Gotham
+textBox.TextSize = 16
+textBox.ClearTextOnFocus = false
+textBox.Parent = frame
+Instance.new("UICorner", textBox).CornerRadius = UDim.new(0, 8)
+local verifyButton = Instance.new("TextButton")
+verifyButton.Size = UDim2.new(0.85, 0, 0, 45)
+verifyButton.Position = UDim2.new(0.075, 0, 0.52, 0)
+verifyButton.BackgroundColor3 = Color3.fromRGB(70, 130, 255)
+verifyButton.Text = "VERIFY"
+verifyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+verifyButton.Font = Enum.Font.GothamBold
+verifyButton.TextSize = 16
+verifyButton.Parent = frame
+Instance.new("UICorner", verifyButton).CornerRadius = UDim.new(0, 8)
+local discordLinkButton = Instance.new("TextButton")
+discordLinkButton.Size = UDim2.new(0.85, 0, 0, 45)
+discordLinkButton.Position = UDim2.new(0.075, 0, 0.7, 0)
+discordLinkButton.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+discordLinkButton.Text = "Discord Link"
+discordLinkButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+discordLinkButton.Font = Enum.Font.GothamBold
+discordLinkButton.TextSize = 16
+discordLinkButton.Parent = frame
+Instance.new("UICorner", discordLinkButton).CornerRadius = UDim.new(0, 8)
+local enterYourKeyLabel = Instance.new("TextLabel")
+enterYourKeyLabel.Size = UDim2.new(1, 0, 0, 30)
+enterYourKeyLabel.Position = UDim2.new(0, 0, 0.88, 0)
+enterYourKeyLabel.BackgroundTransparency = 1
+enterYourKeyLabel.Text = "Enter your key to continue"
+enterYourKeyLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+enterYourKeyLabel.Font = Enum.Font.Gotham
+enterYourKeyLabel.TextSize = 14
+enterYourKeyLabel.TextXAlignment = Enum.TextXAlignment.Center
+enterYourKeyLabel.Parent = frame
+
+discordLinkButton.MouseButton1Click:Connect(function()
+	if setclipboard then
+		setclipboard("https://discord.gg/pAfq65sShf")
+	end
+	if toclipboard then
+		toclipboard("https://discord.gg/pAfq65sShf")
+	end
+	enterYourKeyLabel.Text = "Discord link copied!"
+	enterYourKeyLabel.TextColor3 = Color3.fromRGB(100, 255, 150)
+	task.wait(2)
+	enterYourKeyLabel.Text = "Enter your key (CRACKED) to continue"
+	enterYourKeyLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+end)
+
+verifyButton.MouseButton1Click:Connect(function()
+	if textBox.Text:gsub("%s+", ""):upper() ~= "CRACKED" then
+		enterYourKeyLabel.Text = "Wrong key!"
+		enterYourKeyLabel.TextColor3 = Color3.fromRGB(255, 80, 80)
+		task.wait(2)
+		enterYourKeyLabel.Text = "Enter your key to continue"
+		enterYourKeyLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+		return
+	end
+	enterYourKeyLabel.Text = "Correct key! Loading..."
+	enterYourKeyLabel.TextColor3 = Color3.fromRGB(100, 255, 100)
+	verifyButton.Text = "LOADING..."
+	task.wait(1)
+	TweenService:Create(
+		frame,
+		TweenInfo.new(0.7, Enum.EasingStyle.Back, Enum.EasingDirection.In),
+		{Size = UDim2.new(0, 0, 0, 0), Position = UDim2.new(0.5, 0, 0.5, 0)}
+	):Play()
+	task.wait(0.8)
+	bicycleKeySystemGui:Destroy()
+	local Players = game:GetService("Players")
+	local TweenService2 = game:GetService("TweenService")
+	local RunService = game:GetService("RunService")
+	local Workspace = game:GetService("Workspace")
+	local LocalPlayer = Players.LocalPlayer
+	LocalPlayer:WaitForChild("PlayerGui")
+	local character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+	local HumanoidRootPart = character:WaitForChild("HumanoidRootPart")
+	local Communicate = character:WaitForChild("Communicate")
+	local currentCamera = Workspace.CurrentCamera
+	character:WaitForChild("Humanoid")
+	LocalPlayer.CharacterAdded:Connect(function(character2)
+		character = character2
+		HumanoidRootPart = character:WaitForChild("HumanoidRootPart")
+		Communicate = character:WaitForChild("Communicate")
+		character:WaitForChild("Humanoid")
+	end)
+	local tool = Instance.new("Tool")
+	tool.Name = "AutoNearest"
+	tool.RequiresHandle = false
+	tool.Parent = LocalPlayer.Backpack
+	local enabled = false
+	local player, connection, value
+	local map = {}
+	local enabled2 = false
+
+	local function destroy(player)
+		if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Head") then
+			local head = player.Character.Head
+			if head:FindFirstChild("ULT_ESP") then
+				head.ULT_ESP:Destroy()
+			end
+			local deathCounter = player.Backpack and player.Backpack:FindFirstChild("Death Counter")
+				or player.Character and player.Character:FindFirstChild("Death Counter")
+			if deathCounter then
+				map[player] = tick()
+			end
+			if deathCounter then
+				local ultEspBillboard = Instance.new("BillboardGui", head)
+				ultEspBillboard.Name = "ULT_ESP"
+				ultEspBillboard.Adornee = head
+				ultEspBillboard.Size = UDim2.new(0, 100, 0, 50)
+				ultEspBillboard.StudsOffset = Vector3.new(0, 3.5, 0)
+				ultEspBillboard.AlwaysOnTop = true
+				local saitamaUltLabel = Instance.new("TextLabel", ultEspBillboard)
+				saitamaUltLabel.Size = UDim2.new(1, 0, 1, 0)
+				saitamaUltLabel.BackgroundTransparency = 1
+				saitamaUltLabel.Text = "SAITAMA ULT"
+				saitamaUltLabel.TextColor3 = Color3.new(1, 0, 0)
+				saitamaUltLabel.TextStrokeTransparency = 0
+				saitamaUltLabel.Font = Enum.Font.SourceSansBold
+				saitamaUltLabel.TextSize = 28
+				return
+			elseif map[player] and tick() - map[player] <= 10 then
+				local ultEspBillboard2 = Instance.new("BillboardGui", head)
+				ultEspBillboard2.Name = "ULT_ESP"
+				ultEspBillboard2.Adornee = head
+				ultEspBillboard2.Size = UDim2.new(0, 140, 0, 50)
+				ultEspBillboard2.StudsOffset = Vector3.new(0, 3.5, 0)
+				ultEspBillboard2.AlwaysOnTop = true
+				local maybeDeathCounterLabel = Instance.new("TextLabel", ultEspBillboard2)
+				maybeDeathCounterLabel.Size = UDim2.new(1, 0, 1, 0)
+				maybeDeathCounterLabel.BackgroundTransparency = 1
+				maybeDeathCounterLabel.Text = "maybe death counter"
+				maybeDeathCounterLabel.TextColor3 = Color3.new(1, 1, 0)
+				maybeDeathCounterLabel.TextStrokeTransparency = 0
+				maybeDeathCounterLabel.Font = Enum.Font.SourceSansBold
+				maybeDeathCounterLabel.TextSize = 22
+			end
+		end
+	end
+
+	task.spawn(function()
+		while task.wait(0.1) do
+			for _, player in Players:GetPlayers() do
+				destroy(player)
+			end
+		end
+	end)
+	Players.PlayerRemoving:Connect(function(player)
+		map[player] = nil
+	end)
+
+	local function fireServer()
+		Communicate:FireServer({Goal = "LeftClick", Mobile = true})
+		Communicate:FireServer({Goal = "LeftClickRelease", Mobile = true})
+	end
+
+	local function add()
+		local list = {}
+		for _, model in Workspace.Map.Trash:GetChildren() do
+			local trashcan = model:FindFirstChild("Trashcan")
+			if not trashcan or model:GetAttribute("Broken") then
+				continue
+			end
+			table.insert(list, {part = trashcan, model = model})
+		end
+		if #list ~= 0 then
+			return list[math.random(#list)]
+		end
+		return nil
+	end
+
+	local function play()
+		local object = add()
+		if object then
+			value = object
+			while enabled and value == object do
+				if object.model:GetAttribute("Broken") then
+					return true
+				end
+				local delta = object.part.Position - object.part.CFrame.LookVector * 3
+				local cFrame = CFrame.lookAt(
+					Vector3.new(delta.X, HumanoidRootPart.Position.Y + 5.5, delta.Z),
+					object.part.Position
+				)
+				local tween = TweenService2:Create(
+					HumanoidRootPart,
+					TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
+					{CFrame = cFrame}
+				)
+				tween:Play()
+				tween.Completed:Wait()
+				currentCamera.CFrame = CFrame.lookAt(currentCamera.CFrame.Position, object.part.Position)
+				task.wait(0.2)
+				fireServer()
+				task.wait(0.6)
+			end
+		end
+		return false
+	end
+
+	local function get()
+		local value
+		local huge = math.huge
+		for _, player in Players:GetPlayers() do
+			if player == LocalPlayer or not player.Character then
+				continue
+			end
+			local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
+			if not humanoidRootPart then
+				continue
+			end
+			local distance = (HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+			if not (distance < huge) then
+				continue
+			end
+			huge = distance
+			value = player
+		end
+		return value
+	end
+
+	tool.Equipped:Connect(function()
+		LocalPlayer:SetAttribute("ShiftLockOn", true)
+		if not enabled then
+			player = get()
+			if player then
+				enabled = true
+				task.spawn(function()
+					while enabled do
+						if connection then
+							connection:Disconnect()
+							connection = nil
+						end
+						if not play() then
+							break
+						end
+						if not player or not player.Character then
+							player = get()
+							task.wait(0.2)
+							continue
+						end
+						local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
+						if not humanoidRootPart then
+							continue
+						end
+						if connection then
+							connection:Disconnect()
+							connection = nil
+						end
+						enabled2 = false
+						connection = RunService.Heartbeat:Connect(function(dt)
+							if not enabled or not humanoidRootPart or not humanoidRootPart.Parent then
+								if connection then
+									connection:Disconnect()
+									connection = nil
+								end
+								return
+							end
+							local position = humanoidRootPart.Position
+							local position2 = HumanoidRootPart.Position
+							local amount = position2 - position
+							local vector3 = Vector3.new(amount.X, 0, amount.Z)
+							local amount2 = position + vector3.Unit * 3
+							if vector3.Magnitude < 2 or 6 < vector3.Magnitude then
+								local amount3 = -Vector3.new(humanoidRootPart.CFrame.LookVector.X, 0, humanoidRootPart.CFrame.LookVector.Z).Unit
+								if amount3.Magnitude == 0 then
+									amount3 = Vector3.new(1, 0, 0)
+								end
+								amount2 = position + amount3 * 3
+							end
+							local vector32 = Vector3.new(amount2.X, position2.Y, amount2.Z)
+							local amount4 = position + Vector3.new(humanoidRootPart.CFrame.LookVector.X, 0, humanoidRootPart.CFrame.LookVector.Z)
+							local distance = (vector32 - position2).Magnitude
+							if distance < 0.2 then
+								HumanoidRootPart.CFrame = CFrame.lookAt(vector32, amount4)
+								enabled2 = true
+								return
+							end
+							enabled2 = false
+							local amount5 = math.min(190 * dt, distance)
+							HumanoidRootPart.CFrame = CFrame.lookAt(
+								position2 + (vector32 - position2).Unit * amount5,
+								amount4
+							)
+						end)
+						while enabled and not enabled2 do
+							wait(1e-08)
+						end
+						local count = 0
+						local amount = tick() + 0.8
+						while tick() < amount and enabled and humanoidRootPart and humanoidRootPart.Parent do
+							if not (count < 25) then
+								task.wait(0.0001)
+								continue
+							end
+							currentCamera.CFrame = CFrame.lookAt(
+								currentCamera.CFrame.Position,
+								humanoidRootPart.Position
+							)
+							fireServer()
+							count = count + 1
+							task.wait(0.03)
+						end
+						if not connection then
+							continue
+						end
+						connection:Disconnect()
+						connection = nil
+					end
+					enabled = false
+					if connection then
+						connection:Disconnect()
+						connection = nil
+					end
+					player = nil
+					value = nil
+					enabled2 = false
+				end)
+				return
+			end
+		end
+	end)
+	tool.Unequipped:Connect(function()
+		LocalPlayer:SetAttribute("ShiftLockOn", false)
+		enabled = false
+		if connection then
+			connection:Disconnect()
+			connection = nil
+		end
+		player = nil
+		value = nil
+		enabled2 = false
+	end)
+end)
+
+textBox.FocusLost:Connect(function(enterPressed)
+	if enterPressed then
+		verifyButton.MouseButton1Click:Fire()
+	end
+end)
