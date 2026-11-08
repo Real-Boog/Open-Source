@@ -1,5 +1,4 @@
 -- ts file was created by boog x XD | https://discord.gg/pAfq65sShf
--- this is for tsb
 
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
